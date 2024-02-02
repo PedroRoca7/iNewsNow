@@ -8,7 +8,7 @@
 import UIKit
 
 final class HomeViewController: UIViewController {
-
+    
     lazy private var viewScreen: HomeView = {
         let view = HomeView()
         return view
@@ -22,6 +22,7 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         setDelegatesAndDataSource()
         setupSearchController()
+        viewScreen.searchButton.addTarget(self, action: #selector(toggleNavigationBarButtonTapped(_:)), for: .touchUpInside)
     }
     
     private func setDelegatesAndDataSource() {
@@ -29,10 +30,25 @@ final class HomeViewController: UIViewController {
         viewScreen.todayPostsTableView.dataSource = self
         viewScreen.mainNewsCollectionView.delegate = self
         viewScreen.mainNewsCollectionView.dataSource = self
+        viewScreen.searchController.searchBar.delegate = self
     }
     
     private func setupSearchController() {
+        viewScreen.searchController.searchBar.placeholder = "Search Posts"
+        self.navigationItem.searchController = viewScreen.searchController
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         
+    }
+    
+    @IBAction func toggleNavigationBarButtonTapped(_ sender: UIButton) {
+        let isHidden = self.navigationController?.isNavigationBarHidden ?? true
+        self.navigationController?.setNavigationBarHidden(!isHidden, animated: true)
+    }
+}
+
+extension HomeViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 }
 
