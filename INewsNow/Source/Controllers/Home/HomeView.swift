@@ -8,13 +8,15 @@
 import Foundation
 import UIKit
 
-class HomeView: UIView {
+final class HomeView: UIView {
     
     // MARK: Propertys
     
     lazy var safeGuide = self.safeAreaLayoutGuide
     
     // MARK: ElementsVisual
+    
+    lazy var searchController = UISearchController(searchResultsController: nil)
     
     lazy var floatingMenuButton: UIButton = {
         let button = UIButton()
@@ -39,7 +41,7 @@ class HomeView: UIView {
         return button
     }()
     
-    lazy var stackViewHeader: UIStackView = {
+    lazy var headerStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [floatingMenuButton, logoImageView, searchButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
@@ -60,14 +62,58 @@ class HomeView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Wednesday, November 18 - 2019"
-        label.font = .boldSystemFont(ofSize: 14)
+        label.font = .boldSystemFont(ofSize: 10)
         label.textColor = .gray
         return label
     }()
     
-    lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView()
-        return collectionView
+    lazy var mainNewsCollectionView: UICollectionView = {
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.init())
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.backgroundColor = .clear
+        cv.register(CustomMainNewsCollectionViewCell.self,
+                    forCellWithReuseIdentifier: CustomMainNewsCollectionViewCell.identifier)
+        let layout = UICollectionViewFlowLayout.init()
+        layout.scrollDirection = .horizontal
+        cv.setCollectionViewLayout(layout, animated: false)
+        cv.showsHorizontalScrollIndicator = false
+        cv.layer.cornerRadius = 10
+        
+        return cv
+    }()
+    
+    lazy var todayPostsLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Today's Posts"
+        label.font = .boldSystemFont(ofSize: 18)
+        label.textColor = .black
+        return label
+    }()
+    
+    lazy var showAllPostsButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("See all", for: .normal)
+        button.setTitleColor(UIColor.gray, for: .normal)
+        return button
+    }()
+    
+    lazy var todayPostsAndshowAllPostsButtonStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [todayPostsLabel, showAllPostsButton])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.distribution = .fillProportionally
+        return stackView
+    }()
+    
+    lazy var todayPostsTableView: UITableView = {
+        let tb = UITableView()
+        tb.translatesAutoresizingMaskIntoConstraints = false
+        tb.register(CustomTodayPostsTableViewCell.self,
+                    forCellReuseIdentifier: CustomTodayPostsTableViewCell.identifier)
+        tb.backgroundColor = .clear
+        return tb
     }()
     
     override init(frame: CGRect) {
@@ -84,9 +130,12 @@ class HomeView: UIView {
 
 extension HomeView: ViewProtocol {
     func buildHierarchy() {
-        self.addSubview(stackViewHeader)
+        self.addSubview(headerStackView)
         self.addSubview(mainNewsLabel)
         self.addSubview(todayDateLabel)
+        self.addSubview(mainNewsCollectionView)
+        self.addSubview(todayPostsAndshowAllPostsButtonStackView)
+        self.addSubview(todayPostsTableView)
     }
     
     func setupConstraints() {
@@ -97,16 +146,32 @@ extension HomeView: ViewProtocol {
             searchButton.widthAnchor.constraint(equalToConstant: 25),
             searchButton.heightAnchor.constraint(equalToConstant: 25),
             
-            stackViewHeader.topAnchor.constraint(equalTo: safeGuide.topAnchor, constant: 10),
-            stackViewHeader.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            stackViewHeader.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            stackViewHeader.heightAnchor.constraint(equalToConstant: 70),
+            headerStackView.topAnchor.constraint(equalTo: safeGuide.topAnchor),
+            headerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            headerStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            headerStackView.heightAnchor.constraint(equalToConstant: 70),
             
-            mainNewsLabel.topAnchor.constraint(equalTo: stackViewHeader.bottomAnchor, constant: 15),
+            mainNewsLabel.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 15),
             mainNewsLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             
             todayDateLabel.centerYAnchor.constraint(equalTo: mainNewsLabel.centerYAnchor),
             todayDateLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
+            
+            mainNewsCollectionView.topAnchor.constraint(equalTo: mainNewsLabel.bottomAnchor, constant: 10),
+            mainNewsCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            mainNewsCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
+            mainNewsCollectionView.heightAnchor.constraint(equalToConstant: 180),
+                     
+            todayPostsAndshowAllPostsButtonStackView.topAnchor.constraint(equalTo: mainNewsCollectionView.bottomAnchor
+                                                                 , constant: 15),
+            todayPostsAndshowAllPostsButtonStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            todayPostsAndshowAllPostsButtonStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
+            todayPostsAndshowAllPostsButtonStackView.heightAnchor.constraint(equalToConstant: 30),
+            
+            todayPostsTableView.topAnchor.constraint(equalTo: todayPostsAndshowAllPostsButtonStackView.bottomAnchor, constant: 5),
+            todayPostsTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            todayPostsTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
+            todayPostsTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
     
