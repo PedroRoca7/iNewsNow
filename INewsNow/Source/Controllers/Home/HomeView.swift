@@ -12,7 +12,7 @@ final class HomeView: UIView {
     
     // MARK: Propertys
     
-    lazy var safeGuide = self.safeAreaLayoutGuide
+    private lazy var safeGuide = self.safeAreaLayoutGuide
     
     // MARK: ElementsVisual
     
@@ -25,7 +25,7 @@ final class HomeView: UIView {
         return button
     }()
     
-    lazy var logoImageView: UIImageView = {
+    private lazy var logoImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
@@ -41,7 +41,7 @@ final class HomeView: UIView {
         return button
     }()
     
-    lazy var headerStackView: UIStackView = {
+    private lazy var headerStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [floatingMenuButton, logoImageView, searchButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
@@ -50,7 +50,7 @@ final class HomeView: UIView {
         return stackView
     }()
     
-    lazy var mainNewsLabel: UILabel = {
+    private lazy var mainNewsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Main News"
@@ -75,14 +75,14 @@ final class HomeView: UIView {
                     forCellWithReuseIdentifier: CustomMainNewsCollectionViewCell.identifier)
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 330, height: 180)
+        layout.minimumLineSpacing = 20
         cv.setCollectionViewLayout(layout, animated: false)
         cv.showsHorizontalScrollIndicator = false
-        cv.layer.cornerRadius = 10
-        
         return cv
     }()
     
-    lazy var todayPostsLabel: UILabel = {
+    private lazy var todayPostsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Today's Posts"
@@ -99,7 +99,7 @@ final class HomeView: UIView {
         return button
     }()
     
-    lazy var todayPostsAndshowAllPostsButtonStackView: UIStackView = {
+    private lazy var todayPostsAndshowAllPostsButtonStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [todayPostsLabel, showAllPostsButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
@@ -142,7 +142,7 @@ extension HomeView: ViewProtocol {
         NSLayoutConstraint.activate([
             floatingMenuButton.widthAnchor.constraint(equalToConstant: 25),
             floatingMenuButton.heightAnchor.constraint(equalToConstant: 25),
-                        
+            
             searchButton.widthAnchor.constraint(equalToConstant: 25),
             searchButton.heightAnchor.constraint(equalToConstant: 25),
             
@@ -161,9 +161,9 @@ extension HomeView: ViewProtocol {
             mainNewsCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
             mainNewsCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
             mainNewsCollectionView.heightAnchor.constraint(equalToConstant: 180),
-                     
+            
             todayPostsAndshowAllPostsButtonStackView.topAnchor.constraint(equalTo: mainNewsCollectionView.bottomAnchor
-                                                                 , constant: 15),
+                                                                          , constant: 15),
             todayPostsAndshowAllPostsButtonStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
             todayPostsAndshowAllPostsButtonStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
             todayPostsAndshowAllPostsButtonStackView.heightAnchor.constraint(equalToConstant: 30),
@@ -178,6 +178,4 @@ extension HomeView: ViewProtocol {
     func applyAdditionalChanges() {
         self.backgroundColor = UIColor(named:"backgroundColor")
     }
-    
-    
 }

@@ -14,6 +14,8 @@ final class HomeViewController: UIViewController {
         return view
     }()
     
+    var homeViewModel = HomeViewModel()
+    
     override func loadView() {
         self.view = viewScreen
     }
@@ -22,6 +24,7 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         setDelegatesAndDataSource()
         setupSearchController()
+        homeViewModel.loadMainNews()
         viewScreen.searchButton.addTarget(self, action: #selector(toggleNavigationBarButtonTapped(_:)), for: .touchUpInside)
     }
     
@@ -31,6 +34,7 @@ final class HomeViewController: UIViewController {
         viewScreen.mainNewsCollectionView.delegate = self
         viewScreen.mainNewsCollectionView.dataSource = self
         viewScreen.searchController.searchBar.delegate = self
+        homeViewModel.delegate = self
     }
     
     private func setupSearchController() {
@@ -67,14 +71,30 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        homeViewModel.mainNewsList?.results.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomMainNewsCollectionViewCell.identifier,
                                                       for: indexPath) as? CustomMainNewsCollectionViewCell
         
+        cell?.prepareCollectionCell(mainNews: (homeViewModel.mainNewsList?.results[indexPath.row])!)
+        
         return cell ?? UICollectionViewCell()
     }
+}
+
+extension HomeViewController: HomeViewModelDelegate {
+    func success() {
+        DispatchQueue.main.async {
+            self.viewScreen.mainNewsCollectionView.reloadData()
+        }
+        print("Sucesso")
+    }
+    
+    func failure() {
+        print("Falhou!")
+    }
+    
     
 }

@@ -1,5 +1,5 @@
 //
-//  UiViewProtocol.swift
+//  ViewProtocol.swift
 //  INewsNow
 //
 //  Created by Pedro Henrique on 02/02/24.
@@ -19,6 +19,8 @@ extension ViewProtocol {
         setupConstraints()
         applyAdditionalChanges()
     }
+    
+    func applyAdditionalChanges(){}
 }
 
 
