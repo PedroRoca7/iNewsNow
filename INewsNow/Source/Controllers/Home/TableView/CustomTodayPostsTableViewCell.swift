@@ -1,5 +1,5 @@
 //
-//  CustomTodayPostsTableViewCell.swift
+//  CustomMostPopularPostsTableViewCell.swift
 //  INewsNow
 //
 //  Created by Pedro Henrique on 02/02/24.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class CustomTodayPostsTableViewCell: UITableViewCell {
+final class CustomMostPopularPostsTableViewCell: UITableViewCell {
     
-    static let identifier: String = "CustomTodayPostsTableViewCell"
+    static let identifier: String = "CustomMostPopularPostsTableViewCell"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

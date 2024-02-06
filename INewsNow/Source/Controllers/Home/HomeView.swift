@@ -82,10 +82,10 @@ final class HomeView: UIView {
         return cv
     }()
     
-    private lazy var todayPostsLabel: UILabel = {
+    private lazy var mostPopularPostsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Today's Posts"
+        label.text = "Most Popular Posts"
         label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .black
         return label
@@ -99,19 +99,19 @@ final class HomeView: UIView {
         return button
     }()
     
-    private lazy var todayPostsAndshowAllPostsButtonStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [todayPostsLabel, showAllPostsButton])
+    private lazy var mostPopularPostsAndshowAllPostsButtonStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [mostPopularPostsLabel, showAllPostsButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.distribution = .fillProportionally
         return stackView
     }()
     
-    lazy var todayPostsTableView: UITableView = {
+    lazy var mostPopularPostsTableView: UITableView = {
         let tb = UITableView()
         tb.translatesAutoresizingMaskIntoConstraints = false
-        tb.register(CustomTodayPostsTableViewCell.self,
-                    forCellReuseIdentifier: CustomTodayPostsTableViewCell.identifier)
+        tb.register(CustomMostPopularPostsTableViewCell.self,
+                    forCellReuseIdentifier: CustomMostPopularPostsTableViewCell.identifier)
         tb.backgroundColor = .clear
         return tb
     }()
@@ -134,8 +134,8 @@ extension HomeView: ViewProtocol {
         self.addSubview(mainNewsLabel)
         self.addSubview(todayDateLabel)
         self.addSubview(mainNewsCollectionView)
-        self.addSubview(todayPostsAndshowAllPostsButtonStackView)
-        self.addSubview(todayPostsTableView)
+        self.addSubview(mostPopularPostsAndshowAllPostsButtonStackView)
+        self.addSubview(mostPopularPostsTableView)
     }
     
     func setupConstraints() {
@@ -162,16 +162,16 @@ extension HomeView: ViewProtocol {
             mainNewsCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
             mainNewsCollectionView.heightAnchor.constraint(equalToConstant: 180),
             
-            todayPostsAndshowAllPostsButtonStackView.topAnchor.constraint(equalTo: mainNewsCollectionView.bottomAnchor
+            mostPopularPostsAndshowAllPostsButtonStackView.topAnchor.constraint(equalTo: mainNewsCollectionView.bottomAnchor
                                                                           , constant: 15),
-            todayPostsAndshowAllPostsButtonStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
-            todayPostsAndshowAllPostsButtonStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
-            todayPostsAndshowAllPostsButtonStackView.heightAnchor.constraint(equalToConstant: 30),
+            mostPopularPostsAndshowAllPostsButtonStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            mostPopularPostsAndshowAllPostsButtonStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
+            mostPopularPostsAndshowAllPostsButtonStackView.heightAnchor.constraint(equalToConstant: 30),
             
-            todayPostsTableView.topAnchor.constraint(equalTo: todayPostsAndshowAllPostsButtonStackView.bottomAnchor, constant: 5),
-            todayPostsTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
-            todayPostsTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
-            todayPostsTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            mostPopularPostsTableView.topAnchor.constraint(equalTo: mostPopularPostsAndshowAllPostsButtonStackView.bottomAnchor, constant: 5),
+            mostPopularPostsTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            mostPopularPostsTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
+            mostPopularPostsTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
     

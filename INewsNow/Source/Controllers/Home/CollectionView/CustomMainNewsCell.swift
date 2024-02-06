@@ -18,7 +18,6 @@ final class CustomMainNewsCell: UIView {
     lazy var backgroundImageNewsImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.backgroundColor = .black
         image.contentMode = .scaleToFill
         image.alpha = 0.4
         return image

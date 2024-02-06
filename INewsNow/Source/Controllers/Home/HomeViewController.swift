@@ -24,13 +24,18 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         setDelegatesAndDataSource()
         setupSearchController()
-        homeViewModel.loadMainNews()
+        loadAllNews()
         viewScreen.searchButton.addTarget(self, action: #selector(toggleNavigationBarButtonTapped(_:)), for: .touchUpInside)
     }
     
+    private func loadAllNews() {
+        homeViewModel.loadMainNews()
+        homeViewModel.loadMostPopularPost()
+    }
+    
     private func setDelegatesAndDataSource() {
-        viewScreen.todayPostsTableView.delegate = self
-        viewScreen.todayPostsTableView.dataSource = self
+        viewScreen.mostPopularPostsTableView.delegate = self
+        viewScreen.mostPopularPostsTableView.dataSource = self
         viewScreen.mainNewsCollectionView.delegate = self
         viewScreen.mainNewsCollectionView.dataSource = self
         viewScreen.searchController.searchBar.delegate = self
@@ -58,15 +63,24 @@ extension HomeViewController: UISearchBarDelegate {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return homeViewModel.mostPopularPostList?.results.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTodayPostsTableViewCell.identifier,
-                                                 for: indexPath) as? CustomTodayPostsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CustomMostPopularPostsTableViewCell.identifier,
+                                                 for: indexPath) as? CustomMostPopularPostsTableViewCell
+        
+        if let mostPopularNews = homeViewModel.mostPopularPostList?.results[indexPath.row] {
+            cell?.prepareCell(mostPopularPost: mostPopularNews)
+        }
         
         return cell ?? UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 130
+    }
+    
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -78,7 +92,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomMainNewsCollectionViewCell.identifier,
                                                       for: indexPath) as? CustomMainNewsCollectionViewCell
         
-        cell?.prepareCollectionCell(mainNews: (homeViewModel.mainNewsList?.results[indexPath.row])!)
+        if let mainNews = homeViewModel.mainNewsList?.results[indexPath.row] {
+            cell?.prepareCollectionCell(mainNews: mainNews)
+        }
         
         return cell ?? UICollectionViewCell()
     }
@@ -88,8 +104,8 @@ extension HomeViewController: HomeViewModelDelegate {
     func success() {
         DispatchQueue.main.async {
             self.viewScreen.mainNewsCollectionView.reloadData()
+            self.viewScreen.mostPopularPostsTableView.reloadData()
         }
-        print("Sucesso")
     }
     
     func failure() {

@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CE1A3A922B6D394A000C0559 /* ViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A3A912B6D394A000C0559 /* ViewProtocol.swift */; };
-		CE1A3A962B6D7816000C0559 /* CustomTodayPostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A3A952B6D7816000C0559 /* CustomTodayPostsTableViewCell.swift */; };
-		CE1A3A982B6D7978000C0559 /* CustomTodayPostsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A3A972B6D7978000C0559 /* CustomTodayPostsCell.swift */; };
+		CE1A3A962B6D7816000C0559 /* CustomMostPopularPostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A3A952B6D7816000C0559 /* CustomMostPopularPostsTableViewCell.swift */; };
+		CE1A3A982B6D7978000C0559 /* CustomMostPopularPostsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A3A972B6D7978000C0559 /* CustomMostPopularPostsCell.swift */; };
 		CE1A3A9A2B6D7A01000C0559 /* CustomMainNewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A3A992B6D7A01000C0559 /* CustomMainNewsCollectionViewCell.swift */; };
 		CE1A3A9C2B6D7E7E000C0559 /* CustomMainNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A3A9B2B6D7E7E000C0559 /* CustomMainNewsCell.swift */; };
 		CE4022A12B6E783C00FB727C /* NewYorkTimesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4022A02B6E783C00FB727C /* NewYorkTimesService.swift */; };
@@ -48,8 +48,8 @@
 
 /* Begin PBXFileReference section */
 		CE1A3A912B6D394A000C0559 /* ViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProtocol.swift; sourceTree = "<group>"; };
-		CE1A3A952B6D7816000C0559 /* CustomTodayPostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTodayPostsTableViewCell.swift; sourceTree = "<group>"; };
-		CE1A3A972B6D7978000C0559 /* CustomTodayPostsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTodayPostsCell.swift; sourceTree = "<group>"; };
+		CE1A3A952B6D7816000C0559 /* CustomMostPopularPostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMostPopularPostsTableViewCell.swift; sourceTree = "<group>"; };
+		CE1A3A972B6D7978000C0559 /* CustomMostPopularPostsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMostPopularPostsCell.swift; sourceTree = "<group>"; };
 		CE1A3A992B6D7A01000C0559 /* CustomMainNewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMainNewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE1A3A9B2B6D7E7E000C0559 /* CustomMainNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMainNewsCell.swift; sourceTree = "<group>"; };
 		CE4022A02B6E783C00FB727C /* NewYorkTimesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewYorkTimesService.swift; sourceTree = "<group>"; };
@@ -118,8 +118,8 @@
 		CE1A3A942B6D76FC000C0559 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				CE1A3A952B6D7816000C0559 /* CustomTodayPostsTableViewCell.swift */,
-				CE1A3A972B6D7978000C0559 /* CustomTodayPostsCell.swift */,
+				CE1A3A952B6D7816000C0559 /* CustomMostPopularPostsTableViewCell.swift */,
+				CE1A3A972B6D7978000C0559 /* CustomMostPopularPostsCell.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -361,9 +361,9 @@
 			files = (
 				CE4022A12B6E783C00FB727C /* NewYorkTimesService.swift in Sources */,
 				CE4BC9952B6A898300409725 /* HomeViewController.swift in Sources */,
-				CE1A3A962B6D7816000C0559 /* CustomTodayPostsTableViewCell.swift in Sources */,
+				CE1A3A962B6D7816000C0559 /* CustomMostPopularPostsTableViewCell.swift in Sources */,
 				CE1A3A9C2B6D7E7E000C0559 /* CustomMainNewsCell.swift in Sources */,
-				CE1A3A982B6D7978000C0559 /* CustomTodayPostsCell.swift in Sources */,
+				CE1A3A982B6D7978000C0559 /* CustomMostPopularPostsCell.swift in Sources */,
 				CE4BC9C42B6A8B3800409725 /* HomeFactory.swift in Sources */,
 				CE1A3A9A2B6D7A01000C0559 /* CustomMainNewsCollectionViewCell.swift in Sources */,
 				CE4BC9912B6A898300409725 /* AppDelegate.swift in Sources */,
