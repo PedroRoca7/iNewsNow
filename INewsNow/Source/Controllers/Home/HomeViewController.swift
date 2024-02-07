@@ -15,7 +15,7 @@ final class HomeViewController: UIViewController {
     }()
     
     var homeViewModel = HomeViewModel()
-    
+
     override func loadView() {
         self.view = viewScreen
     }
@@ -69,18 +69,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomMostPopularPostsTableViewCell.identifier,
                                                  for: indexPath) as? CustomMostPopularPostsTableViewCell
-        
+        cell?.delegate = self
+       
         if let mostPopularNews = homeViewModel.mostPopularPostList?.results[indexPath.row] {
+            cell?.viewScreen.favoriteNewsButton.tintColor = mostPopularNews.favorite ?? false ? UIColor.red : UIColor.lightGray
             cell?.prepareCell(mostPopularPost: mostPopularNews)
         }
-        
+           
         return cell ?? UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 130
     }
-    
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -95,7 +96,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if let mainNews = homeViewModel.mainNewsList?.results[indexPath.row] {
             cell?.prepareCollectionCell(mainNews: mainNews)
         }
-        
+    
         return cell ?? UICollectionViewCell()
     }
 }
@@ -111,6 +112,17 @@ extension HomeViewController: HomeViewModelDelegate {
     func failure() {
         print("Falhou!")
     }
-    
-    
+}
+
+extension HomeViewController: CustomMostPopularPostsTableViewCellDelegate {
+    func favoriteButtonTapped(cell: UITableViewCell) {
+        guard let indexPathTapped = viewScreen.mostPopularPostsTableView.indexPath(for: cell) else { return }
+      
+        let contact = homeViewModel.mostPopularPostList?.results[indexPathTapped.row]
+       
+        let hasFavorited = contact?.favorite
+        homeViewModel.mostPopularPostList?.results[indexPathTapped.row].favorite = !(hasFavorited ?? false) 
+        
+        viewScreen.mostPopularPostsTableView.reloadRows(at: [indexPathTapped], with: .none)
+    }
 }

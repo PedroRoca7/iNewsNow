@@ -34,11 +34,11 @@ final class CustomMainNewsCollectionViewCell: UICollectionViewCell {
         viewScreen.dateNewsLabel.text = formaterDate(date: mainNews.publishedDate)
         viewScreen.newsTextLabel.text = mainNews.abstract
         viewScreen.authorNewsLabel.text = mainNews.byline
-        guard let nonEmptyImageUrl = mainNews.multimedia.first?.url else { return }
-        if let url = URL(string: nonEmptyImageUrl) {
-            viewScreen.backgroundImageNewsImageView.kf.indicatorType = .activity
-            viewScreen.backgroundImageNewsImageView.kf.setImage(with: url)
-        }
+//        guard let nonEmptyImageUrl = mainNews.multimedia.first?.url else { return }
+//        if let url = URL(string: nonEmptyImageUrl) {
+//            viewScreen.backgroundImageNewsImageView.kf.indicatorType = .activity
+//            viewScreen.backgroundImageNewsImageView.kf.setImage(with: url)
+//        }
     }
     
     private func formaterDate(date: String) -> String {

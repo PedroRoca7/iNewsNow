@@ -16,7 +16,7 @@ final class HomeViewModel {
     
     private let service = NewYorkTimesService()
     private(set) var mainNewsList: MainNewsModel?
-    private(set) var mostPopularPostList: MostPopularNewsModel?
+    var mostPopularPostList: MostPopularNewsModel?
     weak var delegate: HomeViewModelDelegate?
     
     func loadMainNews() {

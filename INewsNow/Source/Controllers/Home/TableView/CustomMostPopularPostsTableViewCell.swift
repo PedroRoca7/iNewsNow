@@ -8,20 +8,32 @@
 import UIKit
 import Kingfisher
 
+protocol CustomMostPopularPostsTableViewCellDelegate: AnyObject {
+    func favoriteButtonTapped(cell: UITableViewCell)
+}
+
 final class CustomMostPopularPostsTableViewCell: UITableViewCell {
     
     static let identifier: String = "CustomMostPopularPostsTableViewCell"
+    weak var delegate: CustomMostPopularPostsTableViewCellDelegate?
     
     lazy var viewScreen: CustomMostPopularPostsCell = {
         let view = CustomMostPopularPostsCell()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
+        view.backgroundColor = .clear
         return view
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
+        selectionStyle = .none
+        viewScreen.favoriteNewsButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func buttonTapped() {
+        delegate?.favoriteButtonTapped(cell: self)
     }
     
     required init?(coder: NSCoder) {
@@ -38,8 +50,6 @@ final class CustomMostPopularPostsTableViewCell: UITableViewCell {
             viewScreen.imageNewsImageView.kf.setImage(with: url)
             viewScreen.imageNewsImageView.layer.cornerRadius = 10
         }
-        
-        
     }
     
     private func formaterDate(date: String) -> String {
@@ -59,6 +69,7 @@ final class CustomMostPopularPostsTableViewCell: UITableViewCell {
 extension CustomMostPopularPostsTableViewCell: ViewProtocol {
     func buildHierarchy() {
         contentView.addSubview(viewScreen)
+        contentView.backgroundColor = .clear
     }
     
     func setupConstraints() {

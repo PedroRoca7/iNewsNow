@@ -35,7 +35,7 @@ final class CustomMainNewsCell: UIView {
     lazy var favoriteNewsButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "car"), for: .normal)
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
         return button
     }()
     

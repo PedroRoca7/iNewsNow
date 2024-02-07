@@ -9,15 +9,15 @@ import Foundation
 
 struct MostPopularNewsModel: Codable {
     let copyright: String
-    let results: [PopularNewsData]
+    var results: [PopularNewsData]
 }
 
 struct PopularNewsData: Codable {
     let url: String
     let publishedDate: String
     let byline, title, abstract: String
+    var favorite: Bool?
     let media:[Media]
-    
     enum CodingKeys: String, CodingKey {
         case url, byline,title, abstract
         case publishedDate = "published_date"

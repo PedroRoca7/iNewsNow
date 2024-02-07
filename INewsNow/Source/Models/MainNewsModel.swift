@@ -18,7 +18,7 @@ struct NewsData: Codable {
     let url: String
     let byline: String
     let publishedDate: String
-    let multimedia: [Multimedia]
+    var multimedia: [Multimedia]
     
     enum CodingKeys: String, CodingKey {
         case title

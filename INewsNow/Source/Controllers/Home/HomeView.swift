@@ -21,7 +21,7 @@ final class HomeView: UIView {
     lazy var floatingMenuButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "car"), for: .normal)
+        button.setImage(UIImage(named: "filterIcon"), for: .normal)
         return button
     }()
     
@@ -37,7 +37,7 @@ final class HomeView: UIView {
     lazy var searchButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "car"), for: .normal)
+        button.setImage(UIImage(named: "magnifyingGlass"), for: .normal)
         return button
     }()
     
@@ -113,6 +113,7 @@ final class HomeView: UIView {
         tb.register(CustomMostPopularPostsTableViewCell.self,
                     forCellReuseIdentifier: CustomMostPopularPostsTableViewCell.identifier)
         tb.backgroundColor = .clear
+        tb.showsVerticalScrollIndicator = false
         return tb
     }()
     
