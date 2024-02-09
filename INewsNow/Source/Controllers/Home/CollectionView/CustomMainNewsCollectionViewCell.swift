@@ -8,9 +8,14 @@
 import UIKit
 import Kingfisher
 
+protocol CustomMainNewsCollectionViewCellDelegate: AnyObject {
+    func favoriteButtonTapped(cell: UICollectionViewCell)
+}
+
 final class CustomMainNewsCollectionViewCell: UICollectionViewCell {
     
     static let identifier: String = "CustomMainNewsCollectionViewCell"
+    weak var delegate: CustomMainNewsCollectionViewCellDelegate?
     
     lazy var viewScreen: CustomMainNewsCell = {
         let view = CustomMainNewsCell()
@@ -24,21 +29,26 @@ final class CustomMainNewsCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        viewScreen.favoriteNewsButton.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc private func favoriteButtonTapped() {
+        delegate?.favoriteButtonTapped(cell: self)
+    }
+    
     func prepareCollectionCell(mainNews: NewsData) {
         viewScreen.dateNewsLabel.text = formaterDate(date: mainNews.publishedDate)
         viewScreen.newsTextLabel.text = mainNews.abstract
         viewScreen.authorNewsLabel.text = mainNews.byline
-//        guard let nonEmptyImageUrl = mainNews.multimedia.first?.url else { return }
-//        if let url = URL(string: nonEmptyImageUrl) {
-//            viewScreen.backgroundImageNewsImageView.kf.indicatorType = .activity
-//            viewScreen.backgroundImageNewsImageView.kf.setImage(with: url)
-//        }
+        guard let nonEmptyImageUrl = mainNews.multimedia.first?.url else { return }
+        if let url = URL(string: nonEmptyImageUrl) {
+            viewScreen.backgroundImageNewsImageView.kf.indicatorType = .activity
+            viewScreen.backgroundImageNewsImageView.kf.setImage(with: url)
+        }
     }
     
     private func formaterDate(date: String) -> String {

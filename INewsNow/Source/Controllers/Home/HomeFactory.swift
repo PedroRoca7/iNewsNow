@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 enum HomeFactory {
-    static func makeModule() -> UIViewController {
+    static func makeModule(navigationController: UINavigationController) -> UIViewController {
+        let coordinator = HomeCoordinator(navigationController: navigationController)
         let homeViewController = HomeViewController()
         return homeViewController
     }

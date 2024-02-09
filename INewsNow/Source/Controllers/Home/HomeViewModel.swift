@@ -14,9 +14,13 @@ protocol HomeViewModelDelegate: AnyObject {
 
 final class HomeViewModel {
     
+    enum TypeNews {
+        case mainNews, mostPopularNews
+    }
+    
     private let service = NewYorkTimesService()
     private(set) var mainNewsList: MainNewsModel?
-    var mostPopularPostList: MostPopularNewsModel?
+    private(set) var mostPopularPostList: MostPopularNewsModel?
     weak var delegate: HomeViewModelDelegate?
     
     func loadMainNews() {
@@ -40,6 +44,18 @@ final class HomeViewModel {
                 self.mostPopularPostList = data
                 self.delegate?.success()
             }
+        }
+    }
+    
+    func setFavoriteNews(index: Int, typeNews: TypeNews) {
+        
+        guard let hasFavoritedMainNews = mainNewsList?.results[index].favorite, let hasFavoritedMostPopular = mostPopularPostList?.results[index].favorite else { return }
+        
+        switch typeNews {
+        case .mainNews:
+            mainNewsList?.results[index].favorite = !hasFavoritedMainNews
+        case .mostPopularNews:
+            mostPopularPostList?.results[index].favorite = !hasFavoritedMostPopular
         }
     }
 }

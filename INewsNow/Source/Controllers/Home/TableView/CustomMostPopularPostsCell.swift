@@ -41,6 +41,7 @@ final class CustomMostPopularPostsCell: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "heart"),for: .normal)
+        button.tintColor = .white
         return button
     }()
     

@@ -147,7 +147,7 @@ extension HomeView: ViewProtocol {
             searchButton.widthAnchor.constraint(equalToConstant: 25),
             searchButton.heightAnchor.constraint(equalToConstant: 25),
             
-            headerStackView.topAnchor.constraint(equalTo: safeGuide.topAnchor),
+            headerStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 25),
             headerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             headerStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             headerStackView.heightAnchor.constraint(equalToConstant: 70),

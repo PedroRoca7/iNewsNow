@@ -16,7 +16,7 @@ struct PopularNewsData: Codable {
     let url: String
     let publishedDate: String
     let byline, title, abstract: String
-    var favorite: Bool?
+    var favorite: Bool = false
     let media:[Media]
     enum CodingKeys: String, CodingKey {
         case url, byline,title, abstract

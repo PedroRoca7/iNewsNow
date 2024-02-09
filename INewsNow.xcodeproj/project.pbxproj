@@ -27,6 +27,9 @@
 		CE4BC9B42B6A898900409725 /* INewsNowUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BC9B32B6A898900409725 /* INewsNowUITestsLaunchTests.swift */; };
 		CE4BC9C42B6A8B3800409725 /* HomeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BC9C32B6A8B3800409725 /* HomeFactory.swift */; };
 		CE4BC9C62B6A8D0100409725 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BC9C52B6A8D0100409725 /* HomeView.swift */; };
+		CED431022B7670ED005BE203 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED431012B7670ED005BE203 /* TabBarController.swift */; };
+		CED431042B7673B7005BE203 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED431032B7673B7005BE203 /* TabBarCoordinator.swift */; };
+		CED431062B7675CB005BE203 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED431052B7675CB005BE203 /* HomeCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +73,9 @@
 		CE4BC9B32B6A898900409725 /* INewsNowUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INewsNowUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CE4BC9C32B6A8B3800409725 /* HomeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFactory.swift; sourceTree = "<group>"; };
 		CE4BC9C52B6A8D0100409725 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		CED431012B7670ED005BE203 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		CED431032B7673B7005BE203 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		CED431052B7675CB005BE203 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +200,7 @@
 		CE4BC9C02B6A8AD800409725 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				CED431002B7670CE005BE203 /* TabBar */,
 				CE4022A32B6E80B700FB727C /* Models */,
 				CE40229F2B6E781100FB727C /* Service */,
 				CE1A3A902B6D392A000C0559 /* Protocols */,
@@ -219,8 +226,18 @@
 				CE4BC9C32B6A8B3800409725 /* HomeFactory.swift */,
 				CE4BC9C52B6A8D0100409725 /* HomeView.swift */,
 				CE4022A82B71600300FB727C /* HomeViewModel.swift */,
+				CED431052B7675CB005BE203 /* HomeCoordinator.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		CED431002B7670CE005BE203 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				CED431012B7670ED005BE203 /* TabBarController.swift */,
+				CED431032B7673B7005BE203 /* TabBarCoordinator.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,7 +378,10 @@
 			files = (
 				CE4022A12B6E783C00FB727C /* NewYorkTimesService.swift in Sources */,
 				CE4BC9952B6A898300409725 /* HomeViewController.swift in Sources */,
+				CED431042B7673B7005BE203 /* TabBarCoordinator.swift in Sources */,
+				CED431062B7675CB005BE203 /* HomeCoordinator.swift in Sources */,
 				CE1A3A962B6D7816000C0559 /* CustomMostPopularPostsTableViewCell.swift in Sources */,
+				CED431022B7670ED005BE203 /* TabBarController.swift in Sources */,
 				CE1A3A9C2B6D7E7E000C0559 /* CustomMainNewsCell.swift in Sources */,
 				CE1A3A982B6D7978000C0559 /* CustomMostPopularPostsCell.swift in Sources */,
 				CE4BC9C42B6A8B3800409725 /* HomeFactory.swift in Sources */,

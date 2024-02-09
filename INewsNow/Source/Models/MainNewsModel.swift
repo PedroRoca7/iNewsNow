@@ -9,7 +9,7 @@ import Foundation
 
 struct MainNewsModel: Codable {
     let copyright: String
-    let results: [NewsData]
+    var results: [NewsData]
 }
 
 struct NewsData: Codable {
@@ -18,7 +18,8 @@ struct NewsData: Codable {
     let url: String
     let byline: String
     let publishedDate: String
-    var multimedia: [Multimedia]
+    var favorite: Bool = false
+    let multimedia: [Multimedia]
     
     enum CodingKeys: String, CodingKey {
         case title

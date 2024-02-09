@@ -21,7 +21,7 @@ final class CustomMostPopularPostsTableViewCell: UITableViewCell {
         let view = CustomMostPopularPostsCell()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
-        view.backgroundColor = .clear
+        view.backgroundColor = UIColor(named: "backgroundColor")
         return view
     }()
     
