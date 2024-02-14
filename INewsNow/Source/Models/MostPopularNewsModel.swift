@@ -8,18 +8,20 @@
 import Foundation
 
 struct MostPopularNewsModel: Codable {
-    let copyright: String
     var results: [PopularNewsData]
 }
 
 struct PopularNewsData: Codable {
+    var favorite: Bool = false
     let url: String
     let publishedDate: String
     let byline, title, abstract: String
-    var favorite: Bool = false
     let media:[Media]
     enum CodingKeys: String, CodingKey {
-        case url, byline,title, abstract
+        case url
+        case byline
+        case title
+        case abstract
         case publishedDate = "published_date"
         case media
     }

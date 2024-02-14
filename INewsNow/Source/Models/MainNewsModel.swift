@@ -8,18 +8,17 @@
 import Foundation
 
 struct MainNewsModel: Codable {
-    let copyright: String
     var results: [NewsData]
 }
 
 struct NewsData: Codable {
-    let title: String
-    let abstract: String
-    let url: String
-    let byline: String
-    let publishedDate: String
     var favorite: Bool = false
-    let multimedia: [Multimedia]
+    var title: String? = "Title not found"
+    var abstract: String? = "Text not found"
+    var url: String? = ""
+    var byline: String? = "Author not found"
+    var publishedDate: String? = "Date not found"
+    var multimedia: [Multimedia]? = []
     
     enum CodingKeys: String, CodingKey {
         case title
@@ -29,8 +28,23 @@ struct NewsData: Codable {
         case byline
         case multimedia
     }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        title = try container.decodeIfPresent(String.self, forKey: .title) ?? title
+        abstract = try container.decodeIfPresent(String.self, forKey: .abstract) ?? abstract
+        url = try container.decodeIfPresent(String.self, forKey: .url) ?? url
+        byline = try container.decodeIfPresent(String.self, forKey: .byline) ?? byline
+        publishedDate = try container.decodeIfPresent(String.self, forKey: .publishedDate) ?? publishedDate
+        multimedia = try container.decodeIfPresent([Multimedia].self, forKey: .multimedia) ?? multimedia
+    }
 }
 
 struct Multimedia: Codable {
-    let url: String
+    var url: String? = ""
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        url = try container.decodeIfPresent(String.self, forKey: .url) ?? url
+    }
 }

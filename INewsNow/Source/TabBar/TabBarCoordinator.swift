@@ -17,7 +17,7 @@ final class TabBarCoordinator {
     }
     
     func start() -> UIViewController {
-        let tabBarController = TabBarController()
+        let tabBarController = TabBarFactory.makeModule()
         
         let homeView = HomeFactory.makeModule(navigationController: navigationController)
         

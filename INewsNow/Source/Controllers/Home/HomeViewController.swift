@@ -13,12 +13,15 @@ final class HomeViewController: UIViewController {
         let view = HomeView()
         return view
     }()
-    
-    var homeViewModel = HomeViewModel()
 
     override func loadView() {
         self.view = viewScreen
     }
+    
+    lazy private var homeViewModel: HomeViewModel = {
+        let vm = HomeViewModel()
+        return vm
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +93,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomMainNewsCollectionViewCell.identifier,
                                                             for: indexPath) as? CustomMainNewsCollectionViewCell else { return UICollectionViewCell()}
         cell.delegate = self
@@ -120,9 +124,6 @@ extension HomeViewController: CustomMostPopularPostsTableViewCellDelegate {
     func favoriteButtonTapped(cell: UITableViewCell) {
         guard let indexPathTapped = viewScreen.mostPopularPostsTableView.indexPath(for: cell) else { return }
       
-        let contact = homeViewModel.mostPopularPostList?.results[indexPathTapped.row]
-       
-        let hasFavorited = contact?.favorite
         homeViewModel.setFavoriteNews(index: indexPathTapped.row, typeNews: .mostPopularNews)
         
         viewScreen.mostPopularPostsTableView.reloadRows(at: [indexPathTapped], with: .none)
@@ -133,9 +134,6 @@ extension HomeViewController: CustomMainNewsCollectionViewCellDelegate {
     func favoriteButtonTapped(cell: UICollectionViewCell) {
         guard let indexPathTapped = viewScreen.mainNewsCollectionView.indexPath(for: cell) else { return }
         
-        let contact = homeViewModel.mainNewsList?.results[indexPathTapped.row]
-        
-        let hasFavorited = contact?.favorite
         homeViewModel.setFavoriteNews(index: indexPathTapped.row, typeNews: .mainNews)
         
         viewScreen.mainNewsCollectionView.reloadItems(at: [indexPathTapped])

@@ -41,10 +41,12 @@ final class CustomMainNewsCollectionViewCell: UICollectionViewCell {
     }
     
     func prepareCollectionCell(mainNews: NewsData) {
-        viewScreen.dateNewsLabel.text = formaterDate(date: mainNews.publishedDate)
+        viewScreen.dateNewsLabel.text = formaterDate(date: mainNews.publishedDate ?? "Date not Found")
         viewScreen.newsTextLabel.text = mainNews.abstract
         viewScreen.authorNewsLabel.text = mainNews.byline
-        guard let nonEmptyImageUrl = mainNews.multimedia.first?.url else { return }
+        guard let nonEmptyImageUrl = mainNews.multimedia?.first?.url else {
+            viewScreen.backgroundImageNewsImageView.image = UIImage(named: "LogoINewsNow")
+            return }
         if let url = URL(string: nonEmptyImageUrl) {
             viewScreen.backgroundImageNewsImageView.kf.indicatorType = .activity
             viewScreen.backgroundImageNewsImageView.kf.setImage(with: url)

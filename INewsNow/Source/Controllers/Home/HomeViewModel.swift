@@ -22,6 +22,7 @@ final class HomeViewModel {
     private(set) var mainNewsList: MainNewsModel?
     private(set) var mostPopularPostList: MostPopularNewsModel?
     weak var delegate: HomeViewModelDelegate?
+
     
     func loadMainNews() {
         service.loadMainNews { data, error in
@@ -48,8 +49,8 @@ final class HomeViewModel {
     }
     
     func setFavoriteNews(index: Int, typeNews: TypeNews) {
-        
-        guard let hasFavoritedMainNews = mainNewsList?.results[index].favorite, let hasFavoritedMostPopular = mostPopularPostList?.results[index].favorite else { return }
+        guard let hasFavoritedMainNews = mainNewsList?.results[index].favorite,
+        let hasFavoritedMostPopular = mostPopularPostList?.results[index].favorite else { return }
         
         switch typeNews {
         case .mainNews:

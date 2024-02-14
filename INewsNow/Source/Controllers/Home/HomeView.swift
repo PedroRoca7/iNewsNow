@@ -113,6 +113,7 @@ final class HomeView: UIView {
         tb.register(CustomMostPopularPostsTableViewCell.self,
                     forCellReuseIdentifier: CustomMostPopularPostsTableViewCell.identifier)
         tb.backgroundColor = .clear
+        tb.clipsToBounds = true
         tb.showsVerticalScrollIndicator = false
         return tb
     }()

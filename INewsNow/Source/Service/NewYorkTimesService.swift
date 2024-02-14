@@ -19,25 +19,24 @@ final class NewYorkTimesService: NewYorkTimesServicing {
         case urlMostPopularNews = "https://api.nytimes.com/svc/mostpopular/v2/shared/1/facebook.json?api-key=N8U4kVw1Icdw3YiGFhThZqIGTAF9PJ7l"
     }
     
+    static let serviceGetNews = NewYorkTimesService()
+    
     func loadMainNews(onComplete: @escaping(MainNewsModel?, Error?) -> Void) {
         guard let url = URL(string: TypesApiNewYorkTimes.urlMainNews.rawValue) else { return }
         
         let dataTask = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
+            guard let data = data, error == nil else {
                 onComplete(nil, error)
-#if DEBUG
-                print(error.localizedDescription)
-#endif
-            } else if let data = data  {
-                do {
-                    let dataMainNews = try JSONDecoder().decode(MainNewsModel.self, from: data)
-                    onComplete(dataMainNews, nil)
-                } catch {
-                    onComplete(nil, error)
-#if DEBUG
-                    print(error.localizedDescription)
-#endif
-                }
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                let response = try decoder.decode(MainNewsModel.self, from: data)
+                onComplete(response, nil)
+            } catch {
+                onComplete(nil, error)
             }
         }
         dataTask.resume()
