@@ -29,7 +29,6 @@ final class NewYorkTimesService: NewYorkTimesServicing {
                 onComplete(nil, error)
                 return
             }
-            
             do {
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .iso8601
@@ -46,21 +45,18 @@ final class NewYorkTimesService: NewYorkTimesServicing {
         guard let url = URL(string: TypesApiNewYorkTimes.urlMostPopularNews.rawValue) else { return }
         
         let dataTask = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
+            guard let data = data, error == nil else {
+                onComplete(nil, error)
+                return
+            }
+            do {
+                let dataMainNews = try JSONDecoder().decode(MostPopularNewsModel.self, from: data)
+                onComplete(dataMainNews, nil)
+            } catch {
                 onComplete(nil, error)
 #if DEBUG
                 print(error.localizedDescription)
 #endif
-            } else if let data = data  {
-                do {
-                    let dataMainNews = try JSONDecoder().decode(MostPopularNewsModel.self, from: data)
-                    onComplete(dataMainNews, nil)
-                } catch {
-                    onComplete(nil, error)
-#if DEBUG
-                    print(error.localizedDescription)
-#endif
-                }
             }
         }
         dataTask.resume()

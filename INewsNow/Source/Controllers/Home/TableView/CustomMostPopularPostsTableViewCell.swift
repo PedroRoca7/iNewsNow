@@ -43,8 +43,8 @@ final class CustomMostPopularPostsTableViewCell: UITableViewCell {
     func prepareCell(mostPopularPost: PopularNewsData) {
         viewScreen.textNewsLabel.text = mostPopularPost.title
         viewScreen.authorNewsLabel.text = mostPopularPost.byline
-        viewScreen.dateNewsLabel.text = formaterDate(date: mostPopularPost.publishedDate)
-        guard let nonEmptyImageUrl = mostPopularPost.media.first?.mediaMetadata.first?.url else { return }
+        viewScreen.dateNewsLabel.text = formaterDate(date: mostPopularPost.publishedDate ?? "Date not found")
+        guard let nonEmptyImageUrl = mostPopularPost.media?.first?.mediaMetadata?.first?.url else { return }
         if let url = URL(string: nonEmptyImageUrl) {
             viewScreen.imageNewsImageView.kf.indicatorType = .activity
             viewScreen.imageNewsImageView.kf.setImage(with: url)

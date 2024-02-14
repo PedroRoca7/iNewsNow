@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 enum TabBarFactory {
-    static func makeModule() -> UITabBarController {
+    static func makeModule(navigationController: UINavigationController) -> UITabBarController {
         let tabBarController = TabBarController()
         return tabBarController
     }
