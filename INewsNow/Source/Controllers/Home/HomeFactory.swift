@@ -11,7 +11,12 @@ import UIKit
 enum HomeFactory {
     static func makeModule(navigationController: UINavigationController) -> UIViewController {
         let coordinator = HomeCoordinator(navigationController: navigationController)
-        let homeViewController = HomeViewController()
+        let service = NewYorkTimesService()
+        let homeViewModel = HomeViewModel(service: service, coordinator: coordinator)
+        let homeViewController = HomeViewController(homeViewModel: homeViewModel)
+        
+        homeViewModel.delegate = homeViewController
+        
         return homeViewController
     }
 }

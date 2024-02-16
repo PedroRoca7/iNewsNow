@@ -19,10 +19,6 @@ final class CustomMainNewsCollectionViewCell: UICollectionViewCell {
     
     lazy var viewScreen: CustomMainNewsCell = {
         let view = CustomMainNewsCell()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .black
-        view.layer.cornerRadius = 10
-        view.clipsToBounds = true
         return view
     }()
     

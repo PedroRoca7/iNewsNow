@@ -19,9 +19,6 @@ final class CustomMostPopularPostsTableViewCell: UITableViewCell {
     
     lazy var viewScreen: CustomMostPopularPostsCell = {
         let view = CustomMostPopularPostsCell()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = true
-        view.backgroundColor = UIColor(named: "backgroundColor")
         return view
     }()
     

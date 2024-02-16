@@ -34,15 +34,16 @@ final class HomeView: UIView {
         return image
     }()
     
-    lazy var searchButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "magnifyingGlass"), for: .normal)
-        return button
+    lazy var newsPaperImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(systemName: "newspaper.fill")
+        image.tintColor = UIColor.gray
+        return image
     }()
     
     private lazy var headerStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [floatingMenuButton, logoImageView, searchButton])
+        let stackView = UIStackView(arrangedSubviews: [floatingMenuButton, logoImageView, newsPaperImage])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.distribution = .fill
@@ -145,8 +146,8 @@ extension HomeView: ViewProtocol {
             floatingMenuButton.widthAnchor.constraint(equalToConstant: 25),
             floatingMenuButton.heightAnchor.constraint(equalToConstant: 25),
             
-            searchButton.widthAnchor.constraint(equalToConstant: 25),
-            searchButton.heightAnchor.constraint(equalToConstant: 25),
+            newsPaperImage.widthAnchor.constraint(equalToConstant: 25),
+            newsPaperImage.heightAnchor.constraint(equalToConstant: 25),
             
             headerStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 25),
             headerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
@@ -178,6 +179,6 @@ extension HomeView: ViewProtocol {
     }
     
     func applyAdditionalChanges() {
-        self.backgroundColor = UIColor(named:"backgroundColor")
+        self.backgroundColor = .backgroundColor
     }
 }

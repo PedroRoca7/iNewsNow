@@ -7,11 +7,33 @@
 
 import Foundation
 
+protocol NewsProtocol {
+    var title: String? { get set }
+    var abstract: String? { get set }
+    var publishedDate: String? { get set }
+    var byline: String? { get set }
+    var favorite: Bool { get set }
+    var multimedia: [Multimedia] { get set }
+    var media: [Media] { get set }
+    var id: UUID { get }
+}
+
+extension NewsProtocol {
+    var media: [Media] {
+        get { return [] } set{}
+    }
+    var multimedia: [Multimedia] {
+        get { return [] } set{}
+    }
+}
+
+
 struct MainNewsModel: Codable {
     var results: [NewsData]
 }
 
-struct NewsData: Codable {
+struct NewsData: Codable, NewsProtocol {
+    var id: UUID
     var favorite: Bool = false
     var title: String? = "Title not found"
     var abstract: String? = "Text not found"
@@ -31,6 +53,7 @@ struct NewsData: Codable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = UUID()
         title = try container.decodeIfPresent(String.self, forKey: .title) ?? title
         abstract = try container.decodeIfPresent(String.self, forKey: .abstract) ?? abstract
         url = try container.decodeIfPresent(String.self, forKey: .url) ?? url

@@ -1,24 +1,25 @@
 //
-//  CustomMostPopularPostsCell.swift
+//  CustomFavoriteNewsCell.swift
 //  INewsNow
 //
-//  Created by Pedro Henrique on 02/02/24.
+//  Created by Pedro Henrique on 16/02/24.
 //
 
+import Foundation
 import UIKit
 
-final class CustomMostPopularPostsCell: UIView {
-    
+final class CustomFavoriteNewsCell: UIView {
+ 
     // MARK: Propertys
     
-    private lazy var guide = self.safeAreaLayoutGuide
+    private lazy var safeGuide = self.safeAreaLayoutGuide
     
     // MARK: ElementsVisual
     
     lazy var textNewsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .boldSystemFont(ofSize: 14)
+        label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .black
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
@@ -29,7 +30,7 @@ final class CustomMostPopularPostsCell: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Frederic Lardinois"
-        label.font = .boldSystemFont(ofSize: 12)
+        label.font = .boldSystemFont(ofSize: 14)
         label.textColor = .black
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
@@ -49,7 +50,7 @@ final class CustomMostPopularPostsCell: UIView {
         let label =  UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Nov. 13, 2019"
-        label.font = .systemFont(ofSize: 12)
+        label.font = .systemFont(ofSize: 14)
         label.textColor = .gray
         return label
     }()
@@ -62,6 +63,9 @@ final class CustomMostPopularPostsCell: UIView {
         return image
     }()
     
+    
+    // MARK: Inits
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -73,14 +77,13 @@ final class CustomMostPopularPostsCell: UIView {
     
 }
 
-extension CustomMostPopularPostsCell: ViewProtocol {
+extension CustomFavoriteNewsCell: ViewProtocol {
     func buildHierarchy() {
         self.addSubview(imageNewsImageView)
         self.addSubview(textNewsLabel)
         self.addSubview(favoriteNewsButton)
         self.addSubview(authorNewsLabel)
         self.addSubview(dateNewsLabel)
-        
     }
     
     func setupConstraints() {
@@ -88,7 +91,7 @@ extension CustomMostPopularPostsCell: ViewProtocol {
             imageNewsImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 3),
             imageNewsImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -3),
             imageNewsImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -3),
-            imageNewsImageView.widthAnchor.constraint(equalToConstant: 120),
+            imageNewsImageView.widthAnchor.constraint(equalToConstant: 150),
             
             textNewsLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
             textNewsLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
@@ -97,10 +100,9 @@ extension CustomMostPopularPostsCell: ViewProtocol {
             favoriteNewsButton.topAnchor.constraint(greaterThanOrEqualTo: self.textNewsLabel.bottomAnchor, constant: 5),
             favoriteNewsButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
             favoriteNewsButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
-            favoriteNewsButton.heightAnchor.constraint(equalToConstant: 40),
-            favoriteNewsButton.widthAnchor.constraint(equalToConstant: 40),
+            favoriteNewsButton.heightAnchor.constraint(equalToConstant: 60),
+            favoriteNewsButton.widthAnchor.constraint(equalToConstant: 60),
             
-            authorNewsLabel.topAnchor.constraint(greaterThanOrEqualTo: textNewsLabel.bottomAnchor, constant: 2),
             authorNewsLabel.leadingAnchor.constraint(equalTo: favoriteNewsButton.trailingAnchor, constant: 5),
             authorNewsLabel.trailingAnchor.constraint(equalTo: imageNewsImageView.leadingAnchor, constant: -5),
             

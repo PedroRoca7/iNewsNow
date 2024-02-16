@@ -9,26 +9,35 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
+    // MARK: Propertys
+    
     lazy private var viewScreen: HomeView = {
         let view = HomeView()
         return view
     }()
-
+    
     override func loadView() {
         self.view = viewScreen
     }
     
-    lazy private var homeViewModel: HomeViewModel = {
-        let vm = HomeViewModel()
-        return vm
-    }()
+    private var attempt: Int = 0
+    private var homeViewModel: HomeViewModeling
+    
+    // MARK: Inits
+    
+    init(homeViewModel: HomeViewModeling) {
+        self.homeViewModel = homeViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegatesAndDataSource()
-        setupSearchController()
         loadAllNews()
-        viewScreen.searchButton.addTarget(self, action: #selector(toggleNavigationBarButtonTapped(_:)), for: .touchUpInside)
     }
     
     private func loadAllNews() {
@@ -41,26 +50,6 @@ final class HomeViewController: UIViewController {
         viewScreen.mostPopularPostsTableView.dataSource = self
         viewScreen.mainNewsCollectionView.delegate = self
         viewScreen.mainNewsCollectionView.dataSource = self
-        viewScreen.searchController.searchBar.delegate = self
-        homeViewModel.delegate = self
-    }
-    
-    private func setupSearchController() {
-        viewScreen.searchController.searchBar.placeholder = "Search Posts"
-        self.navigationItem.searchController = viewScreen.searchController
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
-    }
-    
-    @IBAction func toggleNavigationBarButtonTapped(_ sender: UIButton) {
-        let isHidden = self.navigationController?.isNavigationBarHidden ?? true
-        self.navigationController?.setNavigationBarHidden(!isHidden, animated: true)
-    }
-}
-
-extension HomeViewController: UISearchBarDelegate {
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 }
 
@@ -78,8 +67,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.viewScreen.favoriteNewsButton.tintColor = mostPopularNews.favorite ? UIColor.red : UIColor.lightGray
             cell.prepareCell(mostPopularPost: mostPopularNews)
         }
-           
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Celula da tableView numero \(indexPath.row)")
+        guard let urlSite = homeViewModel.mostPopularPostList?.results[indexPath.row].url else { return }
+        homeViewModel.showScreenWebViewController(webSiteNews: urlSite)
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -102,8 +97,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.viewScreen.favoriteNewsButton.tintColor = mainNews.favorite ? UIColor.red : UIColor.white
             cell.prepareCollectionCell(mainNews: mainNews)
         }
-    
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Celula da collectionView numero \(indexPath.row)")
+        guard let urlSite = homeViewModel.mainNewsList?.results[indexPath.row].url else { return }
+        homeViewModel.showScreenWebViewController(webSiteNews: urlSite)
     }
 }
 
@@ -116,7 +116,14 @@ extension HomeViewController: HomeViewModelDelegate {
     }
     
     func failure() {
-        print("Falhou!")
+        if attempt < 3 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
+                self.attempt += 1
+                self.loadAllNews()
+            }
+        } else {
+            print("Falha ao carregar as notícias.")
+        }
     }
 }
 

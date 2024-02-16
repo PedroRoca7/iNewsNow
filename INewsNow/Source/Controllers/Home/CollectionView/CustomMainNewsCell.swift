@@ -35,7 +35,7 @@ final class CustomMainNewsCell: UIView {
     lazy var favoriteNewsButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         return button
     }()
     
@@ -106,6 +106,13 @@ extension CustomMainNewsCell: ViewProtocol {
             authorNewsLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
             authorNewsLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
         ])
-    }        
+    }
+    
+    func applyAdditionalChanges() {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.backgroundColor = .black
+        self.layer.cornerRadius = 10
+        self.clipsToBounds = true
+    }
 }
 

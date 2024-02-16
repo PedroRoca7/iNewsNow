@@ -11,7 +11,8 @@ struct MostPopularNewsModel: Codable {
     var results: [PopularNewsData]
 }
 
-struct PopularNewsData: Codable {
+struct PopularNewsData: Codable, NewsProtocol {
+    var id: UUID
     var favorite: Bool = false
     var url: String? = ""
     var publishedDate: String? = "Date not found"
@@ -31,6 +32,7 @@ struct PopularNewsData: Codable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = UUID()
         url = try container.decodeIfPresent(String.self, forKey: .url) ?? url
         publishedDate = try container.decodeIfPresent(String.self, forKey: .publishedDate) ?? publishedDate
         title = try container.decodeIfPresent(String.self, forKey: .title) ?? title
