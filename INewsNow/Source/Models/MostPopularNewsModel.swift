@@ -11,7 +11,7 @@ struct MostPopularNewsModel: Codable {
     var results: [PopularNewsData]
 }
 
-struct PopularNewsData: Codable, NewsProtocol {
+struct PopularNewsData: Codable {
     var id: UUID
     var favorite: Bool = false
     var url: String? = ""

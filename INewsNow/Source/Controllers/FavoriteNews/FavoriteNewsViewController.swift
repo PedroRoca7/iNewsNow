@@ -25,6 +25,7 @@ final class FavoriteNewsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         DispatchQueue.main.async {
             self.viewScreen.favoriteNewsTableView.reloadData()
         }
@@ -50,5 +51,9 @@ extension FavoriteNewsViewController: UITableViewDelegate, UITableViewDataSource
         cell.prepareCell(newsFavorited: newsFavorited)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 130
     }
 }

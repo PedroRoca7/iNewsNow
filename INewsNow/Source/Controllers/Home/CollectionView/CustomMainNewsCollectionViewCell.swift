@@ -38,7 +38,7 @@ final class CustomMainNewsCollectionViewCell: UICollectionViewCell {
     
     func prepareCollectionCell(mainNews: NewsData) {
         viewScreen.dateNewsLabel.text = formaterDate(date: mainNews.publishedDate ?? "Date not Found")
-        viewScreen.newsTextLabel.text = mainNews.abstract
+        viewScreen.newsTextLabel.text = mainNews.title
         viewScreen.authorNewsLabel.text = mainNews.byline
         guard let nonEmptyImageUrl = mainNews.multimedia?.first?.url else {
             viewScreen.backgroundImageNewsImageView.image = UIImage(named: "LogoINewsNow")

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 final class CustomFavoriteNewsTableViewCell: UITableViewCell {
     
@@ -19,32 +20,35 @@ final class CustomFavoriteNewsTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func prepareCell(newsFavorited: NewsProtocol) {
-        viewScreen.textNewsLabel.text = newsFavorited.title
-        viewScreen.authorNewsLabel.text = newsFavorited.byline
-        if let nonEmptyImageUrl = newsFavorited.media.first?.mediaMetadata?.first?.url {
-            viewScreen.dateNewsLabel.text = formaterDate(date: newsFavorited.publishedDate ?? "Date not Found",
-                                                         typeNews: .mostPopularNews)
-            if let url = URL(string: nonEmptyImageUrl) {
-                viewScreen.imageNewsImageView.kf.indicatorType = .activity
-                viewScreen.imageNewsImageView.kf.setImage(with: url)
-                viewScreen.imageNewsImageView.layer.cornerRadius = 10
-            }
-        }
-        if let nonEmptyImageUrl = newsFavorited.multimedia.first?.url {
-            viewScreen.dateNewsLabel.text = formaterDate(date: newsFavorited.publishedDate ?? "Date not Found",
+    func prepareCell(newsFavorited: Any) {
+        
+        if let mainNews = newsFavorited as? NewsData {
+            viewScreen.textNewsLabel.text = mainNews.title
+            viewScreen.authorNewsLabel.text = mainNews.byline
+            viewScreen.dateNewsLabel.text = formaterDate(date: mainNews.publishedDate ?? "Date not Found",
                                                          typeNews: .mainNews)
-            if let url = URL(string: nonEmptyImageUrl) {
-                viewScreen.imageNewsImageView.kf.indicatorType = .activity
-                viewScreen.imageNewsImageView.kf.setImage(with: url)
-                viewScreen.imageNewsImageView.layer.cornerRadius = 10
-            }
+            guard let notEmptyImageUrl = mainNews.multimedia?.first?.url, let url = URL(string: notEmptyImageUrl) else { return }
+            viewScreen.imageNewsImageView.kf.indicatorType = .activity
+            viewScreen.imageNewsImageView.kf.setImage(with: url)
+            viewScreen.imageNewsImageView.layer.cornerRadius = 10
+        }
+
+        if let mostPopularNews = newsFavorited as? PopularNewsData {
+            viewScreen.textNewsLabel.text = mostPopularNews.title
+            viewScreen.authorNewsLabel.text = mostPopularNews.byline
+            viewScreen.dateNewsLabel.text = formaterDate(date: mostPopularNews.publishedDate ?? "Date not Found",
+                                                         typeNews: .mostPopularNews)
+            guard let notEmptyImageUrl = mostPopularNews.media?.first?.mediaMetadata?.first?.url, let url = URL(string: notEmptyImageUrl) else { return }
+            viewScreen.imageNewsImageView.kf.indicatorType = .activity
+            viewScreen.imageNewsImageView.kf.setImage(with: url)
+            viewScreen.imageNewsImageView.layer.cornerRadius = 10
         }
     }
     
@@ -77,3 +81,18 @@ final class CustomFavoriteNewsTableViewCell: UITableViewCell {
     }
 }
 
+extension CustomFavoriteNewsTableViewCell: ViewProtocol {
+    func buildHierarchy() {
+        contentView.addSubview(viewScreen)
+        contentView.backgroundColor = .clear
+    }
+    
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            viewScreen.topAnchor.constraint(equalTo: contentView.topAnchor),
+            viewScreen.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            viewScreen.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            viewScreen.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+    }
+}

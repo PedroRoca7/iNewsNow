@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol NewsProtocol {
+protocol NewsProtocol: Any {
     var title: String? { get set }
     var abstract: String? { get set }
     var publishedDate: String? { get set }
@@ -32,7 +32,7 @@ struct MainNewsModel: Codable {
     var results: [NewsData]
 }
 
-struct NewsData: Codable, NewsProtocol {
+struct NewsData: Codable {
     var id: UUID
     var favorite: Bool = false
     var title: String? = "Title not found"

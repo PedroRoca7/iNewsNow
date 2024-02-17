@@ -32,9 +32,9 @@ final class HomeViewModel: HomeViewModeling {
     private var coordinator: HomeCoordinating
     private(set) var mainNewsList: MainNewsModel?
     private(set) var mostPopularPostList: MostPopularNewsModel?
-    static var favoritedNewsArray: [NewsProtocol] = []
+    static var favoritedNewsArray: [Any] = []
     weak var delegate: HomeViewModelDelegate?
-
+    
     init(service: NewYorkTimesServicing, coordinator: HomeCoordinating) {
         self.service = service
         self.coordinator = coordinator
@@ -66,7 +66,7 @@ final class HomeViewModel: HomeViewModeling {
     
     func setFavoriteNews(index: Int, typeNews: TypeNews) {
         guard let hasFavoritedMainNews = mainNewsList?.results[index].favorite,
-        let hasFavoritedMostPopular = mostPopularPostList?.results[index].favorite else { return }
+              let hasFavoritedMostPopular = mostPopularPostList?.results[index].favorite else { return }
         
         switch typeNews {
         case .mainNews:
@@ -84,13 +84,20 @@ final class HomeViewModel: HomeViewModeling {
         coordinator.showScreenWebViewController(webSiteNews: webSiteNews)
     }
     
-    private func appendOrRemoveFavoritesNewsArray(newsData: NewsProtocol) {
-        if newsData.favorite {
-            HomeViewModel.favoritedNewsArray.append(newsData)
-            print(HomeViewModel.favoritedNewsArray.count)
-        } else {
-            HomeViewModel.favoritedNewsArray = HomeViewModel.favoritedNewsArray.filter { $0.id != newsData.id}
-            print(HomeViewModel.favoritedNewsArray.count)
+    private func appendOrRemoveFavoritesNewsArray(newsData: Any) {
+        if let news = newsData as? NewsData {
+            if news.favorite {
+                HomeViewModel.favoritedNewsArray.append(news)
+            } else {
+                HomeViewModel.favoritedNewsArray = HomeViewModel.favoritedNewsArray.filter { ($0 as? NewsData)?.id != news.id }
+            }
+        }
+        if let news = newsData as? PopularNewsData {
+            if news.favorite {
+                HomeViewModel.favoritedNewsArray.append(news)
+            } else {
+                HomeViewModel.favoritedNewsArray = HomeViewModel.favoritedNewsArray.filter { ($0 as? PopularNewsData)?.id != news.id}
+            }
         }
     }
 }

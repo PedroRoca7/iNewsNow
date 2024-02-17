@@ -42,7 +42,7 @@ final class CustomFavoriteNewsCell: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "heart.fill"),for: .normal)
-        button.tintColor = .white
+        button.tintColor = .red
         return button
     }()
     
