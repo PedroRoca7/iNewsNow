@@ -7,27 +7,6 @@
 
 import Foundation
 
-protocol NewsProtocol: Any {
-    var title: String? { get set }
-    var abstract: String? { get set }
-    var publishedDate: String? { get set }
-    var byline: String? { get set }
-    var favorite: Bool { get set }
-    var multimedia: [Multimedia] { get set }
-    var media: [Media] { get set }
-    var id: UUID { get }
-}
-
-extension NewsProtocol {
-    var media: [Media] {
-        get { return [] } set{}
-    }
-    var multimedia: [Multimedia] {
-        get { return [] } set{}
-    }
-}
-
-
 struct MainNewsModel: Codable {
     var results: [NewsData]
 }

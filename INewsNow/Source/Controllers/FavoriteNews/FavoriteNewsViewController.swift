@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 final class FavoriteNewsViewController: UIViewController {
     
@@ -26,8 +27,22 @@ final class FavoriteNewsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadNewsCoreData()
         DispatchQueue.main.async {
             self.viewScreen.favoriteNewsTableView.reloadData()
+        }
+    }
+    
+    private func loadNewsCoreData() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteNews")
+        
+        do {
+            HomeViewModel.favoritedNewsArray = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Erro ao carregar dados do banco \(error.localizedDescription)")
         }
     }
     

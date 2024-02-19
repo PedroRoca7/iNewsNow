@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import CoreData
+import UIKit
 
 protocol HomeViewModelDelegate: AnyObject {
     func success()
@@ -32,7 +34,7 @@ final class HomeViewModel: HomeViewModeling {
     private var coordinator: HomeCoordinating
     private(set) var mainNewsList: MainNewsModel?
     private(set) var mostPopularPostList: MostPopularNewsModel?
-    static var favoritedNewsArray: [Any] = []
+    static var favoritedNewsArray: [NSManagedObject] = []
     weak var delegate: HomeViewModelDelegate?
     
     init(service: NewYorkTimesServicing, coordinator: HomeCoordinating) {
@@ -41,7 +43,8 @@ final class HomeViewModel: HomeViewModeling {
     }
     
     func loadMainNews() {
-        service.loadMainNews { data, error in
+        service.loadMainNews { [weak self] data, error in
+            guard let self else { return }
             if let error = error {
                 self.delegate?.failure()
                 print(error.localizedDescription)
@@ -53,7 +56,8 @@ final class HomeViewModel: HomeViewModeling {
     }
     
     func loadMostPopularPost() {
-        service.loadMostPopularNews { data, error in
+        service.loadMostPopularNews { [weak self] data, error in
+            guard let self else { return }
             if let error = error {
                 self.delegate?.failure()
                 print(error.localizedDescription)
@@ -87,17 +91,87 @@ final class HomeViewModel: HomeViewModeling {
     private func appendOrRemoveFavoritesNewsArray(newsData: Any) {
         if let news = newsData as? NewsData {
             if news.favorite {
-                HomeViewModel.favoritedNewsArray.append(news)
+                saveMainNewsCoreData(mainNewsData: news)
             } else {
-                HomeViewModel.favoritedNewsArray = HomeViewModel.favoritedNewsArray.filter { ($0 as? NewsData)?.id != news.id }
+                removeFavoritedNewsCoreData(id: news.id)
             }
         }
         if let news = newsData as? PopularNewsData {
             if news.favorite {
-                HomeViewModel.favoritedNewsArray.append(news)
+                saveMostPopularNewsCoreData(mostPopularNews: news)
             } else {
-                HomeViewModel.favoritedNewsArray = HomeViewModel.favoritedNewsArray.filter { ($0 as? PopularNewsData)?.id != news.id}
+                removeFavoritedNewsCoreData(id: news.id)
             }
         }
     }
+    
+    private func saveMainNewsCoreData(mainNewsData: NewsData) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "FavoriteNews", in: managedContext)
+        if let entity {
+            let favoriteNews = NSManagedObject(entity: entity, insertInto: managedContext)
+            favoriteNews.setValue(mainNewsData.id, forKey: "id")
+            favoriteNews.setValue(mainNewsData.title, forKey: "title")
+            favoriteNews.setValue(mainNewsData.byline, forKey: "byline")
+            favoriteNews.setValue(mainNewsData.url, forKey: "url")
+            favoriteNews.setValue(mainNewsData.publishedDate, forKey: "publishedDate")
+            favoriteNews.setValue(mainNewsData.favorite, forKey: "favorite")
+            favoriteNews.setValue(mainNewsData.multimedia?.first?.url, forKey: "urlImage")
+            
+            do {
+                try managedContext.save()
+                HomeViewModel.favoritedNewsArray.append(favoriteNews)
+            } catch let error as NSError {
+                print("Falha ao salvar os dados no banco \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    private func saveMostPopularNewsCoreData(mostPopularNews: PopularNewsData) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "FavoriteNews", in: managedContext)
+        if let entity {
+            let favoriteNews = NSManagedObject(entity: entity, insertInto: managedContext)
+            favoriteNews.setValue(mostPopularNews.id, forKey: "id")
+            favoriteNews.setValue(mostPopularNews.title, forKey: "title")
+            favoriteNews.setValue(mostPopularNews.byline, forKey: "byline")
+            favoriteNews.setValue(mostPopularNews.url, forKey: "url")
+            favoriteNews.setValue(mostPopularNews.publishedDate, forKey: "publishedDate")
+            favoriteNews.setValue(mostPopularNews.favorite, forKey: "favorite")
+            favoriteNews.setValue(mostPopularNews.media?.first?.mediaMetadata?.first?.url, forKey: "urlImage")
+            
+            do {
+                try managedContext.save()
+                HomeViewModel.favoritedNewsArray.append(favoriteNews)
+            } catch let error as NSError {
+                print("Falha ao salvar os dados no banco \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    private func removeFavoritedNewsCoreData(id: UUID) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteNews")
+        
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        
+        do {
+            let results = try managedContext.fetch(fetchRequest)
+            
+            for object in results {
+                managedContext.delete(object)
+            }
+            
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Erro ao deletar dados do banco \(error.localizedDescription)")
+        }
+    }
+    
 }

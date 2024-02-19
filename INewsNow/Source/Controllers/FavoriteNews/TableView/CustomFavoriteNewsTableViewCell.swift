@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Kingfisher
+import CoreData
 
 final class CustomFavoriteNewsTableViewCell: UITableViewCell {
     
@@ -27,59 +28,37 @@ final class CustomFavoriteNewsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func prepareCell(newsFavorited: Any) {
+    func prepareCell(newsFavorited: NSManagedObject) {
         
-        if let mainNews = newsFavorited as? NewsData {
-            viewScreen.textNewsLabel.text = mainNews.title
-            viewScreen.authorNewsLabel.text = mainNews.byline
-            viewScreen.dateNewsLabel.text = formaterDate(date: mainNews.publishedDate ?? "Date not Found",
-                                                         typeNews: .mainNews)
-            guard let notEmptyImageUrl = mainNews.multimedia?.first?.url, let url = URL(string: notEmptyImageUrl) else { return }
-            viewScreen.imageNewsImageView.kf.indicatorType = .activity
-            viewScreen.imageNewsImageView.kf.setImage(with: url)
-            viewScreen.imageNewsImageView.layer.cornerRadius = 10
-        }
+        viewScreen.textNewsLabel.text = newsFavorited.value(forKey: "title") as? String
+        viewScreen.authorNewsLabel.text = newsFavorited.value(forKey: "byline") as? String
+        viewScreen.dateNewsLabel.text = formaterDate(dataString: newsFavorited.value(forKey: "publishedDate") as? String ?? "")
+        guard let notEmptyImageUrl = newsFavorited.value(forKey: "urlImage") as? String, let url = URL(string: notEmptyImageUrl) else { return }
+        viewScreen.imageNewsImageView.kf.indicatorType = .activity
+        viewScreen.imageNewsImageView.kf.setImage(with: url)
+        viewScreen.imageNewsImageView.layer.cornerRadius = 10
 
-        if let mostPopularNews = newsFavorited as? PopularNewsData {
-            viewScreen.textNewsLabel.text = mostPopularNews.title
-            viewScreen.authorNewsLabel.text = mostPopularNews.byline
-            viewScreen.dateNewsLabel.text = formaterDate(date: mostPopularNews.publishedDate ?? "Date not Found",
-                                                         typeNews: .mostPopularNews)
-            guard let notEmptyImageUrl = mostPopularNews.media?.first?.mediaMetadata?.first?.url, let url = URL(string: notEmptyImageUrl) else { return }
-            viewScreen.imageNewsImageView.kf.indicatorType = .activity
-            viewScreen.imageNewsImageView.kf.setImage(with: url)
-            viewScreen.imageNewsImageView.layer.cornerRadius = 10
-        }
     }
     
-    private func formaterDate(date: String, typeNews: TypeNews) -> String {
+    func formaterDate(dataString: String) -> String {
+        let dateFormatterInput1 = DateFormatter()
+        dateFormatterInput1.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatterInput1.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         
-        switch typeNews {
-        case .mostPopularNews:
-            let formatter = DateFormatter()
-            formatter.locale = Locale(identifier: "en_US_POSIX")
-            formatter.dateFormat = "yyyy-mm-dd"
-            if let date = formatter.date(from: date) {
-                formatter.dateFormat = "MMMM dd, yyyy"
-                let stringDate = formatter.string(from: date)
-                return stringDate
-            } else {
-                return ""
-            }
-        case .mainNews :
-            let formatter = DateFormatter()
-            formatter.locale = Locale(identifier: "en_US_POSIX")
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-            if let date = formatter.date(from: date) {
-                formatter.dateFormat = "MMMM dd, yyyy"
-                let stringDate = formatter.string(from: date)
-                return stringDate
-            } else {
-                return ""
-            }
-        }        
-    }
-}
+        let dateFormatterInput2 = DateFormatter()
+        dateFormatterInput2.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatterInput2.dateFormat = "yyyy-MM-dd"
+        
+        let dateFormatterOutput = DateFormatter()
+        dateFormatterOutput.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatterOutput.dateFormat = "MMMM dd, yyyy"
+        
+        if let data = dateFormatterInput1.date(from: dataString) ?? dateFormatterInput2.date(from: dataString) {
+            return dateFormatterOutput.string(from: data)
+        }
+        
+        return ""
+    }}
 
 extension CustomFavoriteNewsTableViewCell: ViewProtocol {
     func buildHierarchy() {
