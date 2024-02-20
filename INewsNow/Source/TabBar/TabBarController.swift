@@ -50,13 +50,13 @@ final class TabBarController: UITabBarController {
     
     private func configureTabBarItems(navigationController: UINavigationController) {
         
-        let personViewController = UIViewController()
-        personViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "magnifyingglass"), selectedImage: nil)
+        let mainMenuViewController = MainMenuViewController()
+        mainMenuViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "menucard.fill"), selectedImage: nil)
         let homeViewController = HomeFactory.makeModule(navigationController: navigationController)
         homeViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: ""), selectedImage: nil)
         let favoriteViewController = FavoriteNewsFactory.makeModule(navigationController: navigationController)
         favoriteViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "heart.fill"), selectedImage: nil)
         
-        viewControllers = ([personViewController, homeViewController, favoriteViewController])
+        viewControllers = ([mainMenuViewController, homeViewController, favoriteViewController])
     }
 }

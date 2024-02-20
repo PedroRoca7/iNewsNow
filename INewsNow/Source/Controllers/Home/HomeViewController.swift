@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 final class HomeViewController: UIViewController {
     
     // MARK: Propertys
@@ -38,6 +39,19 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         setDelegatesAndDataSource()
         loadAllNews()
+        setupMenuFloatingButton()
+    }
+    
+    private func setupMenuFloatingButton() {
+        viewScreen.menuFloatingButton.addItem(title: "Notícias do Mundo", image: UIImage(systemName: "newspaper.fill")?.withRenderingMode(.alwaysTemplate)) { item in
+            print("Tela Noticias do Mundo.")
+        }
+        viewScreen.menuFloatingButton.addItem(title: "Criptos", image: UIImage(systemName: "dollarsign.circle.fill")?.withRenderingMode(.alwaysTemplate)) { item in
+            print("Tela de cripto moedas")
+        }
+        viewScreen.menuFloatingButton.addItem(title: "Previsão do tempo", image: UIImage(systemName: "sun.max.fill")?.withRenderingMode(.alwaysTemplate)) { item in
+            print("Tela previsão do tempo")
+        }
     }
     
     private func loadAllNews() {

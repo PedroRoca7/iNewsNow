@@ -50,6 +50,27 @@ final class FavoriteNewsViewController: UIViewController {
         viewScreen.favoriteNewsTableView.delegate = self
         viewScreen.favoriteNewsTableView.dataSource = self
     }
+    
+    private func removeFavoritedNewsCoreData(id: UUID) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteNews")
+        
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        
+        do {
+            let results = try managedContext.fetch(fetchRequest)
+            
+            for object in results {
+                managedContext.delete(object)
+            }
+            
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Erro ao deletar dados do banco \(error.localizedDescription)")
+        }
+    }
 }
 
 extension FavoriteNewsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -70,5 +91,23 @@ extension FavoriteNewsViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 130
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            if let id = HomeViewModel.favoritedNewsArray[indexPath.row].value(forKey: "id") as? UUID {
+                removeFavoritedNewsCoreData(id: id)
+            }
+            HomeViewModel.favoritedNewsArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
+            
+            
+        }
     }
 }

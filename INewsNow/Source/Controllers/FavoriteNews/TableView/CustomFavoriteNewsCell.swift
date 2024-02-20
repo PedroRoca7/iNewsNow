@@ -19,7 +19,7 @@ final class CustomFavoriteNewsCell: UIView {
     lazy var textNewsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .boldSystemFont(ofSize: 18)
+        label.font = .boldSystemFont(ofSize: 16)
         label.textColor = .black
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
@@ -30,7 +30,7 @@ final class CustomFavoriteNewsCell: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Frederic Lardinois"
-        label.font = .boldSystemFont(ofSize: 14)
+        label.font = .boldSystemFont(ofSize: 12)
         label.textColor = .black
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
@@ -50,7 +50,7 @@ final class CustomFavoriteNewsCell: UIView {
         let label =  UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Nov. 13, 2019"
-        label.font = .systemFont(ofSize: 14)
+        label.font = .systemFont(ofSize: 12)
         label.textColor = .gray
         return label
     }()
@@ -88,9 +88,9 @@ extension CustomFavoriteNewsCell: ViewProtocol {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            imageNewsImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 3),
-            imageNewsImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -3),
-            imageNewsImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -3),
+            imageNewsImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
+            imageNewsImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
+            imageNewsImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
             imageNewsImageView.widthAnchor.constraint(equalToConstant: 150),
             
             textNewsLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),

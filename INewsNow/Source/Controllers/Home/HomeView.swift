@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import JJFloatingActionButton
 
 final class HomeView: UIView {
     
@@ -18,10 +19,23 @@ final class HomeView: UIView {
     
     lazy var searchController = UISearchController(searchResultsController: nil)
     
-    lazy var floatingMenuButton: UIButton = {
+    lazy var menuFloatingButton: JJFloatingActionButton = {
+        let button = JJFloatingActionButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.buttonDiameter = 45
+        button.buttonColor = .color1Red ?? .red
+        button.itemAnimationConfiguration = .slideInBottom()
+        button.configureDefaultItem { item in
+            item.titlePosition = .trailing
+            item.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
+            item.titleLabel.backgroundColor = .color1Red
+        }
+        return button
+    }()
+    
+    lazy var sideMenuButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "filterIcon"), for: .normal)
         return button
     }()
     
@@ -37,13 +51,12 @@ final class HomeView: UIView {
     lazy var newsPaperImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(systemName: "newspaper.fill")
         image.tintColor = UIColor.gray
         return image
     }()
     
     private lazy var headerStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [floatingMenuButton, logoImageView, newsPaperImage])
+        let stackView = UIStackView(arrangedSubviews: [sideMenuButton, logoImageView, newsPaperImage])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.distribution = .fill
@@ -139,12 +152,13 @@ extension HomeView: ViewProtocol {
         self.addSubview(mainNewsCollectionView)
         self.addSubview(mostPopularPostsAndshowAllPostsButtonStackView)
         self.addSubview(mostPopularPostsTableView)
+        self.addSubview(menuFloatingButton)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            floatingMenuButton.widthAnchor.constraint(equalToConstant: 25),
-            floatingMenuButton.heightAnchor.constraint(equalToConstant: 25),
+            sideMenuButton.widthAnchor.constraint(equalToConstant: 25),
+            sideMenuButton.heightAnchor.constraint(equalToConstant: 25),
             
             newsPaperImage.widthAnchor.constraint(equalToConstant: 25),
             newsPaperImage.heightAnchor.constraint(equalToConstant: 25),
@@ -174,7 +188,10 @@ extension HomeView: ViewProtocol {
             mostPopularPostsTableView.topAnchor.constraint(equalTo: mostPopularPostsAndshowAllPostsButtonStackView.bottomAnchor, constant: 5),
             mostPopularPostsTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
             mostPopularPostsTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
-            mostPopularPostsTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            mostPopularPostsTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            
+            menuFloatingButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 45),
+            menuFloatingButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
         ])
     }
     
