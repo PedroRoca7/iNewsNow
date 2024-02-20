@@ -70,7 +70,6 @@ extension CustomMostPopularPostsTableViewCell: ViewProtocol {
     }
     
     func setupConstraints() {
-       
         NSLayoutConstraint.activate([
             viewScreen.topAnchor.constraint(equalTo: contentView.topAnchor),
             viewScreen.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

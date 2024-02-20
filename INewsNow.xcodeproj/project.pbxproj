@@ -48,6 +48,8 @@
 		CE5751522B8529DF00A34621 /* NewsBrasilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5751512B8529DF00A34621 /* NewsBrasilView.swift */; };
 		CE5751552B852B5A00A34621 /* CustomNewsBrasilTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5751542B852B5A00A34621 /* CustomNewsBrasilTableViewCell.swift */; };
 		CE5751572B852B6A00A34621 /* CustomNewsBrasilCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5751562B852B6A00A34621 /* CustomNewsBrasilCell.swift */; };
+		CE5751592B85591E00A34621 /* NewsDataIOService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5751582B85591E00A34621 /* NewsDataIOService.swift */; };
+		CE57515B2B855AE800A34621 /* NewsBrazilModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57515A2B855AE800A34621 /* NewsBrazilModel.swift */; };
 		CED431022B7670ED005BE203 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED431012B7670ED005BE203 /* TabBarController.swift */; };
 		CED431042B7673B7005BE203 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED431032B7673B7005BE203 /* TabBarCoordinator.swift */; };
 		CED431062B7675CB005BE203 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED431052B7675CB005BE203 /* HomeCoordinator.swift */; };
@@ -120,6 +122,8 @@
 		CE5751512B8529DF00A34621 /* NewsBrasilView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsBrasilView.swift; sourceTree = "<group>"; };
 		CE5751542B852B5A00A34621 /* CustomNewsBrasilTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNewsBrasilTableViewCell.swift; sourceTree = "<group>"; };
 		CE5751562B852B6A00A34621 /* CustomNewsBrasilCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNewsBrasilCell.swift; sourceTree = "<group>"; };
+		CE5751582B85591E00A34621 /* NewsDataIOService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDataIOService.swift; sourceTree = "<group>"; };
+		CE57515A2B855AE800A34621 /* NewsBrazilModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsBrazilModel.swift; sourceTree = "<group>"; };
 		CED431012B7670ED005BE203 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CED431032B7673B7005BE203 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		CED431052B7675CB005BE203 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
@@ -210,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				CE4022A02B6E783C00FB727C /* NewYorkTimesService.swift */,
+				CE5751582B85591E00A34621 /* NewsDataIOService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 			children = (
 				CE4022A42B6E80D300FB727C /* MainNewsModel.swift */,
 				CE4022A62B6E91DC00FB727C /* MostPopularNewsModel.swift */,
+				CE57515A2B855AE800A34621 /* NewsBrazilModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -648,6 +654,7 @@
 				CE4022A12B6E783C00FB727C /* NewYorkTimesService.swift in Sources */,
 				CE4BC9952B6A898300409725 /* HomeViewController.swift in Sources */,
 				CE57514D2B84131400A34621 /* FiatAndCryptocurrenciesView.swift in Sources */,
+				CE5751592B85591E00A34621 /* NewsDataIOService.swift in Sources */,
 				CE2BE7AA2B7D537800F80D9F /* CustomTabBar.swift in Sources */,
 				CED431042B7673B7005BE203 /* TabBarCoordinator.swift in Sources */,
 				CED431062B7675CB005BE203 /* HomeCoordinator.swift in Sources */,
@@ -662,6 +669,7 @@
 				CE1A3A9A2B6D7A01000C0559 /* CustomMainNewsCollectionViewCell.swift in Sources */,
 				CE4BC9912B6A898300409725 /* AppDelegate.swift in Sources */,
 				CE4022A72B6E91DC00FB727C /* MostPopularNewsModel.swift in Sources */,
+				CE57515B2B855AE800A34621 /* NewsBrazilModel.swift in Sources */,
 				CE5751552B852B5A00A34621 /* CustomNewsBrasilTableViewCell.swift in Sources */,
 				CE4022A92B71600300FB727C /* HomeViewModel.swift in Sources */,
 				CE4EA0002B7FB8B100B57802 /* FavoriteNewsView.swift in Sources */,

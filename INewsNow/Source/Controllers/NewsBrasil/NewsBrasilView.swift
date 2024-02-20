@@ -21,6 +21,8 @@ final class NewsBrasilView: UIView {
         tb.translatesAutoresizingMaskIntoConstraints = false
         tb.backgroundColor = .clear
         tb.register(CustomNewsBrasilTableViewCell.self, forCellReuseIdentifier: CustomNewsBrasilTableViewCell.identifier)
+        tb.clipsToBounds = true
+        tb.showsVerticalScrollIndicator = false
         return tb
     }()
     
