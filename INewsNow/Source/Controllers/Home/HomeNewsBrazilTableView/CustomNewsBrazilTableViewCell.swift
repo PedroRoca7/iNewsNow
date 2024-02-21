@@ -1,5 +1,5 @@
 //
-//  CustomNewsBrasilTableViewCell.swift
+//  CustomNewsBrazilTableViewCell.swift
 //  INewsNow
 //
 //  Created by Pedro Henrique on 20/02/24.
@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 
-final class CustomNewsBrasilTableViewCell: UITableViewCell {
+final class CustomNewsBrazilTableViewCell: UITableViewCell {
     
-    static let identifier = "CustomNewsBrasilTableViewCell"
+    static let identifier = "CustomNewsBrazilTableViewCell"
     
-    lazy var viewScreen: CustomNewsBrasilCell = {
-        let view = CustomNewsBrasilCell()
+    lazy var viewScreen: CustomNewsBrazilCell = {
+        let view = CustomNewsBrazilCell()
         return view
     }()
     
@@ -41,7 +41,7 @@ final class CustomNewsBrasilTableViewCell: UITableViewCell {
     
 }
 
-extension CustomNewsBrasilTableViewCell: ViewProtocol {
+extension CustomNewsBrazilTableViewCell: ViewProtocol {
     func buildHierarchy() {
         contentView.addSubview(viewScreen)
     }

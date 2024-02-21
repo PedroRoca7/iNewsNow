@@ -1,17 +1,15 @@
 //
-//  HomeCoordinator.swift
+//  NewsBrazilCoordinator.swift
 //  INewsNow
 //
-//  Created by Pedro Henrique on 09/02/24.
+//  Created by Pedro Henrique on 21/02/24.
 //
 
 import Foundation
 import UIKit
 
 protocol HomeCoordinating {
-    func showScreenWebViewController(webSiteNews: String)
-    func showNewsBrazilViewController()
-    
+    func showNewsWorld()
 }
 
 final class HomeCoordinator: HomeCoordinating {
@@ -22,13 +20,8 @@ final class HomeCoordinator: HomeCoordinating {
         self.navigationController = navigationController
     }
     
-    func showScreenWebViewController(webSiteNews: String) {
-        let webViewController = ScreenWebFactory.makeModule(navigationController: navigationController, webSiteNews: webSiteNews)
-        navigationController.pushViewController(webViewController, animated: true)
-    }
-    
-    func showNewsBrazilViewController() {
-        let newsBrazilViewController = NewsBrazilFactory.makeModule(navigationController: navigationController)
-        navigationController.pushViewController(newsBrazilViewController, animated: true)
+    func showNewsWorld() {
+        let worldNews = WorldNewsFactory.makeModule(navigationController: navigationController)
+        navigationController.pushViewController(worldNews, animated: true)
     }
 }

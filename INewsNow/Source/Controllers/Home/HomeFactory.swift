@@ -2,7 +2,7 @@
 //  HomeFactory.swift
 //  INewsNow
 //
-//  Created by Pedro Henrique on 31/01/24.
+//  Created by Pedro Henrique on 20/02/24.
 //
 
 import Foundation
@@ -10,13 +10,13 @@ import UIKit
 
 enum HomeFactory {
     static func makeModule(navigationController: UINavigationController) -> UIViewController {
+        let service = NewsBrazilDataIOService()
         let coordinator = HomeCoordinator(navigationController: navigationController)
-        let service = NewYorkTimesService()
-        let homeViewModel = HomeViewModel(service: service, coordinator: coordinator)
-        let homeViewController = HomeViewController(homeViewModel: homeViewModel)
+        let viewModel = HomeViewModel(service: service, coordinator: coordinator)
+        let viewController = HomeViewController(viewModel: viewModel)
         
-        homeViewModel.delegate = homeViewController
+        viewModel.delegate = viewController
         
-        return homeViewController
+        return viewController
     }
 }

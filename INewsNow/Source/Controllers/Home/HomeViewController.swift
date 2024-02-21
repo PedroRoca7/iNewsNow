@@ -2,32 +2,27 @@
 //  HomeViewController.swift
 //  INewsNow
 //
-//  Created by Pedro Henrique on 31/01/24.
+//  Created by Pedro Henrique on 20/02/24.
 //
 
+import Foundation
 import UIKit
-
 
 final class HomeViewController: UIViewController {
     
-    // MARK: Propertys
+    //MARK: Propertys
     
-    lazy private var viewScreen: HomeView = {
+    lazy var viewScreen: HomeView = {
         let view = HomeView()
         return view
     }()
     
-    override func loadView() {
-        self.view = viewScreen
-    }
+    private var viewModel: HomeViewModeling
     
-    private var attempt: Int = 0
-    private var homeViewModel: HomeViewModeling
+    //MARK: Inits
     
-    // MARK: Inits
-    
-    init(homeViewModel: HomeViewModeling) {
-        self.homeViewModel = homeViewModel
+    init(viewModel: HomeViewModeling) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -35,125 +30,63 @@ final class HomeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        view = viewScreen
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDelegatesAndDataSource()
-        loadAllNews()
-        viewScreen.todayDateLabel.text = getDateNowConvertToString()
+        viewModel.loadNewsBrazil()
+        setupDelegateAndDataSource()
+        setupMenuFloatingButton()
     }
     
-    private func getDateNowConvertToString() -> String {
-        let currentDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US")
-        dateFormatter.dateFormat = "EEEE MMMM - yyyy"
-        let dateString = dateFormatter.string(from: currentDate)
-        return dateString
+    private func setupMenuFloatingButton() {
+        viewScreen.menuFloatingButton.addItem(title: "Notícias do Mundo", image: UIImage(systemName: "newspaper.fill")?.withRenderingMode(.alwaysTemplate)) { item in
+            self.viewModel.showScreenNewsWorld()
+        }
+        viewScreen.menuFloatingButton.addItem(title: "Criptos", image: UIImage(systemName: "dollarsign.circle.fill")?.withRenderingMode(.alwaysTemplate)) { item in
+            print("Tela de cripto moedas")
+        }
+        viewScreen.menuFloatingButton.addItem(title: "Previsão do tempo", image: UIImage(systemName: "sun.max.fill")?.withRenderingMode(.alwaysTemplate)) { item in
+            print("Tela previsão do tempo")
+        }
     }
     
-    private func loadAllNews() {
-        homeViewModel.loadMainNews()
-        homeViewModel.loadMostPopularPost()
-    }
-    
-    private func setDelegatesAndDataSource() {
-        viewScreen.mostPopularPostsTableView.delegate = self
-        viewScreen.mostPopularPostsTableView.dataSource = self
-        viewScreen.mainNewsCollectionView.delegate = self
-        viewScreen.mainNewsCollectionView.dataSource = self
+    private func setupDelegateAndDataSource() {
+        viewScreen.newsTableView.delegate = self
+        viewScreen.newsTableView.dataSource = self
     }
 }
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return homeViewModel.mostPopularPostList?.results.count ?? 0
+        return viewModel.newsBrazilList?.results.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomMostPopularPostsTableViewCell.identifier,
-                                                       for: indexPath) as? CustomMostPopularPostsTableViewCell else { return UITableViewCell()}
-        cell.delegate = self
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomNewsBrazilTableViewCell.identifier,
+                                                       for: indexPath) as? CustomNewsBrazilTableViewCell else { return UITableViewCell()}
        
-        if let mostPopularNews = homeViewModel.mostPopularPostList?.results[indexPath.row] {
-            cell.viewScreen.favoriteNewsButton.tintColor = mostPopularNews.favorite ? UIColor.red : UIColor.lightGray
-            cell.prepareCell(mostPopularPost: mostPopularNews)
+        if let newsBrazil = viewModel.newsBrazilList?.results[indexPath.row] {
+            cell.prepareCell(newsBrazil: newsBrazil)
         }
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Celula da tableView numero \(indexPath.row)")
-        guard let urlSite = homeViewModel.mostPopularPostList?.results[indexPath.row].url else { return }
-        homeViewModel.showScreenWebViewController(webSiteNews: urlSite)
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
-    }
-}
-
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        homeViewModel.mainNewsList?.results.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomMainNewsCollectionViewCell.identifier,
-                                                            for: indexPath) as? CustomMainNewsCollectionViewCell else { return UICollectionViewCell()}
-        cell.delegate = self
-        
-        if let mainNews = homeViewModel.mainNewsList?.results[indexPath.row] {
-            cell.viewScreen.favoriteNewsButton.tintColor = mainNews.favorite ? UIColor.red : UIColor.white
-            cell.prepareCollectionCell(mainNews: mainNews)
-        }
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Celula da collectionView numero \(indexPath.row)")
-        guard let urlSite = homeViewModel.mainNewsList?.results[indexPath.row].url else { return }
-        homeViewModel.showScreenWebViewController(webSiteNews: urlSite)
+        return 300
     }
 }
 
 extension HomeViewController: HomeViewModelDelegate {
     func success() {
         DispatchQueue.main.async {
-            self.viewScreen.mainNewsCollectionView.reloadData()
-            self.viewScreen.mostPopularPostsTableView.reloadData()
+            self.viewScreen.newsTableView.reloadData()
         }
     }
     
     func failure() {
-        if attempt < 3 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
-                self.attempt += 1
-                self.loadAllNews()
-            }
-        } else {
-            print("Falha ao carregar as notícias.")
-        }
-    }
-}
-
-extension HomeViewController: CustomMostPopularPostsTableViewCellDelegate {
-    func favoriteButtonTapped(cell: UITableViewCell) {
-        guard let indexPathTapped = viewScreen.mostPopularPostsTableView.indexPath(for: cell) else { return }
-      
-        homeViewModel.setFavoriteNews(index: indexPathTapped.row, typeNews: .mostPopularNews)
-        
-        viewScreen.mostPopularPostsTableView.reloadRows(at: [indexPathTapped], with: .none)
-    }
-}
-
-extension HomeViewController: CustomMainNewsCollectionViewCellDelegate {
-    func favoriteButtonTapped(cell: UICollectionViewCell) {
-        guard let indexPathTapped = viewScreen.mainNewsCollectionView.indexPath(for: cell) else { return }
-        
-        homeViewModel.setFavoriteNews(index: indexPathTapped.row, typeNews: .mainNews)
-        
-        viewScreen.mainNewsCollectionView.reloadItems(at: [indexPathTapped])
+        print("Falhou")
     }
 }

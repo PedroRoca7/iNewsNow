@@ -1,5 +1,5 @@
 //
-//  CustomNewsBrasilCell.swift
+//  CustomNewsBrazilCell.swift
 //  INewsNow
 //
 //  Created by Pedro Henrique on 20/02/24.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class CustomNewsBrasilCell: UIView {
+final class CustomNewsBrazilCell: UIView {
     
     //MARK: Propertys
     
@@ -74,7 +74,7 @@ final class CustomNewsBrasilCell: UIView {
     }
 }
 
-extension CustomNewsBrasilCell: ViewProtocol {
+extension CustomNewsBrazilCell: ViewProtocol {
     func buildHierarchy() {
         self.addSubview(imageNewsImageView)
         self.addSubview(titleNews)
