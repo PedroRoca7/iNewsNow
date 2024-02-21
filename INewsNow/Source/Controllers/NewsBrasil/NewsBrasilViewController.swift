@@ -38,6 +38,19 @@ final class NewsBrasilViewController: UIViewController {
         super.viewDidLoad()
         viewModel.loadNewsBrazil()
         setupDelegateAndDataSource()
+        setupMenuFloatingButton()
+    }
+    
+    private func setupMenuFloatingButton() {
+        viewScreen.menuFloatingButton.addItem(title: "Notícias do Mundo", image: UIImage(systemName: "newspaper.fill")?.withRenderingMode(.alwaysTemplate)) { item in
+            self.viewModel.showScreenNewsWorld()
+        }
+        viewScreen.menuFloatingButton.addItem(title: "Criptos", image: UIImage(systemName: "dollarsign.circle.fill")?.withRenderingMode(.alwaysTemplate)) { item in
+            print("Tela de cripto moedas")
+        }
+        viewScreen.menuFloatingButton.addItem(title: "Previsão do tempo", image: UIImage(systemName: "sun.max.fill")?.withRenderingMode(.alwaysTemplate)) { item in
+            print("Tela previsão do tempo")
+        }
     }
     
     private func setupDelegateAndDataSource() {

@@ -11,7 +11,8 @@ import UIKit
 enum NewsBrazilFactory {
     static func makeModule(navigationController: UINavigationController) -> UIViewController {
         let service = NewsBrazilDataIOService()
-        let newsBrazilViewModel = NewsBrazilViewModel(service: service)
+        let coordinator = NewsBrazilCoordinator(navigationController: navigationController)
+        let newsBrazilViewModel = NewsBrazilViewModel(service: service, coordinator: coordinator)
         let newsBrazilViewController = NewsBrasilViewController(viewModel: newsBrazilViewModel)
         return newsBrazilViewController
     }

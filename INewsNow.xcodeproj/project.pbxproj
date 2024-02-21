@@ -23,6 +23,7 @@
 		CE4022AC2B7183C100FB727C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CE4022AB2B7183C100FB727C /* Kingfisher */; };
 		CE425FF12B863BB400A0BDA6 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE425FF02B863BB400A0BDA6 /* DateFormatter+Extension.swift */; };
 		CE425FF72B8648FD00A0BDA6 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE425FF62B8648FD00A0BDA6 /* CoreDataHelper.swift */; };
+		CE425FF92B86A38300A0BDA6 /* NewsBrazilCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE425FF82B86A38300A0BDA6 /* NewsBrazilCoordinator.swift */; };
 		CE4BC9912B6A898300409725 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BC9902B6A898300409725 /* AppDelegate.swift */; };
 		CE4BC9932B6A898300409725 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BC9922B6A898300409725 /* SceneDelegate.swift */; };
 		CE4BC9952B6A898300409725 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BC9942B6A898300409725 /* HomeViewController.swift */; };
@@ -97,6 +98,7 @@
 		CE4022A82B71600300FB727C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CE425FF02B863BB400A0BDA6 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		CE425FF62B8648FD00A0BDA6 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		CE425FF82B86A38300A0BDA6 /* NewsBrazilCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsBrazilCoordinator.swift; sourceTree = "<group>"; };
 		CE4BC98D2B6A898300409725 /* INewsNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = INewsNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4BC9902B6A898300409725 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE4BC9922B6A898300409725 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 			children = (
 				CE5751532B852B4000A34621 /* NewsBrasilTableView */,
 				CE57514F2B8529CF00A34621 /* NewsBrasilViewController.swift */,
+				CE425FF82B86A38300A0BDA6 /* NewsBrazilCoordinator.swift */,
 				CE5751512B8529DF00A34621 /* NewsBrasilView.swift */,
 				CE57515C2B85728F00A34621 /* NewsBrazilViewModel.swift */,
 				CE57515E2B85734A00A34621 /* NewsBrazilFactory.swift */,
@@ -702,6 +705,7 @@
 				CE5751552B852B5A00A34621 /* CustomNewsBrasilTableViewCell.swift in Sources */,
 				CE4022A92B71600300FB727C /* HomeViewModel.swift in Sources */,
 				CE4EA0002B7FB8B100B57802 /* FavoriteNewsView.swift in Sources */,
+				CE425FF92B86A38300A0BDA6 /* NewsBrazilCoordinator.swift in Sources */,
 				CE5751202B83710000A34621 /* INewsNowDB.xcdatamodeld in Sources */,
 				CE425FF72B8648FD00A0BDA6 /* CoreDataHelper.swift in Sources */,
 				CE4EA0022B7FBE4300B57802 /* FavoriteNewsFactory.swift in Sources */,

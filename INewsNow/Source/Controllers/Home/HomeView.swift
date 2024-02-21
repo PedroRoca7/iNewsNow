@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import JJFloatingActionButton
 
 final class HomeView: UIView {
     
@@ -16,22 +15,6 @@ final class HomeView: UIView {
     private lazy var safeGuide = self.safeAreaLayoutGuide
     
     // MARK: ElementsVisual
-    
-    lazy var searchController = UISearchController(searchResultsController: nil)
-    
-    lazy var menuFloatingButton: JJFloatingActionButton = {
-        let button = JJFloatingActionButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.buttonDiameter = 45
-        button.buttonColor = .color1Red ?? .red
-        button.itemAnimationConfiguration = .slideInBottom()
-        button.configureDefaultItem { item in
-            item.titlePosition = .trailing
-            item.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
-            item.titleLabel.backgroundColor = .color1Red
-        }
-        return button
-    }()
     
     lazy var sideMenuButton: UIButton = {
         let button = UIButton()
@@ -108,7 +91,7 @@ final class HomeView: UIView {
     lazy var showAllPostsButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("See all", for: .normal)
+        button.setTitle("", for: .normal)
         button.setTitleColor(UIColor.gray, for: .normal)
         return button
     }()
@@ -140,8 +123,6 @@ final class HomeView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }
 
 extension HomeView: ViewProtocol {
@@ -152,7 +133,6 @@ extension HomeView: ViewProtocol {
         self.addSubview(mainNewsCollectionView)
         self.addSubview(mostPopularPostsAndshowAllPostsButtonStackView)
         self.addSubview(mostPopularPostsTableView)
-        self.addSubview(menuFloatingButton)
     }
     
     func setupConstraints() {
@@ -189,9 +169,6 @@ extension HomeView: ViewProtocol {
             mostPopularPostsTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
             mostPopularPostsTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
             mostPopularPostsTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            
-            menuFloatingButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 45),
-            menuFloatingButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
         ])
     }
     

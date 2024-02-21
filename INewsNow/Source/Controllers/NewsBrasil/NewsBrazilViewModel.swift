@@ -14,20 +14,21 @@ protocol NewsBrazilViewModelDelegate: AnyObject {
 
 protocol NewsBrazilViewModeling {
     func loadNewsBrazil()
+    func showScreenNewsWorld()
     var delegate: NewsBrazilViewModelDelegate? { get set }
     var newsBrazilList: NewsBrazilModel? { get }
 }
 
 final class NewsBrazilViewModel: NewsBrazilViewModeling {
     
-    
     private var service: NewsBrazilDataIOService
-//    private var coordinator: HomeCoordinating
+    private var coordinator: NewsBrazilCoordinating
     private(set) var newsBrazilList: NewsBrazilModel?
     weak var delegate: NewsBrazilViewModelDelegate?
     
-    init(service: NewsBrazilDataIOService) {
+    init(service: NewsBrazilDataIOService, coordinator: NewsBrazilCoordinating) {
         self.service = service
+        self.coordinator = coordinator
     }
     
     func loadNewsBrazil() {
@@ -43,4 +44,7 @@ final class NewsBrazilViewModel: NewsBrazilViewModeling {
         }
     }
     
+    func showScreenNewsWorld() {
+        coordinator.showNewsWorld()
+    }
 }

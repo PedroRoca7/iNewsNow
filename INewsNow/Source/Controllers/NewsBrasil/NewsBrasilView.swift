@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import JJFloatingActionButton
 
 final class NewsBrasilView: UIView {
     
@@ -15,6 +16,20 @@ final class NewsBrasilView: UIView {
     private lazy var safeGuide = self.safeAreaLayoutGuide
     
     //MARK: Elements Visual
+    
+    lazy var menuFloatingButton: JJFloatingActionButton = {
+        let button = JJFloatingActionButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.buttonDiameter = 45
+        button.buttonColor = .color1Red ?? .red
+        button.itemAnimationConfiguration = .slideInBottom()
+        button.configureDefaultItem { item in
+            item.titlePosition = .trailing
+            item.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
+            item.titleLabel.backgroundColor = .color1Red
+        }
+        return button
+    }()
     
     lazy var newsTableView: UITableView = {
         let tb = UITableView()
@@ -42,10 +57,14 @@ final class NewsBrasilView: UIView {
 extension NewsBrasilView: ViewProtocol {
     func buildHierarchy() {
         self.addSubview(newsTableView)
+        self.addSubview(menuFloatingButton)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
+            menuFloatingButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 45),
+            menuFloatingButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            
             newsTableView.topAnchor.constraint(equalTo: safeGuide.topAnchor),
             newsTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
             newsTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),

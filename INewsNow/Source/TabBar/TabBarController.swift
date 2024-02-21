@@ -52,7 +52,7 @@ final class TabBarController: UITabBarController {
         
         let mainMenuViewController = UIViewController()
         mainMenuViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "menucard.fill"), selectedImage: nil)
-        let homeViewController = HomeFactory.makeModule(navigationController: navigationController)
+        let homeViewController = NewsBrazilFactory.makeModule(navigationController: navigationController)
         homeViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: ""), selectedImage: nil)
         let favoriteViewController = FavoriteNewsFactory.makeModule(navigationController: navigationController)
         favoriteViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "heart.fill"), selectedImage: nil)

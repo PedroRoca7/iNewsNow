@@ -19,7 +19,6 @@ protocol HomeViewModeling {
     func loadMostPopularPost()
     func setFavoriteNews(index: Int, typeNews: TypeNews)
     func showScreenWebViewController(webSiteNews: String)
-    func showNewsBrazilViewController()
     var delegate: HomeViewModelDelegate? { get set }
     var mainNewsList: MainNewsModel? { get }
     var mostPopularPostList: MostPopularNewsModel? { get }
@@ -87,11 +86,7 @@ final class HomeViewModel: HomeViewModeling {
     func showScreenWebViewController(webSiteNews: String) {
         coordinator.showScreenWebViewController(webSiteNews: webSiteNews)
     }
-    
-    func showNewsBrazilViewController() {
-        coordinator.showNewsBrazilViewController()
-    }
-    
+        
     private func appendOrRemoveFavoritesNewsArray(newsData: Any) {
         if let news = newsData as? NewsData {
             if news.favorite {
