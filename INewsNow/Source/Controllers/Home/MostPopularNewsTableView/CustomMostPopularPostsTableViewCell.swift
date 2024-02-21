@@ -40,25 +40,12 @@ final class CustomMostPopularPostsTableViewCell: UITableViewCell {
     func prepareCell(mostPopularPost: PopularNewsData) {
         viewScreen.textNewsLabel.text = mostPopularPost.title
         viewScreen.authorNewsLabel.text = mostPopularPost.byline
-        viewScreen.dateNewsLabel.text = formaterDate(date: mostPopularPost.publishedDate ?? "Date not found")
-        guard let nonEmptyImageUrl = mostPopularPost.media?.first?.mediaMetadata?.first?.url else { return }
+        viewScreen.dateNewsLabel.text = DateFormatter.formatterDate(dateString: mostPopularPost.publishedDate, locale: .unitedStates)
+        guard let nonEmptyImageUrl = mostPopularPost.media.first?.mediaMetadata.first?.url else { return }
         if let url = URL(string: nonEmptyImageUrl) {
             viewScreen.imageNewsImageView.kf.indicatorType = .activity
             viewScreen.imageNewsImageView.kf.setImage(with: url)
             viewScreen.imageNewsImageView.layer.cornerRadius = 10
-        }
-    }
-    
-    private func formaterDate(date: String) -> String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.dateFormat = "yyyy-mm-dd"
-        if let date = formatter.date(from: date) {
-            formatter.dateFormat = "MMMM dd, yyyy"
-            let stringDate = formatter.string(from: date)
-            return stringDate
-        } else {
-            return ""
         }
     }
 }

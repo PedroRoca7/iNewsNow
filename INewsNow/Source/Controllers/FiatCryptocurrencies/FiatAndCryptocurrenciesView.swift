@@ -43,10 +43,10 @@ final class FiatAndCryptocurrenciesView: UIView {
 
 extension FiatAndCryptocurrenciesView: ViewProtocol {
     func buildHierarchy() {
-        <#code#>
+        print("")
     }
     
     func setupConstraints() {
-        <#code#>
+        print("")
     }
 }

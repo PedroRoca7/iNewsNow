@@ -90,17 +90,15 @@ extension CustomFavoriteNewsCell: ViewProtocol {
         NSLayoutConstraint.activate([
             imageNewsImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
             imageNewsImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
-            imageNewsImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
+            imageNewsImageView.bottomAnchor.constraint(greaterThanOrEqualTo: self.bottomAnchor, constant: -5),
             imageNewsImageView.widthAnchor.constraint(equalToConstant: 150),
             
             textNewsLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
             textNewsLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
             textNewsLabel.trailingAnchor.constraint(equalTo: imageNewsImageView.leadingAnchor, constant: -5),
-            
-            favoriteNewsButton.topAnchor.constraint(greaterThanOrEqualTo: self.textNewsLabel.bottomAnchor, constant: 5),
+        
             favoriteNewsButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-            favoriteNewsButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
-            favoriteNewsButton.heightAnchor.constraint(equalToConstant: 60),
+            favoriteNewsButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
             favoriteNewsButton.widthAnchor.constraint(equalToConstant: 60),
             
             authorNewsLabel.leadingAnchor.constraint(equalTo: favoriteNewsButton.trailingAnchor, constant: 5),
@@ -108,7 +106,7 @@ extension CustomFavoriteNewsCell: ViewProtocol {
             
             dateNewsLabel.topAnchor.constraint(equalTo: authorNewsLabel.bottomAnchor, constant: 2),
             dateNewsLabel.leadingAnchor.constraint(equalTo: favoriteNewsButton.trailingAnchor, constant: 5),
-            dateNewsLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
+            dateNewsLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
             dateNewsLabel.trailingAnchor.constraint(equalTo: imageNewsImageView.leadingAnchor, constant: -5),
         ])
     }

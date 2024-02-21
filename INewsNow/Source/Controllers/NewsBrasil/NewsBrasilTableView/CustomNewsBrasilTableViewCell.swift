@@ -12,8 +12,8 @@ final class CustomNewsBrasilTableViewCell: UITableViewCell {
     
     static let identifier = "CustomNewsBrasilTableViewCell"
     
-    lazy var viewScreen: CustomMostPopularPostsCell = {
-        let view = CustomMostPopularPostsCell()
+    lazy var viewScreen: CustomNewsBrasilCell = {
+        let view = CustomNewsBrasilCell()
         return view
     }()
     
@@ -25,13 +25,25 @@ final class CustomNewsBrasilTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+ 
+    func prepareCell(newsBrazil: Article) {
+        viewScreen.titleNews.text = newsBrazil.title
+        viewScreen.authorLabel.text = newsBrazil.sourceId
+        viewScreen.dateLabel.text = DateFormatter.formatterDate(dateString: newsBrazil.pubDate, locale: .brazil)
+        if let url = URL(string: newsBrazil.imageURL) {
+            viewScreen.imageNewsImageView.kf.indicatorType = .activity
+            viewScreen.imageNewsImageView.kf.setImage(with: url)
+        } else {
+            viewScreen.imageNewsImageView.image = UIImage(named: "LogoINewsNow")
+        }
+    }
+    
     
 }
 
 extension CustomNewsBrasilTableViewCell: ViewProtocol {
     func buildHierarchy() {
         contentView.addSubview(viewScreen)
-        contentView.backgroundColor = .clear
     }
     
     func setupConstraints() {
@@ -41,5 +53,11 @@ extension CustomNewsBrasilTableViewCell: ViewProtocol {
             viewScreen.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             viewScreen.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
+    }
+    
+    func applyAdditionalChanges() {
+        contentView.layer.cornerRadius = 10
+        contentView.backgroundColor = .clear
+        viewScreen.clipsToBounds = true
     }
 }

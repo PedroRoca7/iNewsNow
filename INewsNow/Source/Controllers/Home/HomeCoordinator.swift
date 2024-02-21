@@ -10,6 +10,8 @@ import UIKit
 
 protocol HomeCoordinating {
     func showScreenWebViewController(webSiteNews: String)
+    func showNewsBrazilViewController()
+    
 }
 
 final class HomeCoordinator: HomeCoordinating {
@@ -23,5 +25,10 @@ final class HomeCoordinator: HomeCoordinating {
     func showScreenWebViewController(webSiteNews: String) {
         let webViewController = ScreenWebFactory.makeModule(navigationController: navigationController, webSiteNews: webSiteNews)
         navigationController.pushViewController(webViewController, animated: true)
+    }
+    
+    func showNewsBrazilViewController() {
+        let newsBrazilViewController = NewsBrazilFactory.makeModule(navigationController: navigationController)
+        navigationController.pushViewController(newsBrazilViewController, animated: true)
     }
 }

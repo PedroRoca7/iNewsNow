@@ -50,7 +50,7 @@ final class TabBarController: UITabBarController {
     
     private func configureTabBarItems(navigationController: UINavigationController) {
         
-        let mainMenuViewController = MainMenuViewController()
+        let mainMenuViewController = UIViewController()
         mainMenuViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "menucard.fill"), selectedImage: nil)
         let homeViewController = HomeFactory.makeModule(navigationController: navigationController)
         homeViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: ""), selectedImage: nil)

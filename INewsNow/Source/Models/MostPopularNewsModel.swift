@@ -14,12 +14,12 @@ struct MostPopularNewsModel: Codable {
 struct PopularNewsData: Codable {
     var id: UUID
     var favorite: Bool = false
-    var url: String? = ""
-    var publishedDate: String? = "Date not found"
-    var title: String? = "Title not found"
-    var abstract: String? = "Text not found"
-    var byline: String? = "Author not found"
-    var media: [Media]? = []
+    var url: String = ""
+    var publishedDate: String = ""
+    var title: String = "Title not found"
+    var abstract: String = "Text not found"
+    var byline: String = "Author not found"
+    var media: [Media] = []
     
     enum CodingKeys: String, CodingKey {
         case url
@@ -43,7 +43,7 @@ struct PopularNewsData: Codable {
 }
 
 struct Media: Codable {
-    var mediaMetadata: [MediaMetadatum]? = []
+    var mediaMetadata: [MediaMetadatum] = []
     
     enum CodingKeys: String, CodingKey {
         case mediaMetadata = "media-metadata"
@@ -57,7 +57,7 @@ struct Media: Codable {
 }
 
 struct MediaMetadatum: Codable {
-    var url: String? = ""
+    var url: String = ""
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

@@ -14,12 +14,12 @@ struct MainNewsModel: Codable {
 struct NewsData: Codable {
     var id: UUID
     var favorite: Bool = false
-    var title: String? = "Title not found"
-    var abstract: String? = "Text not found"
-    var url: String? = ""
-    var byline: String? = "Author not found"
-    var publishedDate: String? = "Date not found"
-    var multimedia: [Multimedia]? = []
+    var title: String = "Title not found"
+    var abstract: String = "Text not found"
+    var url: String = ""
+    var byline: String = "Author not found"
+    var publishedDate: String = ""
+    var multimedia: [Multimedia] = []
     
     enum CodingKeys: String, CodingKey {
         case title
@@ -43,7 +43,7 @@ struct NewsData: Codable {
 }
 
 struct Multimedia: Codable {
-    var url: String? = ""
+    var url: String = ""
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

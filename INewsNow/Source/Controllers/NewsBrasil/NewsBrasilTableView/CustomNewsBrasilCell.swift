@@ -40,9 +40,19 @@ final class CustomNewsBrasilCell: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 12)
-        label.textColor = .gray
+        label.textColor = .black
         return label
     }()
+    
+    lazy var dateLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 12)
+        label.textColor = .gray
+        return label
+        
+    }()
+    
     
     lazy var favoriteNewsButton: UIButton = {
         let button = UIButton()
@@ -68,8 +78,9 @@ extension CustomNewsBrasilCell: ViewProtocol {
     func buildHierarchy() {
         self.addSubview(imageNewsImageView)
         self.addSubview(titleNews)
-        self.addSubview(authorLabel)
         self.addSubview(favoriteNewsButton)
+        self.addSubview(authorLabel)
+        self.addSubview(dateLabel)
     }
     
     func setupConstraints() {
@@ -77,7 +88,7 @@ extension CustomNewsBrasilCell: ViewProtocol {
             imageNewsImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
             imageNewsImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
             imageNewsImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
-            imageNewsImageView.heightAnchor.constraint(equalToConstant: 130),
+            imageNewsImageView.heightAnchor.constraint(equalToConstant: 150),
             
             titleNews.topAnchor.constraint(equalTo: imageNewsImageView.bottomAnchor, constant: 5),
             titleNews.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
@@ -90,13 +101,17 @@ extension CustomNewsBrasilCell: ViewProtocol {
             
             authorLabel.topAnchor.constraint(greaterThanOrEqualTo: titleNews.bottomAnchor, constant: 3),
             authorLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-            authorLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
-            authorLabel.trailingAnchor.constraint(greaterThanOrEqualTo: favoriteNewsButton.leadingAnchor, constant: -5)
+            authorLabel.trailingAnchor.constraint(greaterThanOrEqualTo: favoriteNewsButton.leadingAnchor, constant: -5),
             
+            dateLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 3),
+            dateLabel.leadingAnchor.constraint(equalTo: authorLabel.leadingAnchor),
+            dateLabel.trailingAnchor.constraint(greaterThanOrEqualTo: favoriteNewsButton.leadingAnchor, constant: -5),
+            dateLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -3),
         ])
     }
     
     func applyAdditionalChanges() {
         self.backgroundColor = .white
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
 }

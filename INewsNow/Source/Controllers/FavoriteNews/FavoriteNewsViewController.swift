@@ -34,48 +34,18 @@ final class FavoriteNewsViewController: UIViewController {
     }
     
     private func loadNewsCoreData() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteNews")
-        
-        do {
-            HomeViewModel.favoritedNewsArray = try managedContext.fetch(fetchRequest)
-        } catch let error as NSError {
-            print("Erro ao carregar dados do banco \(error.localizedDescription)")
-        }
+        CoreDataHelper.shared.getFavoriteNewsDB()
     }
     
     private func setDelegatesAndDataSource() {
         viewScreen.favoriteNewsTableView.delegate = self
         viewScreen.favoriteNewsTableView.dataSource = self
     }
-    
-    private func removeFavoritedNewsCoreData(id: UUID) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteNews")
-        
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-        
-        do {
-            let results = try managedContext.fetch(fetchRequest)
-            
-            for object in results {
-                managedContext.delete(object)
-            }
-            
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Erro ao deletar dados do banco \(error.localizedDescription)")
-        }
-    }
 }
 
 extension FavoriteNewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return HomeViewModel.favoritedNewsArray.count
+        return CoreDataHelper.shared.dbCoreDataFavoriteNews.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -83,14 +53,14 @@ extension FavoriteNewsViewController: UITableViewDelegate, UITableViewDataSource
                                                        for: indexPath) as? CustomFavoriteNewsTableViewCell else { return UITableViewCell()}
 
        
-        let newsFavorited = HomeViewModel.favoritedNewsArray[indexPath.row]
+        let newsFavorited = CoreDataHelper.shared.dbCoreDataFavoriteNews[indexPath.row]
         cell.prepareCell(newsFavorited: newsFavorited)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
+        return 150
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
@@ -100,10 +70,10 @@ extension FavoriteNewsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            if let id = HomeViewModel.favoritedNewsArray[indexPath.row].value(forKey: "id") as? UUID {
-                removeFavoritedNewsCoreData(id: id)
+            if let id = CoreDataHelper.shared.dbCoreDataFavoriteNews[indexPath.row].value(forKey: "id") as? UUID {
+                CoreDataHelper.shared.removeFavoritedNewsCoreData(id: id)
             }
-            HomeViewModel.favoritedNewsArray.remove(at: indexPath.row)
+            CoreDataHelper.shared.removeFavoritedNews(test: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
             

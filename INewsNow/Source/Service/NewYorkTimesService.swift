@@ -18,9 +18,7 @@ final class NewYorkTimesService: NewYorkTimesServicing {
         case urlMainNews = "https://api.nytimes.com/svc/topstories/v2/home.json?api-key=N8U4kVw1Icdw3YiGFhThZqIGTAF9PJ7l"
         case urlMostPopularNews = "https://api.nytimes.com/svc/mostpopular/v2/shared/1/facebook.json?api-key=N8U4kVw1Icdw3YiGFhThZqIGTAF9PJ7l"
     }
-    
-    static let serviceGetNews = NewYorkTimesService()
-    
+        
     func loadMainNews(onComplete: @escaping(MainNewsModel?, Error?) -> Void) {
         guard let url = URL(string: TypesApiNewYorkTimes.urlMainNews.rawValue) else { return }
         

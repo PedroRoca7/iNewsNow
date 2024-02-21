@@ -37,28 +37,15 @@ final class CustomMainNewsCollectionViewCell: UICollectionViewCell {
     }
     
     func prepareCollectionCell(mainNews: NewsData) {
-        viewScreen.dateNewsLabel.text = formaterDate(date: mainNews.publishedDate ?? "Date not Found")
+        viewScreen.dateNewsLabel.text = DateFormatter.formatterDate(dateString: mainNews.publishedDate ?? "", locale: .unitedStates)
         viewScreen.newsTextLabel.text = mainNews.title
         viewScreen.authorNewsLabel.text = mainNews.byline
-        guard let nonEmptyImageUrl = mainNews.multimedia?.first?.url else {
+        guard let nonEmptyImageUrl = mainNews.multimedia.first?.url else {
             viewScreen.backgroundImageNewsImageView.image = UIImage(named: "LogoINewsNow")
             return }
         if let url = URL(string: nonEmptyImageUrl) {
             viewScreen.backgroundImageNewsImageView.kf.indicatorType = .activity
             viewScreen.backgroundImageNewsImageView.kf.setImage(with: url)
-        }
-    }
-    
-    private func formaterDate(date: String) -> String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        if let date = formatter.date(from: date) {
-            formatter.dateFormat = "MMMM dd, yyyy"
-            let stringDate = formatter.string(from: date)
-            return stringDate
-        } else {
-            return ""
         }
     }
 }

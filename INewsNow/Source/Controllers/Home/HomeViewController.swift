@@ -40,11 +40,22 @@ final class HomeViewController: UIViewController {
         setDelegatesAndDataSource()
         loadAllNews()
         setupMenuFloatingButton()
+        
+        viewScreen.todayDateLabel.text = getDateNowConvertToString()
+    }
+    
+    private func getDateNowConvertToString() -> String {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.dateFormat = "EEEE MMMM - yyyy"
+        let dateString = dateFormatter.string(from: currentDate)
+        return dateString
     }
     
     private func setupMenuFloatingButton() {
         viewScreen.menuFloatingButton.addItem(title: "Notícias do Mundo", image: UIImage(systemName: "newspaper.fill")?.withRenderingMode(.alwaysTemplate)) { item in
-            print("Tela Noticias do Mundo.")
+            self.homeViewModel.showNewsBrazilViewController()
         }
         viewScreen.menuFloatingButton.addItem(title: "Criptos", image: UIImage(systemName: "dollarsign.circle.fill")?.withRenderingMode(.alwaysTemplate)) { item in
             print("Tela de cripto moedas")

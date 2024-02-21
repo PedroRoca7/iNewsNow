@@ -47,8 +47,8 @@ extension NewsBrasilView: ViewProtocol {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             newsTableView.topAnchor.constraint(equalTo: safeGuide.topAnchor),
-            newsTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            newsTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            newsTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
+            newsTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
             newsTableView.bottomAnchor.constraint(equalTo: safeGuide.bottomAnchor),
         ])
     }
