@@ -16,6 +16,7 @@ protocol HomeViewModeling {
     func loadNewsBrazil()
     func showScreenNewsWorld()
     func setFavoriteNews(index: Int)
+    func showScreenDetailsNews<T>(newsObject: T)
     var delegate: HomeViewModelDelegate? { get set }
     var newsBrazilList: NewsBrazilModel? { get }
 }
@@ -61,6 +62,10 @@ final class HomeViewModel: HomeViewModeling {
                 CoreDataHelper.shared.removeFavoritedNewsCoreData(id: news.id)
             }
         }
+    }
+    
+    func showScreenDetailsNews<T>(newsObject: T) {
+        coordinator.showScreenDetailsNews(newsObject: newsObject)
     }
     
     func showScreenNewsWorld() {

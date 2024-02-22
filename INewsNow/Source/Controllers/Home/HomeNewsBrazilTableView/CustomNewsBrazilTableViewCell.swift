@@ -38,14 +38,15 @@ final class CustomNewsBrazilTableViewCell: UITableViewCell {
     }
     
     func prepareCell(newsBrazil: Article) {
+        let placeHolderImage = UIImage(named: "LogoINewsNow")
         viewScreen.titleNews.text = newsBrazil.title
         viewScreen.authorLabel.text = newsBrazil.sourceId
         viewScreen.dateLabel.text = DateFormatter.formatterDate(dateString: newsBrazil.pubDate, locale: .brazil)
         if let url = URL(string: newsBrazil.imageURL) {
             viewScreen.imageNewsImageView.kf.indicatorType = .activity
-            viewScreen.imageNewsImageView.kf.setImage(with: url)
+            viewScreen.imageNewsImageView.kf.setImage(with: url, placeholder: placeHolderImage)
         } else {
-            viewScreen.imageNewsImageView.image = UIImage(named: "LogoINewsNow")
+            viewScreen.imageNewsImageView.image = placeHolderImage
         }
     }
     

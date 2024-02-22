@@ -39,6 +39,10 @@ final class HomeViewController: UIViewController {
         viewModel.loadNewsBrazil()
         setupDelegateAndDataSource()
         setupMenuFloatingButton()
+        self.tabBarController?.navigationController?.navigationBar.prefersLargeTitles = true
+        self.tabBarController?.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
+        self.tabBarController?.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
+        self.tabBarController?.navigationItem.title = "Notícias"
     }
     
     private func setupMenuFloatingButton() {
@@ -76,6 +80,11 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let object = viewModel.newsBrazilList?.results[indexPath.row] else { return }
+        viewModel.showScreenDetailsNews(newsObject: object)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

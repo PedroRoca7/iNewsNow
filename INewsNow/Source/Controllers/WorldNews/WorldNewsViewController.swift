@@ -84,7 +84,6 @@ extension WorldNewsViewController: UITableViewDelegate, UITableViewDataSource {
         print("Celula da tableView numero \(indexPath.row)")
         guard let urlSite = viewModel.mostPopularPostList?.results[indexPath.row].url else { return }
         viewModel.showScreenWebViewController(webSiteNews: urlSite)
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

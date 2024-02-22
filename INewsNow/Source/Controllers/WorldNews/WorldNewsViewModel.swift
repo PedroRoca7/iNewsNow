@@ -41,15 +41,14 @@ final class WorldNewsViewModel: WorldNewsViewModeling {
     }
     
     func loadMainNews() {
-        service.loadMainNews { [weak self] data, error in
-            guard let self else { return }
-            if let error = error {
-                self.delegate?.failure()
-                print(error.localizedDescription)
-            } else if let data = data {
-                self.mainNewsList = data
-                self.delegate?.success()
+        Task {
+            do {
+                mainNewsList = try await service.loadMainNews()
+            } catch {
+                print("Erro ao buscar dados \(error.localizedDescription)")
+                delegate?.failure()
             }
+            delegate?.success()
         }
     }
     
