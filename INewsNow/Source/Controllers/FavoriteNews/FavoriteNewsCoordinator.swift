@@ -8,11 +8,20 @@
 import Foundation
 import UIKit
 
-final class FavoriteNewsCoordinator {
+protocol FavoriteNewsCoordinating {
+    func showScreenDetailsNews<T>(newsObject: T)
+}
+
+final class FavoriteNewsCoordinator: FavoriteNewsCoordinating {
     var navigationController: UINavigationController
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+    }
+    
+    func showScreenDetailsNews<T>(newsObject: T) {
+        let detaislNews = DetailsNewsFactory.makeModule(navigationController: navigationController, newsObject: newsObject)
+        navigationController.pushViewController(detaislNews, animated: true)
     }
 }
 

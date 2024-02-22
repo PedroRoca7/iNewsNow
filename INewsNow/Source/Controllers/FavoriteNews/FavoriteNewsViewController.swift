@@ -10,11 +10,26 @@ import UIKit
 
 final class FavoriteNewsViewController: UIViewController {
     
+    //MARK: Propertys
+    
     lazy var viewScreen: FavoriteNewsView = {
         let view = FavoriteNewsView()
         return view
     }()
+    
+    private var viewModel: FavoriteNewsViewModeling
+    
+    //MARK: Inits
 
+    init(viewModel: FavoriteNewsViewModeling) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func loadView() {
         view = viewScreen
     }
@@ -27,9 +42,16 @@ final class FavoriteNewsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadNewsCoreData()
+        setupNavigationBar()
         DispatchQueue.main.async {
             self.viewScreen.favoriteNewsTableView.reloadData()
         }
+    }
+    
+    //MARK: Methods
+    
+    private func setupNavigationBar() {
+        self.tabBarController?.navigationItem.title = "Notícias Favoritas"
     }
     
     private func loadNewsCoreData() {
@@ -60,6 +82,11 @@ extension FavoriteNewsViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let object = CoreDataHelper.shared.dbCoreDataFavoriteNews[indexPath.row]
+        viewModel.showDetailsScreen(newsObject: object)
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {

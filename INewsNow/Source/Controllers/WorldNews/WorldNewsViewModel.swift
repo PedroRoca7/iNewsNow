@@ -17,7 +17,7 @@ protocol WorldNewsViewModeling {
     func loadMainNews()
     func loadMostPopularPost()
     func setFavoriteNews(index: Int, typeNews: TypeNews)
-    func showScreenWebViewController(webSiteNews: String)
+    func showScreenDetailsNews<T>(newsObject: T)
     var delegate: WorldNewsViewModelDelegate? { get set }
     var mainNewsList: MainNewsModel? { get }
     var mostPopularPostList: MostPopularNewsModel? { get }
@@ -81,10 +81,10 @@ final class WorldNewsViewModel: WorldNewsViewModeling {
         }
     }
     
-    func showScreenWebViewController(webSiteNews: String) {
-        coordinator.showScreenWebViewController(webSiteNews: webSiteNews)
+    func showScreenDetailsNews<T>(newsObject: T) {
+        coordinator.showScreenDetailsNews(newsObject: newsObject)
     }
-        
+            
     private func appendOrRemoveFavoritesNewsArray(newsData: Any) {
         if let news = newsData as? NewsData {
             if news.favorite {

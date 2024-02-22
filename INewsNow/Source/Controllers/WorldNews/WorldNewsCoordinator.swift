@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol WorldNewsCoordinating {
-    func showScreenWebViewController(webSiteNews: String)
+    func showScreenDetailsNews<T>(newsObject: T)
 }
 
 final class WorldNewsCoordinator: WorldNewsCoordinating {
@@ -20,8 +20,8 @@ final class WorldNewsCoordinator: WorldNewsCoordinating {
         self.navigationController = navigationController
     }
     
-    func showScreenWebViewController(webSiteNews: String) {
-        let webViewController = ScreenWebFactory.makeModule(navigationController: navigationController, webSiteNews: webSiteNews)
-        navigationController.pushViewController(webViewController, animated: true)
+    func showScreenDetailsNews<T>(newsObject: T) {
+        let detaislNews = DetailsNewsFactory.makeModule(navigationController: navigationController, newsObject: newsObject)
+        navigationController.pushViewController(detaislNews, animated: true)
     }
 }

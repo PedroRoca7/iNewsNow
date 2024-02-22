@@ -60,6 +60,7 @@ final class CustomFavoriteNewsCell: UIView {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleToFill
         image.clipsToBounds = true
+        image.layer.cornerRadius = 10
         return image
     }()
     
@@ -90,7 +91,7 @@ extension CustomFavoriteNewsCell: ViewProtocol {
         NSLayoutConstraint.activate([
             imageNewsImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
             imageNewsImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
-            imageNewsImageView.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -5),
+            imageNewsImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
             imageNewsImageView.widthAnchor.constraint(equalToConstant: 150),
             
             textNewsLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),

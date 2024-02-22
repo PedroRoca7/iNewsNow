@@ -42,6 +42,8 @@ final class DetailsNewsView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .boldSystemFont(ofSize: 22)
         label.textColor = .black
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         return label
     }()
     
@@ -102,6 +104,7 @@ extension DetailsNewsView: ViewProtocol {
             
             titleNewsLabel.topAnchor.constraint(equalTo: imageNewsImageView.bottomAnchor, constant: 10),
             titleNewsLabel.leadingAnchor.constraint(equalTo: viewScrollView.leadingAnchor, constant: 10),
+            titleNewsLabel.trailingAnchor.constraint(equalTo: viewScrollView.trailingAnchor, constant: -10),
             
             textDescriptionNewsLabel.topAnchor.constraint(equalTo: titleNewsLabel.bottomAnchor, constant: 10),
             textDescriptionNewsLabel.leadingAnchor.constraint(equalTo: viewScrollView.leadingAnchor, constant: 10),

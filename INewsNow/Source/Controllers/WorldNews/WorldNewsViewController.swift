@@ -81,9 +81,8 @@ extension WorldNewsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Celula da tableView numero \(indexPath.row)")
-        guard let urlSite = viewModel.mostPopularPostList?.results[indexPath.row].url else { return }
-        viewModel.showScreenWebViewController(webSiteNews: urlSite)
+        guard let newsObject = viewModel.mostPopularPostList?.results[indexPath.row] else { return }
+        viewModel.showScreenDetailsNews(newsObject: newsObject)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -110,9 +109,8 @@ extension WorldNewsViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Celula da collectionView numero \(indexPath.row)")
-        guard let urlSite = viewModel.mainNewsList?.results[indexPath.row].url else { return }
-        viewModel.showScreenWebViewController(webSiteNews: urlSite)
+        guard let newsObject = viewModel.mainNewsList?.results[indexPath.row] else { return }
+        viewModel.showScreenDetailsNews(newsObject: newsObject)
     }
 }
 

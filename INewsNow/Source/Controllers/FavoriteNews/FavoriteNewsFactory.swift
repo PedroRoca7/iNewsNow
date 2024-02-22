@@ -11,7 +11,8 @@ import UIKit
 enum FavoriteNewsFactory {
     static func makeModule(navigationController: UINavigationController) -> UIViewController {
         let coordinator = FavoriteNewsCoordinator(navigationController: navigationController)
-        let favoriteNewsViewController = FavoriteNewsViewController()
-        return favoriteNewsViewController
+        let viewModel = FavoriteNewsViewModel(coordinator: coordinator)
+        let viewController = FavoriteNewsViewController(viewModel: viewModel)
+        return viewController
     }
 }

@@ -29,15 +29,14 @@ final class CustomFavoriteNewsTableViewCell: UITableViewCell {
     }
     
     func prepareCell(newsFavorited: NSManagedObject) {
-        
+        let placeHolderImage = UIImage(named: "LogoINewsNow")
         viewScreen.textNewsLabel.text = newsFavorited.value(forKey: "title") as? String
         viewScreen.authorNewsLabel.text = newsFavorited.value(forKey: "byline") as? String
         viewScreen.dateNewsLabel.text =  DateFormatter.formatterDate(dateString: newsFavorited.value(forKey: "publishedDate") as? String ?? "",
                                                                      locale: .unitedStates)
         guard let notEmptyImageUrl = newsFavorited.value(forKey: "urlImage") as? String, let url = URL(string: notEmptyImageUrl) else { return }
         viewScreen.imageNewsImageView.kf.indicatorType = .activity
-        viewScreen.imageNewsImageView.kf.setImage(with: url)
-        viewScreen.imageNewsImageView.layer.cornerRadius = 10
+        viewScreen.imageNewsImageView.kf.setImage(with: url, placeholder: placeHolderImage)
     }
 }
 

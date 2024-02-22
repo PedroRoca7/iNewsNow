@@ -39,6 +39,13 @@ final class HomeViewController: UIViewController {
         viewModel.loadNewsBrazil()
         setupDelegateAndDataSource()
         setupMenuFloatingButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
         self.tabBarController?.navigationController?.navigationBar.prefersLargeTitles = true
         self.tabBarController?.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
         self.tabBarController?.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]

@@ -31,6 +31,7 @@ final class CoreDataHelper {
                 managedObject.setValue(newsBrazil.imageURL, forKey: "urlImage")
                 managedObject.setValue(newsBrazil.pubDate, forKey: "publishedDate")
                 managedObject.setValue(newsBrazil.favorite, forKey: "favorite")
+                managedObject.setValue(newsBrazil.description, forKey: "abstract")
             } else if let mainNewsNewYorkTime = object as? NewsData {
                 managedObject.setValue(mainNewsNewYorkTime.id, forKey: "id")
                 managedObject.setValue(mainNewsNewYorkTime.title, forKey: "title")
@@ -38,6 +39,7 @@ final class CoreDataHelper {
                 managedObject.setValue(mainNewsNewYorkTime.multimedia.first?.url, forKey: "urlImage")
                 managedObject.setValue(mainNewsNewYorkTime.publishedDate, forKey: "publishedDate")
                 managedObject.setValue(mainNewsNewYorkTime.favorite, forKey: "favorite")
+                managedObject.setValue(mainNewsNewYorkTime.abstract, forKey: "abstract")
             } else if let mostPopularNewsNewYorkTime = object as? PopularNewsData {
                 managedObject.setValue(mostPopularNewsNewYorkTime.id, forKey: "id")
                 managedObject.setValue(mostPopularNewsNewYorkTime.title, forKey: "title")
@@ -45,6 +47,7 @@ final class CoreDataHelper {
                 managedObject.setValue(mostPopularNewsNewYorkTime.media.first?.mediaMetadata.first?.url, forKey: "urlImage")
                 managedObject.setValue(mostPopularNewsNewYorkTime.publishedDate, forKey: "publishedDate")
                 managedObject.setValue(mostPopularNewsNewYorkTime.favorite, forKey: "favorite")
+                managedObject.setValue(mostPopularNewsNewYorkTime.abstract, forKey: "abstract")
             }
             
             do {
