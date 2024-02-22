@@ -14,7 +14,7 @@ final class CustomNewsBrazilCell: UIView {
     
     private lazy var safeGuide = self.safeAreaLayoutGuide
     
-    //MARK: Elements Visual
+    //MARK: ElementsVisual
     
     lazy var imageNewsImageView: UIImageView = {
         let image = UIImageView()

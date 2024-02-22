@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+protocol CustomNewsBrazilTableViewCellDelegate: AnyObject {
+    func favoriteButtonTapped(cell: UITableViewCell)
+}
+
 final class CustomNewsBrazilTableViewCell: UITableViewCell {
     
     static let identifier = "CustomNewsBrazilTableViewCell"
@@ -17,15 +21,22 @@ final class CustomNewsBrazilTableViewCell: UITableViewCell {
         return view
     }()
     
+    weak var delegate: CustomNewsBrazilTableViewCellDelegate?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
  
+    @objc private func buttonTapped() {
+        delegate?.favoriteButtonTapped(cell: self)
+    }
+    
     func prepareCell(newsBrazil: Article) {
         viewScreen.titleNews.text = newsBrazil.title
         viewScreen.authorLabel.text = newsBrazil.sourceId
@@ -59,5 +70,6 @@ extension CustomNewsBrazilTableViewCell: ViewProtocol {
         contentView.layer.cornerRadius = 10
         contentView.backgroundColor = .clear
         viewScreen.clipsToBounds = true
+        viewScreen.favoriteNewsButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
 }

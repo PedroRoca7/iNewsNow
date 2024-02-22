@@ -62,6 +62,8 @@ final class CustomMainNewsCell: UIView {
         return label
     }()
     
+    //MARK: Inits
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()

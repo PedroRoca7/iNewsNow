@@ -62,6 +62,8 @@ final class CustomMostPopularPostsCell: UIView {
         return image
     }()
     
+    //MARK: Inits
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()

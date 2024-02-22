@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 final class WorldNewsViewController: UIViewController {
     
     // MARK: Propertys

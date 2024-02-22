@@ -14,6 +14,8 @@ final class FavoriteNewsView: UIView {
     
     private lazy var safeGuide = self.safeAreaLayoutGuide
     
+    //MARK: ElementsVisual
+    
     lazy var favoriteNewsTableView: UITableView = {
         let tb = UITableView()
         tb.translatesAutoresizingMaskIntoConstraints = false

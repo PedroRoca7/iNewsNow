@@ -15,7 +15,7 @@ final class HomeView: UIView {
     
     private lazy var safeGuide = self.safeAreaLayoutGuide
     
-    //MARK: Elements Visual
+    //MARK: ElementsVisual
     
     lazy var menuFloatingButton: JJFloatingActionButton = {
         let button = JJFloatingActionButton()

@@ -115,6 +115,8 @@ final class WorldNewsView: UIView {
         return tb
     }()
     
+    //MARK: Inits
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()

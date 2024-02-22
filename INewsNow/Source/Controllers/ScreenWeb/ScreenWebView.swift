@@ -15,6 +15,8 @@ final class ScreenWebView: UIView {
     
     private lazy var safeGuide = self.safeAreaLayoutGuide
     
+    //MARK: ElementsVisual
+    
     lazy var webView: WKWebView = {
         let web = WKWebView()
         web.translatesAutoresizingMaskIntoConstraints = false

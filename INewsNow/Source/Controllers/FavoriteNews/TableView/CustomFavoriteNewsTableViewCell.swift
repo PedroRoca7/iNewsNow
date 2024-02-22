@@ -32,33 +32,14 @@ final class CustomFavoriteNewsTableViewCell: UITableViewCell {
         
         viewScreen.textNewsLabel.text = newsFavorited.value(forKey: "title") as? String
         viewScreen.authorNewsLabel.text = newsFavorited.value(forKey: "byline") as? String
-        viewScreen.dateNewsLabel.text = formaterDate(dataString: newsFavorited.value(forKey: "publishedDate") as? String ?? "")
+        viewScreen.dateNewsLabel.text =  DateFormatter.formatterDate(dateString: newsFavorited.value(forKey: "publishedDate") as? String ?? "",
+                                                                     locale: .unitedStates)
         guard let notEmptyImageUrl = newsFavorited.value(forKey: "urlImage") as? String, let url = URL(string: notEmptyImageUrl) else { return }
         viewScreen.imageNewsImageView.kf.indicatorType = .activity
         viewScreen.imageNewsImageView.kf.setImage(with: url)
         viewScreen.imageNewsImageView.layer.cornerRadius = 10
-
     }
-    
-    func formaterDate(dataString: String) -> String {
-        let dateFormatterInput1 = DateFormatter()
-        dateFormatterInput1.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatterInput1.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        
-        let dateFormatterInput2 = DateFormatter()
-        dateFormatterInput2.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatterInput2.dateFormat = "yyyy-MM-dd"
-        
-        let dateFormatterOutput = DateFormatter()
-        dateFormatterOutput.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatterOutput.dateFormat = "MMMM dd, yyyy"
-        
-        if let data = dateFormatterInput1.date(from: dataString) ?? dateFormatterInput2.date(from: dataString) {
-            return dateFormatterOutput.string(from: data)
-        }
-        
-        return ""
-    }}
+}
 
 extension CustomFavoriteNewsTableViewCell: ViewProtocol {
     func buildHierarchy() {

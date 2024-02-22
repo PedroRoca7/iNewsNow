@@ -68,9 +68,13 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomNewsBrazilTableViewCell.identifier,
                                                        for: indexPath) as? CustomNewsBrazilTableViewCell else { return UITableViewCell()}
        
+        cell.delegate = self
+        
         if let newsBrazil = viewModel.newsBrazilList?.results[indexPath.row] {
+            cell.viewScreen.favoriteNewsButton.tintColor = newsBrazil.favorite ? UIColor.red : UIColor.gray
             cell.prepareCell(newsBrazil: newsBrazil)
         }
+        
         return cell
     }
     
@@ -88,5 +92,15 @@ extension HomeViewController: HomeViewModelDelegate {
     
     func failure() {
         print("Falhou")
+    }
+}
+
+extension HomeViewController: CustomNewsBrazilTableViewCellDelegate {
+    func favoriteButtonTapped(cell: UITableViewCell) {
+        guard let indexPathTapped = viewScreen.newsTableView.indexPath(for: cell) else { return }
+      
+        viewModel.setFavoriteNews(index: indexPathTapped.row)
+        
+        viewScreen.newsTableView.reloadRows(at: [indexPathTapped], with: .none)
     }
 }
