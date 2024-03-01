@@ -15,7 +15,6 @@
 		CE1A3A982B6D7978000C0559 /* CustomMostPopularPostsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A3A972B6D7978000C0559 /* CustomMostPopularPostsCell.swift */; };
 		CE1A3A9A2B6D7A01000C0559 /* CustomMainNewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A3A992B6D7A01000C0559 /* CustomMainNewsCollectionViewCell.swift */; };
 		CE1A3A9C2B6D7E7E000C0559 /* CustomMainNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A3A9B2B6D7E7E000C0559 /* CustomMainNewsCell.swift */; };
-		CE2BE7AA2B7D537800F80D9F /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BE7A92B7D537800F80D9F /* CustomTabBar.swift */; };
 		CE4022A12B6E783C00FB727C /* NewYorkTimesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4022A02B6E783C00FB727C /* NewYorkTimesService.swift */; };
 		CE4022A52B6E80D300FB727C /* MainNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4022A42B6E80D300FB727C /* MainNewsModel.swift */; };
 		CE4022A72B6E91DC00FB727C /* MostPopularNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4022A62B6E91DC00FB727C /* MostPopularNewsModel.swift */; };
@@ -60,6 +59,13 @@
 		CE86C22B2B920CD100921390 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C22A2B920CD100921390 /* WeatherViewController.swift */; };
 		CE86C22D2B920CDE00921390 /* WeatherFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C22C2B920CDE00921390 /* WeatherFactory.swift */; };
 		CE86C22F2B920CF200921390 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C22E2B920CF200921390 /* WeatherView.swift */; };
+		CE86C2332B922DC700921390 /* DailyForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C2322B922DC700921390 /* DailyForecastTableViewCell.swift */; };
+		CE86C2352B92301A00921390 /* DailyForecastCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C2342B92301A00921390 /* DailyForecastCellView.swift */; };
+		CE86C2372B923E4E00921390 /* HourlyForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C2362B923E4E00921390 /* HourlyForecastCollectionViewCell.swift */; };
+		CE86C2392B92440A00921390 /* HourlyForecastCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C2382B92440A00921390 /* HourlyForecastCellView.swift */; };
+		CE86C23B2B924C1200921390 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C23A2B924C1200921390 /* WeatherViewModel.swift */; };
+		CE86C23D2B924E7400921390 /* ForecastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C23C2B924E7400921390 /* ForecastResponse.swift */; };
+		CE86C23F2B92506600921390 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C23E2B92506600921390 /* WeatherService.swift */; };
 		CED431022B7670ED005BE203 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED431012B7670ED005BE203 /* TabBarController.swift */; };
 		CED431042B7673B7005BE203 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED431032B7673B7005BE203 /* TabBarCoordinator.swift */; };
 		CED431062B7675CB005BE203 /* WorldNewsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED431052B7675CB005BE203 /* WorldNewsCoordinator.swift */; };
@@ -96,7 +102,6 @@
 		CE1A3A972B6D7978000C0559 /* CustomMostPopularPostsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMostPopularPostsCell.swift; sourceTree = "<group>"; };
 		CE1A3A992B6D7A01000C0559 /* CustomMainNewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMainNewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE1A3A9B2B6D7E7E000C0559 /* CustomMainNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMainNewsCell.swift; sourceTree = "<group>"; };
-		CE2BE7A92B7D537800F80D9F /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		CE4022A02B6E783C00FB727C /* NewYorkTimesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewYorkTimesService.swift; sourceTree = "<group>"; };
 		CE4022A42B6E80D300FB727C /* MainNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNewsModel.swift; sourceTree = "<group>"; };
 		CE4022A62B6E91DC00FB727C /* MostPopularNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostPopularNewsModel.swift; sourceTree = "<group>"; };
@@ -144,6 +149,13 @@
 		CE86C22A2B920CD100921390 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		CE86C22C2B920CDE00921390 /* WeatherFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherFactory.swift; sourceTree = "<group>"; };
 		CE86C22E2B920CF200921390 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		CE86C2322B922DC700921390 /* DailyForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastTableViewCell.swift; sourceTree = "<group>"; };
+		CE86C2342B92301A00921390 /* DailyForecastCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastCellView.swift; sourceTree = "<group>"; };
+		CE86C2362B923E4E00921390 /* HourlyForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecastCollectionViewCell.swift; sourceTree = "<group>"; };
+		CE86C2382B92440A00921390 /* HourlyForecastCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecastCellView.swift; sourceTree = "<group>"; };
+		CE86C23A2B924C1200921390 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		CE86C23C2B924E7400921390 /* ForecastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastResponse.swift; sourceTree = "<group>"; };
+		CE86C23E2B92506600921390 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		CED431012B7670ED005BE203 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CED431032B7673B7005BE203 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		CED431052B7675CB005BE203 /* WorldNewsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldNewsCoordinator.swift; sourceTree = "<group>"; };
@@ -235,6 +247,7 @@
 			children = (
 				CE4022A02B6E783C00FB727C /* NewYorkTimesService.swift */,
 				CE5751582B85591E00A34621 /* NewsBrazilDataIOService.swift */,
+				CE86C23E2B92506600921390 /* WeatherService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -245,6 +258,7 @@
 				CE4022A42B6E80D300FB727C /* MainNewsModel.swift */,
 				CE4022A62B6E91DC00FB727C /* MostPopularNewsModel.swift */,
 				CE57515A2B855AE800A34621 /* NewsBrazilModel.swift */,
+				CE86C23C2B924E7400921390 /* ForecastResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -443,11 +457,32 @@
 		CE86C2292B920C6400921390 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				CE86C2312B92299700921390 /* WeatherHourlyCollectionView */,
+				CE86C2302B92297900921390 /* WeatherDailyForecastTableView */,
 				CE86C22A2B920CD100921390 /* WeatherViewController.swift */,
 				CE86C22C2B920CDE00921390 /* WeatherFactory.swift */,
 				CE86C22E2B920CF200921390 /* WeatherView.swift */,
+				CE86C23A2B924C1200921390 /* WeatherViewModel.swift */,
 			);
 			path = Weather;
+			sourceTree = "<group>";
+		};
+		CE86C2302B92297900921390 /* WeatherDailyForecastTableView */ = {
+			isa = PBXGroup;
+			children = (
+				CE86C2322B922DC700921390 /* DailyForecastTableViewCell.swift */,
+				CE86C2342B92301A00921390 /* DailyForecastCellView.swift */,
+			);
+			path = WeatherDailyForecastTableView;
+			sourceTree = "<group>";
+		};
+		CE86C2312B92299700921390 /* WeatherHourlyCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				CE86C2362B923E4E00921390 /* HourlyForecastCollectionViewCell.swift */,
+				CE86C2382B92440A00921390 /* HourlyForecastCellView.swift */,
+			);
+			path = WeatherHourlyCollectionView;
 			sourceTree = "<group>";
 		};
 		CED431002B7670CE005BE203 /* TabBar */ = {
@@ -456,7 +491,6 @@
 				CED431012B7670ED005BE203 /* TabBarController.swift */,
 				CED431032B7673B7005BE203 /* TabBarCoordinator.swift */,
 				CED431072B76BBAA005BE203 /* TabBarFactory.swift */,
-				CE2BE7A92B7D537800F80D9F /* CustomTabBar.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -706,14 +740,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE4022A12B6E783C00FB727C /* NewYorkTimesService.swift in Sources */,
+				CE86C2352B92301A00921390 /* DailyForecastCellView.swift in Sources */,
 				CE425FFE2B86D84000A0BDA6 /* DetailsNewsView.swift in Sources */,
 				CE4BC9952B6A898300409725 /* WorldNewsViewController.swift in Sources */,
 				CE57514D2B84131400A34621 /* FiatAndCryptocurrenciesView.swift in Sources */,
 				CE5A49312B878AC0006D0702 /* DetailsNewsFactory.swift in Sources */,
 				CE5751592B85591E00A34621 /* NewsBrazilDataIOService.swift in Sources */,
-				CE2BE7AA2B7D537800F80D9F /* CustomTabBar.swift in Sources */,
 				CED431042B7673B7005BE203 /* TabBarCoordinator.swift in Sources */,
 				CED431062B7675CB005BE203 /* WorldNewsCoordinator.swift in Sources */,
+				CE86C2372B923E4E00921390 /* HourlyForecastCollectionViewCell.swift in Sources */,
 				CE1A3A962B6D7816000C0559 /* CustomMostPopularPostsTableViewCell.swift in Sources */,
 				CE4E9FFE2B7FB8A600B57802 /* FavoriteNewsViewController.swift in Sources */,
 				CE5751522B8529DF00A34621 /* HomeView.swift in Sources */,
@@ -728,20 +763,25 @@
 				CE1A3A982B6D7978000C0559 /* CustomMostPopularPostsCell.swift in Sources */,
 				CE4BC9C42B6A8B3800409725 /* WorldNewsFactory.swift in Sources */,
 				CE425FFC2B86D81400A0BDA6 /* DetailsNewsViewController.swift in Sources */,
+				CE86C2332B922DC700921390 /* DailyForecastTableViewCell.swift in Sources */,
 				CE1A3A9A2B6D7A01000C0559 /* CustomMainNewsCollectionViewCell.swift in Sources */,
 				CE4BC9912B6A898300409725 /* AppDelegate.swift in Sources */,
 				CE4022A72B6E91DC00FB727C /* MostPopularNewsModel.swift in Sources */,
+				CE86C23F2B92506600921390 /* WeatherService.swift in Sources */,
 				CE57515B2B855AE800A34621 /* NewsBrazilModel.swift in Sources */,
 				CE5751552B852B5A00A34621 /* CustomNewsBrazilTableViewCell.swift in Sources */,
+				CE86C23B2B924C1200921390 /* WeatherViewModel.swift in Sources */,
 				CE4022A92B71600300FB727C /* WorldNewsViewModel.swift in Sources */,
 				CE4EA0002B7FB8B100B57802 /* FavoriteNewsView.swift in Sources */,
 				CE425FF92B86A38300A0BDA6 /* HomeCoordinator.swift in Sources */,
 				CE5751202B83710000A34621 /* INewsNowDB.xcdatamodeld in Sources */,
 				CE425FF72B8648FD00A0BDA6 /* CoreDataHelper.swift in Sources */,
+				CE86C2392B92440A00921390 /* HourlyForecastCellView.swift in Sources */,
 				CE4EA0022B7FBE4300B57802 /* FavoriteNewsFactory.swift in Sources */,
 				CE4BC9C62B6A8D0100409725 /* WorldNewsView.swift in Sources */,
 				CE5751502B8529CF00A34621 /* HomeViewController.swift in Sources */,
 				CE57514B2B84130400A34621 /* FiatAndCryptocurrenciesViewController.swift in Sources */,
+				CE86C23D2B924E7400921390 /* ForecastResponse.swift in Sources */,
 				CE425FF12B863BB400A0BDA6 /* DateFormatter+Extension.swift in Sources */,
 				CE4022A52B6E80D300FB727C /* MainNewsModel.swift in Sources */,
 				CE86C22F2B920CF200921390 /* WeatherView.swift in Sources */,

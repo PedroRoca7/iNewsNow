@@ -9,7 +9,7 @@ import UIKit
 
 final class WorldNewsViewController: UIViewController {
     
-    // MARK: Propertys
+    // MARK: - Propertys
     
     lazy private var viewScreen: WorldNewsView = {
         let view = WorldNewsView()
@@ -23,7 +23,7 @@ final class WorldNewsViewController: UIViewController {
     private var attempt: Int = 0
     private var viewModel: WorldNewsViewModeling
     
-    // MARK: Inits
+    // MARK: - Inits
     
     init(viewModel: WorldNewsViewModeling) {
         self.viewModel = viewModel

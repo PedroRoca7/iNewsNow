@@ -10,7 +10,7 @@ import UIKit
 
 final class FavoriteNewsViewController: UIViewController {
     
-    //MARK: Propertys
+    //MARK: - Propertys
     
     lazy var viewScreen: FavoriteNewsView = {
         let view = FavoriteNewsView()
@@ -19,7 +19,7 @@ final class FavoriteNewsViewController: UIViewController {
     
     private var viewModel: FavoriteNewsViewModeling
     
-    //MARK: Inits
+    //MARK: - Inits
 
     init(viewModel: FavoriteNewsViewModeling) {
         self.viewModel = viewModel
@@ -48,7 +48,7 @@ final class FavoriteNewsViewController: UIViewController {
         }
     }
     
-    //MARK: Methods
+    //MARK: - Methods
     
     private func setupNavigationBar() {
         self.tabBarController?.navigationItem.title = "Notícias Favoritas"

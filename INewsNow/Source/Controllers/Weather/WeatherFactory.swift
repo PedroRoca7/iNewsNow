@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import UIKit
+
+enum WeatherFactory {
+    static func makeModule() -> UIViewController {
+        let viewModel = WeatherViewModel()
+        let viewController = WeatherViewController(viewModel: viewModel)
+        return viewController
+    }
+}

@@ -10,11 +10,11 @@ import UIKit
 
 final class DetailsNewsView: UIView {
     
-    //MARK: Propertys
+    //MARK: - Propertys
     
     private lazy var safeGuide = self.safeAreaLayoutGuide
     
-    //MARK: ElementsVisual
+    //MARK: - ElementsVisual
     
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -57,7 +57,7 @@ final class DetailsNewsView: UIView {
         return label
     }()
         
-    //MARK: Inits
+    //MARK: - Inits
     
     override init(frame: CGRect) {
         super.init(frame: frame)

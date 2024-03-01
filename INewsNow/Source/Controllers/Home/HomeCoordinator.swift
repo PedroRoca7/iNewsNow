@@ -11,6 +11,7 @@ import UIKit
 protocol HomeCoordinating {
     func showNewsWorld()
     func showScreenDetailsNews<T>(newsObject: T)
+    func showScreenWeather()
 }
 
 final class HomeCoordinator: HomeCoordinating {
@@ -29,5 +30,10 @@ final class HomeCoordinator: HomeCoordinating {
     func showScreenDetailsNews<T>(newsObject: T) {
         let detaislNews = DetailsNewsFactory.makeModule(navigationController: navigationController, newsObject: newsObject)
         navigationController.pushViewController(detaislNews, animated: true)
+    }
+    
+    func showScreenWeather() {
+        let weather = WeatherFactory.makeModule()
+        navigationController.pushViewController(weather, animated: true)
     }
 }

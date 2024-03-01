@@ -9,11 +9,11 @@ import UIKit
 
 final class CustomMostPopularPostsCell: UIView {
     
-    // MARK: Propertys
+    // MARK: - Propertys
     
     private lazy var guide = self.safeAreaLayoutGuide
     
-    // MARK: ElementsVisual
+    // MARK: - ElementsVisual
     
     lazy var textNewsLabel: UILabel = {
         let label = UILabel()
@@ -62,7 +62,7 @@ final class CustomMostPopularPostsCell: UIView {
         return image
     }()
     
-    //MARK: Inits
+    //MARK: - Inits
     
     override init(frame: CGRect) {
         super.init(frame: frame)

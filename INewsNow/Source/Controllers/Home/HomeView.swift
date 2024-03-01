@@ -11,11 +11,11 @@ import JJFloatingActionButton
 
 final class HomeView: UIView {
     
-    //MARK: Propertys
+    //MARK: - Propertys
     
     private lazy var safeGuide = self.safeAreaLayoutGuide
     
-    //MARK: ElementsVisual
+    //MARK: - ElementsVisual
     
     lazy var menuFloatingButton: JJFloatingActionButton = {
         let button = JJFloatingActionButton()
@@ -40,7 +40,7 @@ final class HomeView: UIView {
         return tb
     }()
     
-    //MARK: Inits
+    //MARK: - Inits
     
     override init(frame: CGRect) {
         super.init(frame: frame)

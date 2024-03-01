@@ -10,11 +10,11 @@ import UIKit
 
 final class CustomFavoriteNewsCell: UIView {
  
-    // MARK: Propertys
+    // MARK: - Propertys
     
     private lazy var safeGuide = self.safeAreaLayoutGuide
     
-    // MARK: ElementsVisual
+    // MARK: - ElementsVisual
     
     lazy var textNewsLabel: UILabel = {
         let label = UILabel()
@@ -65,7 +65,7 @@ final class CustomFavoriteNewsCell: UIView {
     }()
     
     
-    // MARK: Inits
+    // MARK: - Inits
     
     override init(frame: CGRect) {
         super.init(frame: frame)

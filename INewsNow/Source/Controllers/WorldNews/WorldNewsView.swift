@@ -10,11 +10,11 @@ import UIKit
 
 final class WorldNewsView: UIView {
     
-    // MARK: Propertys
+    // MARK: - Propertys
     
     private lazy var safeGuide = self.safeAreaLayoutGuide
     
-    // MARK: ElementsVisual
+    // MARK: - ElementsVisual
     
     lazy var sideMenuButton: UIButton = {
         let button = UIButton()
@@ -115,7 +115,7 @@ final class WorldNewsView: UIView {
         return tb
     }()
     
-    //MARK: Inits
+    //MARK: - Inits
     
     override init(frame: CGRect) {
         super.init(frame: frame)

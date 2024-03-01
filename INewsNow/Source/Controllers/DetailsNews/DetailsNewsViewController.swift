@@ -12,7 +12,7 @@ import CoreData
 
 final class DetailsNewsViewController<T>: UIViewController {
     
-    //MARK: Propertys
+    //MARK: - Propertys
     
     lazy var viewScreen: DetailsNewsView = {
         let view = DetailsNewsView()
@@ -31,7 +31,7 @@ final class DetailsNewsViewController<T>: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: Inits
+    //MARK: - Inits
     
     override func loadView() {
         view = viewScreen

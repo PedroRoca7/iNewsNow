@@ -10,11 +10,11 @@ import UIKit
 
 final class FavoriteNewsView: UIView {
     
-    // MARK: Propretys
+    // MARK: - Propretys
     
     private lazy var safeGuide = self.safeAreaLayoutGuide
     
-    //MARK: ElementsVisual
+    //MARK: - ElementsVisual
     
     lazy var favoriteNewsTableView: UITableView = {
         let tb = UITableView()
@@ -27,7 +27,7 @@ final class FavoriteNewsView: UIView {
         return tb
     }()
     
-    // MARK: Inits
+    // MARK: - Inits
     
     override init(frame: CGRect) {
         super.init(frame: frame)

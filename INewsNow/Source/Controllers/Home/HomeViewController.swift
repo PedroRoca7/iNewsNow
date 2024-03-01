@@ -10,7 +10,7 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
-    //MARK: Propertys
+    //MARK: - Propertys
     
     lazy var viewScreen: HomeView = {
         let view = HomeView()
@@ -19,7 +19,7 @@ final class HomeViewController: UIViewController {
     
     private var viewModel: HomeViewModeling
     
-    //MARK: Inits
+    //MARK: - Inits
     
     init(viewModel: HomeViewModeling) {
         self.viewModel = viewModel
@@ -60,7 +60,7 @@ final class HomeViewController: UIViewController {
             print("Tela de cripto moedas")
         }
         viewScreen.menuFloatingButton.addItem(title: "Previsão do tempo", image: UIImage(systemName: "sun.max.fill")?.withRenderingMode(.alwaysTemplate)) { item in
-            print("Tela previsão do tempo")
+            self.viewModel.showScreenWeather()
         }
     }
     

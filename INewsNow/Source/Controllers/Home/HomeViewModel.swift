@@ -17,6 +17,7 @@ protocol HomeViewModeling {
     func showScreenNewsWorld()
     func setFavoriteNews(index: Int)
     func showScreenDetailsNews<T>(newsObject: T)
+    func showScreenWeather()
     var delegate: HomeViewModelDelegate? { get set }
     var newsBrazilList: NewsBrazilModel? { get }
 }
@@ -70,5 +71,9 @@ final class HomeViewModel: HomeViewModeling {
     
     func showScreenNewsWorld() {
         coordinator.showNewsWorld()
+    }
+    
+    func showScreenWeather() {
+        coordinator.showScreenWeather()
     }
 }

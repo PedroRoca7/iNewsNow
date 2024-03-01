@@ -10,11 +10,11 @@ import UIKit
 
 final class CustomNewsBrazilCell: UIView {
     
-    //MARK: Propertys
+    //MARK: - Propertys
     
     private lazy var safeGuide = self.safeAreaLayoutGuide
     
-    //MARK: ElementsVisual
+    //MARK: - ElementsVisual
     
     lazy var imageNewsImageView: UIImageView = {
         let image = UIImageView()
@@ -62,7 +62,7 @@ final class CustomNewsBrazilCell: UIView {
         return button
     }()
     
-    //MARK: Inits
+    //MARK: - Inits
     
     override init(frame: CGRect) {
         super.init(frame: frame)
