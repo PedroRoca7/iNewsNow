@@ -57,6 +57,9 @@
 		CE5A49312B878AC0006D0702 /* DetailsNewsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5A49302B878AC0006D0702 /* DetailsNewsFactory.swift */; };
 		CE5A49332B879598006D0702 /* DetailsNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5A49322B879598006D0702 /* DetailsNewsViewModel.swift */; };
 		CE5A49352B87C145006D0702 /* FavoriteNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5A49342B87C145006D0702 /* FavoriteNewsViewModel.swift */; };
+		CE86C22B2B920CD100921390 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C22A2B920CD100921390 /* WeatherViewController.swift */; };
+		CE86C22D2B920CDE00921390 /* WeatherFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C22C2B920CDE00921390 /* WeatherFactory.swift */; };
+		CE86C22F2B920CF200921390 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C22E2B920CF200921390 /* WeatherView.swift */; };
 		CED431022B7670ED005BE203 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED431012B7670ED005BE203 /* TabBarController.swift */; };
 		CED431042B7673B7005BE203 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED431032B7673B7005BE203 /* TabBarCoordinator.swift */; };
 		CED431062B7675CB005BE203 /* WorldNewsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED431052B7675CB005BE203 /* WorldNewsCoordinator.swift */; };
@@ -138,6 +141,9 @@
 		CE5A49302B878AC0006D0702 /* DetailsNewsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsNewsFactory.swift; sourceTree = "<group>"; };
 		CE5A49322B879598006D0702 /* DetailsNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsNewsViewModel.swift; sourceTree = "<group>"; };
 		CE5A49342B87C145006D0702 /* FavoriteNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNewsViewModel.swift; sourceTree = "<group>"; };
+		CE86C22A2B920CD100921390 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		CE86C22C2B920CDE00921390 /* WeatherFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherFactory.swift; sourceTree = "<group>"; };
+		CE86C22E2B920CF200921390 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		CED431012B7670ED005BE203 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CED431032B7673B7005BE203 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		CED431052B7675CB005BE203 /* WorldNewsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldNewsCoordinator.swift; sourceTree = "<group>"; };
@@ -340,6 +346,7 @@
 		CE4BC9C12B6A8B0200409725 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CE86C2292B920C6400921390 /* Weather */,
 				CE425FFA2B86D7B300A0BDA6 /* DetailsNews */,
 				CE57514E2B84F76600A34621 /* Home */,
 				CE5751492B8412C400A34621 /* FiatCryptocurrencies */,
@@ -431,6 +438,16 @@
 				CE5751562B852B6A00A34621 /* CustomNewsBrazilCell.swift */,
 			);
 			path = HomeNewsBrazilTableView;
+			sourceTree = "<group>";
+		};
+		CE86C2292B920C6400921390 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				CE86C22A2B920CD100921390 /* WeatherViewController.swift */,
+				CE86C22C2B920CDE00921390 /* WeatherFactory.swift */,
+				CE86C22E2B920CF200921390 /* WeatherView.swift */,
+			);
+			path = Weather;
 			sourceTree = "<group>";
 		};
 		CED431002B7670CE005BE203 /* TabBar */ = {
@@ -701,8 +718,10 @@
 				CE4E9FFE2B7FB8A600B57802 /* FavoriteNewsViewController.swift in Sources */,
 				CE5751522B8529DF00A34621 /* HomeView.swift in Sources */,
 				CE5A49352B87C145006D0702 /* FavoriteNewsViewModel.swift in Sources */,
+				CE86C22D2B920CDE00921390 /* WeatherFactory.swift in Sources */,
 				CE5A49332B879598006D0702 /* DetailsNewsViewModel.swift in Sources */,
 				CE4EA00D2B7FC13D00B57802 /* Color+Extension.swift in Sources */,
+				CE86C22B2B920CD100921390 /* WeatherViewController.swift in Sources */,
 				CE57515F2B85734A00A34621 /* HomeFactory.swift in Sources */,
 				CED431022B7670ED005BE203 /* TabBarController.swift in Sources */,
 				CE1A3A9C2B6D7E7E000C0559 /* CustomMainNewsCell.swift in Sources */,
@@ -725,6 +744,7 @@
 				CE57514B2B84130400A34621 /* FiatAndCryptocurrenciesViewController.swift in Sources */,
 				CE425FF12B863BB400A0BDA6 /* DateFormatter+Extension.swift in Sources */,
 				CE4022A52B6E80D300FB727C /* MainNewsModel.swift in Sources */,
+				CE86C22F2B920CF200921390 /* WeatherView.swift in Sources */,
 				CE1A3A922B6D394A000C0559 /* ViewProtocol.swift in Sources */,
 				CE5751572B852B6A00A34621 /* CustomNewsBrazilCell.swift in Sources */,
 				CED431082B76BBAA005BE203 /* TabBarFactory.swift in Sources */,
