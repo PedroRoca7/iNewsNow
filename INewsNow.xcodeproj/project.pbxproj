@@ -64,7 +64,7 @@
 		CE86C23B2B924C1200921390 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C23A2B924C1200921390 /* WeatherViewModel.swift */; };
 		CE86C23D2B924E7400921390 /* ForecastResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C23C2B924E7400921390 /* ForecastResponseModel.swift */; };
 		CE86C23F2B92506600921390 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C23E2B92506600921390 /* WeatherService.swift */; };
-		CE86C2442B96255A00921390 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C2432B96255A00921390 /* Double+Extension.swift */; };
+		CE86C2442B96255A00921390 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C2432B96255A00921390 /* Int+Extension.swift */; };
 		CED431022B7670ED005BE203 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED431012B7670ED005BE203 /* TabBarController.swift */; };
 		CED431042B7673B7005BE203 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED431032B7673B7005BE203 /* TabBarCoordinator.swift */; };
 		CED431062B7675CB005BE203 /* WorldNewsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED431052B7675CB005BE203 /* WorldNewsCoordinator.swift */; };
@@ -153,7 +153,7 @@
 		CE86C23A2B924C1200921390 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		CE86C23C2B924E7400921390 /* ForecastResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastResponseModel.swift; sourceTree = "<group>"; };
 		CE86C23E2B92506600921390 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
-		CE86C2432B96255A00921390 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
+		CE86C2432B96255A00921390 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		CED431012B7670ED005BE203 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CED431032B7673B7005BE203 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		CED431052B7675CB005BE203 /* WorldNewsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldNewsCoordinator.swift; sourceTree = "<group>"; };
@@ -407,7 +407,7 @@
 		CE4EA00A2B7FC11300B57802 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CE86C2422B96253A00921390 /* Double */,
+				CE86C2422B96253A00921390 /* Int */,
 				CE425FEF2B863B9400A0BDA6 /* DateFormatter+ */,
 				CE4EA00B2B7FC12500B57802 /* Color+ */,
 			);
@@ -474,12 +474,12 @@
 			path = WeatherDailyForecastTableView;
 			sourceTree = "<group>";
 		};
-		CE86C2422B96253A00921390 /* Double */ = {
+		CE86C2422B96253A00921390 /* Int */ = {
 			isa = PBXGroup;
 			children = (
-				CE86C2432B96255A00921390 /* Double+Extension.swift */,
+				CE86C2432B96255A00921390 /* Int+Extension.swift */,
 			);
-			path = Double;
+			path = Int;
 			sourceTree = "<group>";
 		};
 		CED431002B7670CE005BE203 /* TabBar */ = {
@@ -785,7 +785,7 @@
 				CED431082B76BBAA005BE203 /* TabBarFactory.swift in Sources */,
 				CE4EA0072B7FC04800B57802 /* CustomFavoriteNewsTableViewCell.swift in Sources */,
 				CE4BC9932B6A898300409725 /* SceneDelegate.swift in Sources */,
-				CE86C2442B96255A00921390 /* Double+Extension.swift in Sources */,
+				CE86C2442B96255A00921390 /* Int+Extension.swift in Sources */,
 				CE4EA0042B7FBE5300B57802 /* FavoriteNewsCoordinator.swift in Sources */,
 				CE57515D2B85728F00A34621 /* HomeViewModel.swift in Sources */,
 				CE4EA0092B7FC06C00B57802 /* CustomFavoriteNewsCell.swift in Sources */,
