@@ -26,11 +26,11 @@ final class DailyForecastTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func prepareCell(weekDay: String?, min: String?, max: String?, icon: UIImage?) {
+    func prepareCell(weekDay: String?, min: Int, max: Int, icon: String) {
         viewScreen.weekDayLabel.text = weekDay
-        viewScreen.minTemperatureLabel.text = "min \(min ?? "")"
-        viewScreen.maxTemperatureLabel.text = "max \(max ?? "")"
-        viewScreen.iconImageView.image = icon
+        viewScreen.minTemperatureLabel.text = "min \(min)"
+        viewScreen.maxTemperatureLabel.text = "max \(max)"
+        viewScreen.iconImageView.image = UIImage(named: icon)
     }
 }
 
@@ -49,6 +49,8 @@ extension DailyForecastTableViewCell: ViewProtocol {
     }
     
     func applyAdditionalChanges() {
+        viewScreen.translatesAutoresizingMaskIntoConstraints = false
         selectionStyle = .none
+        backgroundColor = .clear
     }
 }

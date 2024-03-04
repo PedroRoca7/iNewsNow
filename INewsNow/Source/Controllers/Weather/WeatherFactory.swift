@@ -10,7 +10,8 @@ import UIKit
 
 enum WeatherFactory {
     static func makeModule() -> UIViewController {
-        let viewModel = WeatherViewModel()
+        let service = WeatherService()
+        let viewModel = WeatherViewModel(service: service)
         let viewController = WeatherViewController(viewModel: viewModel)
         return viewController
     }

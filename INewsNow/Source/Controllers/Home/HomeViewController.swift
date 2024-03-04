@@ -47,8 +47,9 @@ final class HomeViewController: UIViewController {
     
     private func setupNavigationBar() {
         self.tabBarController?.navigationController?.navigationBar.prefersLargeTitles = true
-        self.tabBarController?.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
-        self.tabBarController?.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
+        self.tabBarController?.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        self.tabBarController?.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.black
         self.tabBarController?.navigationItem.title = "Notícias"
     }
     

@@ -86,6 +86,7 @@ extension DailyForecastCellView: ViewProtocol {
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            
         ])
     }
     

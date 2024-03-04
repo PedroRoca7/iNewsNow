@@ -112,33 +112,6 @@ final class WeatherView: UIView {
         return stackView
     }()
     
-    private lazy var hourlyForecastLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "PREVISÃO POR HORA"
-        label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
-        label.textColor = .white
-        label.textAlignment = .center
-        return label
-    }()
-    
-    lazy var hourlyCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 70, height: 85)
-        layout.sectionInset = UIEdgeInsets(top: 0,
-                                           left: 12,
-                                           bottom: 0,
-                                           right: 12)
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .clear
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.register(HourlyForecastCollectionViewCell.self, forCellWithReuseIdentifier: HourlyForecastCollectionViewCell.identifier)
-        return collectionView
-    }()
-    
     private lazy var dailyForecastLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -158,7 +131,7 @@ final class WeatherView: UIView {
         return tableView
     }()
     
-    private lazy var loaderView: UIView = {
+    lazy var loaderView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
@@ -188,8 +161,6 @@ extension WeatherView: ViewProtocol {
     func buildHierarchy() {
         self.addSubview(headerView)
         self.addSubview(statsStackView)
-        self.addSubview(hourlyForecastLabel)
-        self.addSubview(hourlyCollectionView)
         self.addSubview(dailyForecastLabel)
         self.addSubview(dailyForecastTableView)
         self.addSubview(loaderView)
@@ -205,7 +176,7 @@ extension WeatherView: ViewProtocol {
     func setupConstraints() {
         NSLayoutConstraint.activate([
         
-            headerView.topAnchor.constraint(equalTo: safeGuide.topAnchor, constant: 60),
+            headerView.topAnchor.constraint(equalTo: safeGuide.topAnchor),
             headerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 35),
             headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -35),
             headerView.heightAnchor.constraint(equalToConstant: 150),
@@ -226,16 +197,8 @@ extension WeatherView: ViewProtocol {
             statsStackView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 24),
             statsStackView.widthAnchor.constraint(equalToConstant: 206),
             statsStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            
-            hourlyForecastLabel.topAnchor.constraint(equalTo: statsStackView.bottomAnchor, constant: 29),
-            hourlyForecastLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 35),
-            hourlyForecastLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -35),
-            hourlyCollectionView.topAnchor.constraint(equalTo: hourlyForecastLabel.bottomAnchor, constant: 22),
-            hourlyCollectionView.heightAnchor.constraint(equalToConstant: 84),
-            hourlyCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            hourlyCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            
-            dailyForecastLabel.topAnchor.constraint(equalTo: hourlyCollectionView.bottomAnchor, constant: 29),
+                        
+            dailyForecastLabel.topAnchor.constraint(equalTo: statsStackView.bottomAnchor, constant: 29),
             dailyForecastLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 35),
             dailyForecastLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -35),
             dailyForecastTableView.topAnchor.constraint(equalTo: dailyForecastLabel.bottomAnchor, constant: 16),
