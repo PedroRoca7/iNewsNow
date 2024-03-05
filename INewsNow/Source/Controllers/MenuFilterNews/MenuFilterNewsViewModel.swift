@@ -8,5 +8,11 @@
 import Foundation
 
 final class MenuFilterNewsViewModel {
+        
+    var categorys: [String] = ["Sports", "Technology",
+                               "Business","Science",
+                               "Entertainment", "Health",
+                               "World", "Politics",
+                               "Environment", "Food"]
     
 }

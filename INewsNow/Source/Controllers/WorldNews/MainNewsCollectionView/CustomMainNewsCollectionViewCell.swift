@@ -37,7 +37,7 @@ final class CustomMainNewsCollectionViewCell: UICollectionViewCell {
     }
     
     func prepareCollectionCell(mainNews: NewsData) {
-        viewScreen.dateNewsLabel.text = DateFormatter.formatterDate(dateString: mainNews.publishedDate ?? "", locale: .unitedStates)
+        viewScreen.dateNewsLabel.text = DateFormatter.formatterDate(dateString: mainNews.publishedDate, locale: .unitedStates)
         viewScreen.newsTextLabel.text = mainNews.title
         viewScreen.authorNewsLabel.text = mainNews.byline
         guard let nonEmptyImageUrl = mainNews.multimedia.first?.url else {

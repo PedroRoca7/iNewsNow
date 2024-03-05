@@ -16,6 +16,18 @@ final class MenuFilterNewsView: UIView {
     
     //MARK: - ElementsVisual
     
+    lazy var menuCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        let collecionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collecionView.translatesAutoresizingMaskIntoConstraints = false
+        collecionView.backgroundColor = .clear
+        collecionView.register(MenuFilterNewsCollectionViewCell.self, forCellWithReuseIdentifier: MenuFilterNewsCollectionViewCell.identifier)
+        return collecionView
+    }()
+    
     
     //MARK: - Inits
     
@@ -31,11 +43,19 @@ final class MenuFilterNewsView: UIView {
 
 extension MenuFilterNewsView: ViewProtocol {
     func buildHierarchy() {
-        print("")
+        self.addSubview(menuCollectionView)
     }
     
     func setupConstraints() {
-        print("")
+        NSLayoutConstraint.activate([
+            menuCollectionView.topAnchor.constraint(equalTo: safeGuide.topAnchor),
+            menuCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            menuCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            menuCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+        ])
     }
 
+    func applyAdditionalChanges() {
+        self.backgroundColor = .backgroundColor
+    }
 }
