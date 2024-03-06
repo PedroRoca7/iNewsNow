@@ -17,10 +17,16 @@ final class MenuFilterNewsViewController: UIViewController {
         return view
     }()
     
-    lazy var viewModel: MenuFilterNewsViewModel = {
-        let viewModel = MenuFilterNewsViewModel()
-        return viewModel
-    }()
+    private var viewModel: MenuFilterNewsViewModeling
+    
+    init(viewModel: MenuFilterNewsViewModeling) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         self.view = viewScreen
@@ -28,8 +34,11 @@ final class MenuFilterNewsViewController: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
         setDelegatesAndDataSource()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupNavigationBar()
     }
     
     private func setupNavigationBar() {
@@ -62,8 +71,12 @@ extension MenuFilterNewsViewController: UICollectionViewDataSource, UICollection
         let height = collectionView.frame.height / 4
         return CGSize(width: width, height: height)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let titleCatergory = viewModel.categorys[indexPath.row]
+        viewModel.showScreenCategoryNews(titleCategory: titleCatergory)
+    }
 }
-
 
 #if DEBUG
 import SwiftUI

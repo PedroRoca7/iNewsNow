@@ -114,7 +114,8 @@ extension HomeViewController: CustomNewsBrazilTableViewCellDelegate {
         guard let indexPathTapped = viewScreen.newsTableView.indexPath(for: cell) else { return }
       
         viewModel.setFavoriteNews(index: indexPathTapped.row)
-        
-        viewScreen.newsTableView.reloadRows(at: [indexPathTapped], with: .none)
+        DispatchQueue.main.async {
+            self.viewScreen.newsTableView.reloadRows(at: [indexPathTapped], with: .none)
+        }
     }
 }
