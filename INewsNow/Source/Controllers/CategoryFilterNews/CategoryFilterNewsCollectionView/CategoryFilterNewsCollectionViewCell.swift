@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 
-final class MenuFilterNewsCollectionViewCell: UICollectionViewCell {
+final class CategoryFilterNewsCollectionViewCell: UICollectionViewCell {
     
-    static let identifier: String = "MenuFilterNewsCollectionViewCell"
+    static let identifier: String = "CategoryFilterNewsCollectionViewCell"
     
-    private lazy var viewScreen: MenuFilterNewsCell = {
-        let view = MenuFilterNewsCell()
+    private lazy var viewScreen: CategoryFilterNewsCell = {
+        let view = CategoryFilterNewsCell()
         return view
     }()
     
@@ -32,7 +32,7 @@ final class MenuFilterNewsCollectionViewCell: UICollectionViewCell {
     
 }
 
-extension MenuFilterNewsCollectionViewCell: ViewProtocol {
+extension CategoryFilterNewsCollectionViewCell: ViewProtocol {
     func buildHierarchy() {
         contentView.addSubview(viewScreen)
     }

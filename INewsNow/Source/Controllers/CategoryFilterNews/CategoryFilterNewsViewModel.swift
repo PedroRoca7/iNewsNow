@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol MenuFilterNewsViewModeling {
+protocol CategoryFilterNewsViewModeling {
     func showScreenCategoryNews(titleCategory: String)
     var categorys: [String] { get }
 }
 
-final class MenuFilterNewsViewModel: MenuFilterNewsViewModeling {
+final class CategoryFilterNewsViewModel: CategoryFilterNewsViewModeling {
         
     private(set) var categorys: [String] = ["Sports", "Technology",
                                "Business","Science",
@@ -20,9 +20,9 @@ final class MenuFilterNewsViewModel: MenuFilterNewsViewModeling {
                                "World", "Politics",
                                "Environment", "Food"]
     
-    private var coordinator: MenuFilterNewsCoordinating
+    private var coordinator: CategoryFilterNewsCoordinating
     
-    init(coordinator: MenuFilterNewsCoordinating) {
+    init(coordinator: CategoryFilterNewsCoordinating) {
         self.coordinator = coordinator
     }
     

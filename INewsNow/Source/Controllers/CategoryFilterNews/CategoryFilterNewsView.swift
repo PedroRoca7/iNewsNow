@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class MenuFilterNewsView: UIView {
+final class CategoryFilterNewsView: UIView {
     
     //MARK: - Propertys
     
@@ -24,7 +24,7 @@ final class MenuFilterNewsView: UIView {
         let collecionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collecionView.translatesAutoresizingMaskIntoConstraints = false
         collecionView.backgroundColor = .clear
-        collecionView.register(MenuFilterNewsCollectionViewCell.self, forCellWithReuseIdentifier: MenuFilterNewsCollectionViewCell.identifier)
+        collecionView.register(CategoryFilterNewsCollectionViewCell.self, forCellWithReuseIdentifier: CategoryFilterNewsCollectionViewCell.identifier)
         return collecionView
     }()
     
@@ -41,7 +41,7 @@ final class MenuFilterNewsView: UIView {
     }
 }
 
-extension MenuFilterNewsView: ViewProtocol {
+extension CategoryFilterNewsView: ViewProtocol {
     func buildHierarchy() {
         self.addSubview(menuCollectionView)
     }

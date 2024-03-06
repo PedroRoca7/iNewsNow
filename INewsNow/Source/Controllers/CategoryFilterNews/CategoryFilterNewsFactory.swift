@@ -10,9 +10,9 @@ import UIKit
 
 enum MenuFilterNewsFactory {
     static func makeModule(navigationController: UINavigationController) -> UIViewController {
-        let coordinator = MenuFilterNewsCoordinator(navigationController: navigationController)
-        let viewModel = MenuFilterNewsViewModel(coordinator: coordinator)
-        let viewController = MenuFilterNewsViewController(viewModel: viewModel)
+        let coordinator = CategoryFilterNewsCoordinator(navigationController: navigationController)
+        let viewModel = CategoryFilterNewsViewModel(coordinator: coordinator)
+        let viewController = CategoryFilterNewsViewController(viewModel: viewModel)
         return viewController
     }
 }

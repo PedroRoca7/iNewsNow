@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class MenuFilterNewsCell: UIView {
+final class CategoryFilterNewsCell: UIView {
     
     // MARK: - Propertys
     
@@ -36,7 +36,7 @@ final class MenuFilterNewsCell: UIView {
     }
 }
 
-extension MenuFilterNewsCell: ViewProtocol {
+extension CategoryFilterNewsCell: ViewProtocol {
     func buildHierarchy() {
         self.addSubview(categoryNameLabel)
     }

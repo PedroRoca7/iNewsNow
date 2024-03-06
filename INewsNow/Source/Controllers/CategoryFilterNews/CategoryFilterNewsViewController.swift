@@ -8,18 +8,18 @@
 import Foundation
 import UIKit
 
-final class MenuFilterNewsViewController: UIViewController {
+final class CategoryFilterNewsViewController: UIViewController {
     
     // MARK: - Propertys
     
-    lazy private var viewScreen: MenuFilterNewsView = {
-        let view = MenuFilterNewsView()
+    lazy private var viewScreen: CategoryFilterNewsView = {
+        let view = CategoryFilterNewsView()
         return view
     }()
     
-    private var viewModel: MenuFilterNewsViewModeling
+    private var viewModel: CategoryFilterNewsViewModeling
     
-    init(viewModel: MenuFilterNewsViewModeling) {
+    init(viewModel: CategoryFilterNewsViewModeling) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -51,14 +51,14 @@ final class MenuFilterNewsViewController: UIViewController {
     }
 }
  
-extension MenuFilterNewsViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension CategoryFilterNewsViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.categorys.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuFilterNewsCollectionViewCell.identifier,
-                                                            for: indexPath) as? MenuFilterNewsCollectionViewCell else { return UICollectionViewCell()}
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryFilterNewsCollectionViewCell.identifier,
+                                                            for: indexPath) as? CategoryFilterNewsCollectionViewCell else { return UICollectionViewCell()}
     
         let titleCategory = viewModel.categorys[indexPath.row]
         cell.prepareCollectionCell(titleCategory: titleCategory)
@@ -81,7 +81,7 @@ extension MenuFilterNewsViewController: UICollectionViewDataSource, UICollection
 #if DEBUG
 import SwiftUI
 
-struct MenuFilterNews_Previews: PreviewProvider {
+struct CategoryFilterNews_Previews: PreviewProvider {
     static var previews: some View {
         UINavigationController(
             rootViewController: MenuFilterNewsFactory.makeModule(navigationController: UINavigationController())

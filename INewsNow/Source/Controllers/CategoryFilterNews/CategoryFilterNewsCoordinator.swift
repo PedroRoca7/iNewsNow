@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-protocol MenuFilterNewsCoordinating {
+protocol CategoryFilterNewsCoordinating {
     func showScreenCategoryNews(titleCategory: String)
 }
 
-final class MenuFilterNewsCoordinator: MenuFilterNewsCoordinating {
+final class CategoryFilterNewsCoordinator: CategoryFilterNewsCoordinating {
     
     var navigationController: UINavigationController
     
