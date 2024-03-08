@@ -4,10 +4,35 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>INewsNow 1.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
 		<key>INewsNow.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>5</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>CE4BC98C2B6A898300409725</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CE4BC9A22B6A898900409725</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CE4BC9AC2B6A898900409725</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

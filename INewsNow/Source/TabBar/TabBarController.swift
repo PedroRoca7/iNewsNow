@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CategoryNews
 
 final class TabBarController: UITabBarController {
     
@@ -49,7 +50,6 @@ final class TabBarController: UITabBarController {
     }
     
     private func configureTabBarItems(navigationController: UINavigationController) {
-        
         let menuCategoryViewController = MenuFilterNewsFactory.makeModule(navigationController: navigationController)
         menuCategoryViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "menucard.fill"), selectedImage: nil)
         let homeViewController = HomeFactory.makeModule(navigationController: navigationController)

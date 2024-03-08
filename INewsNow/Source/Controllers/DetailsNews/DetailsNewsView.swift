@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+
 final class DetailsNewsView: UIView {
     
     //MARK: - Propertys

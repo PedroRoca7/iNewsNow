@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import WorldNews
 
 protocol HomeCoordinating {
     func showNewsWorld()
@@ -23,6 +24,7 @@ final class HomeCoordinator: HomeCoordinating {
     }
     
     func showNewsWorld() {
+        
         let worldNews = WorldNewsFactory.makeModule(navigationController: navigationController)
         navigationController.pushViewController(worldNews, animated: true)
     }
