@@ -72,6 +72,7 @@ extension WeatherViewController: WeatherViewModelDelegate {
     func failure() {
         self.viewScreen.loaderView.isHidden = true
         self.viewScreen.loader.stopAnimating()
+        Alert.showBasicAlert(title: "Erro", message: "Erro ao carregar a previsão do tempo.", viewController: self) {}
     }
 }
 

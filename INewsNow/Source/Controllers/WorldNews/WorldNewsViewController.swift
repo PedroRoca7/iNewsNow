@@ -129,7 +129,7 @@ extension WorldNewsViewController: WorldNewsViewModelDelegate {
                 self.loadAllNews()
             }
         } else {
-            print("Falha ao carregar as notícias.")
+            Alert.showBasicAlert(title: "Error", message: "Error ao carregar as notícias.", viewController: self) {}
         }
     }
 }

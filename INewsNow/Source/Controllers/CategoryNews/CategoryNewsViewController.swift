@@ -93,7 +93,7 @@ extension CategoryNewsViewController: CategoryNewsViewModelDelegate {
     }
     
     func failure() {
-        print("Deu Ruim")
+        Alert.showBasicAlert(title: "Erro", message: "Erro ao carregar as notícias", viewController: self) {}
     }
 }
 

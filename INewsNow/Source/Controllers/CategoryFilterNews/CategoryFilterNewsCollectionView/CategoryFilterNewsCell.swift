@@ -16,11 +16,19 @@ final class CategoryFilterNewsCell: UIView {
     
     // MARK: - ElementsVisual
     
+    lazy var imageCategory: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        return image
+    }()
+    
     lazy var categoryNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
-        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        label.textColor = .black
         return label
     }()
     
@@ -38,19 +46,26 @@ final class CategoryFilterNewsCell: UIView {
 
 extension CategoryFilterNewsCell: ViewProtocol {
     func buildHierarchy() {
+        self.addSubview(imageCategory)
         self.addSubview(categoryNameLabel)
     }
     
     func setupConstraints() {
     
         NSLayoutConstraint.activate([
+            imageCategory.topAnchor.constraint(equalTo: self.topAnchor),
+            imageCategory.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            imageCategory.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            imageCategory.heightAnchor.constraint(equalToConstant: 80),
+            
             categoryNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            categoryNameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            categoryNameLabel.topAnchor.constraint(equalTo: imageCategory.bottomAnchor, constant: 5),
+            categoryNameLabel.bottomAnchor.constraint(greaterThanOrEqualTo: self.bottomAnchor, constant: -5),
         ])
     }
     
     func applyAdditionalChanges() {
-        self.backgroundColor = .color1Red
+        self.backgroundColor = .clear
         self.translatesAutoresizingMaskIntoConstraints = false
         self.layer.cornerRadius = 20
     }

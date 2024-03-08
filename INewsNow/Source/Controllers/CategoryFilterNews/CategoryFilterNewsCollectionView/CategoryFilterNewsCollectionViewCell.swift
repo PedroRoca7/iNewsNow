@@ -27,6 +27,7 @@ final class CategoryFilterNewsCollectionViewCell: UICollectionViewCell {
     }
     
     func prepareCollectionCell(titleCategory: String) {
+        viewScreen.imageCategory.image = UIImage(named: titleCategory)
         viewScreen.categoryNameLabel.text = titleCategory
     }
     

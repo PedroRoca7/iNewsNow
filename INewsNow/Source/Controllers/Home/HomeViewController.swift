@@ -105,7 +105,7 @@ extension HomeViewController: HomeViewModelDelegate {
     }
     
     func failure() {
-        print("Falhou")
+        Alert.showBasicAlert(title: "Erro", message: "Erro ao carregar as notícias.", viewController: self) {}
     }
 }
 
