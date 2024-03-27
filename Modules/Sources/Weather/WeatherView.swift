@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import INewsNowCore
 
 final class WeatherView: UIView {
     

@@ -13,6 +13,15 @@ let package = Package(
         .library(
             name: "WorldNews",
             targets: ["WorldNews"]),
+        .library(
+            name: "Weather",
+            targets: ["Weather"]),
+        .library(
+            name: "FavoriteNews",
+            targets: ["FavoriteNews"]),
+        .library(
+            name: "DetailsNews",
+            targets: ["DetailsNews"]),
     ],
     dependencies: [
     ],
@@ -23,6 +32,24 @@ let package = Package(
         .testTarget(
             name: "WorldNewsTests",
             dependencies: ["WorldNews"]),
+        .target(
+            name: "DetailsNews",
+            dependencies: ["INewsNowCore"]),
+        .testTarget(
+            name: "DetailsNewsTests",
+            dependencies: ["DetailsNews"]),
+        .target(
+            name: "FavoriteNews",
+            dependencies: ["INewsNowCore"]),
+        .testTarget(
+            name: "FavoriteNewsTests",
+            dependencies: ["FavoriteNews"]),
+        .target(
+            name: "Weather",
+            dependencies: ["Service", "INewsNowCore"]),
+        .testTarget(
+            name: "WeatherTests",
+            dependencies: ["Weather"]),
         .target(
             name: "INewsNowCore",
             dependencies: []),

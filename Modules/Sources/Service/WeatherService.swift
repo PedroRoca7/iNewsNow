@@ -7,16 +7,18 @@
 
 import Foundation
 
-protocol WeatherServicing {
+public protocol WeatherServicing {
     func fecthData<T: Decodable>(city: String, _ completion: @escaping (T?) -> Void)
 }
 
-final class WeatherService: WeatherServicing {
+public final class WeatherService: WeatherServicing {
     private let baseURL: String = "https://api.hgbrasil.com/weather"
     private let apiKey: String = "SUA-CHAVE"
     private let session = URLSession.shared
     
-    func fecthData<T: Decodable>(city: String, _ completion: @escaping (T?) -> Void) {
+    public init(){}
+    
+    public func fecthData<T: Decodable>(city: String, _ completion: @escaping (T?) -> Void) {
         let cityName = city.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         let urlString = "\(baseURL)?key=\(apiKey)&city_name=\(cityName)"
 

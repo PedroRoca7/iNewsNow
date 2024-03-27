@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import CoreData
+import INewsNowCore
 
-final class CoreDataHelper {
+final class CoreDataHelper: CoreDataHelperService {
     static let shared = CoreDataHelper()
     
     private(set) var dbCoreDataFavoriteNews: [NSManagedObject] = []
@@ -93,7 +94,7 @@ final class CoreDataHelper {
         }
     }
     
-    func removeFavoritedNews(test: Int) {
-        CoreDataHelper.shared.dbCoreDataFavoriteNews.remove(at: test)
+    func removeFavoritedNews(index: Int) {
+        CoreDataHelper.shared.dbCoreDataFavoriteNews.remove(at: index)
     }
 }

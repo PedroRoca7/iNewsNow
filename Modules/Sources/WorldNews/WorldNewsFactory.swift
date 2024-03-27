@@ -8,12 +8,13 @@
 import Foundation
 import UIKit
 import Service
+import INewsNowCore
 
 public enum WorldNewsFactory {
-    public static func makeModule(navigationController: UINavigationController) -> UIViewController {
+    public static func makeModule(navigationController: UINavigationController, coreDataService: CoreDataHelperService) -> UIViewController {
         let coordinator = WorldNewsCoordinator(navigationController: navigationController)
         let service = NewYorkTimesService()
-        let viewModel = WorldNewsViewModel(service: service, coordinator: coordinator)
+        let viewModel = WorldNewsViewModel(service: service, coordinator: coordinator, coreDataService: coreDataService)
         let viewController = WorldNewsViewController(viewModel: viewModel)
         
         viewModel.delegate = viewController

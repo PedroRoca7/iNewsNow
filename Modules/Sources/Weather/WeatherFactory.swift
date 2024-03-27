@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Service
 
 enum WeatherFactory {
     static func makeModule() -> UIViewController {

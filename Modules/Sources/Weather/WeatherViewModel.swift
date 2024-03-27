@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import INewsNowCore
+import Service
 
 protocol WeatherViewModeling {
     func getForecast(forThis city: String)

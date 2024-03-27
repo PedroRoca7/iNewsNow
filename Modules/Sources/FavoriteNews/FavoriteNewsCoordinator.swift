@@ -20,8 +20,8 @@ final class FavoriteNewsCoordinator: FavoriteNewsCoordinating {
     }
     
     func showScreenDetailsNews<T>(newsObject: T) {
-        let detaislNews = DetailsNewsFactory.makeModule(navigationController: navigationController, newsObject: newsObject)
-        navigationController.pushViewController(detaislNews, animated: true)
+//        let detaislNews = DetailsNewsFactory.makeModule(navigationController: navigationController, newsObject: newsObject)
+//        navigationController.pushViewController(detaislNews, animated: true)
     }
 }
 

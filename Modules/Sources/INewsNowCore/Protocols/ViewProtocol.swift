@@ -22,6 +22,3 @@ public extension ViewProtocol {
     
     func applyAdditionalChanges(){}
 }
-
-
-

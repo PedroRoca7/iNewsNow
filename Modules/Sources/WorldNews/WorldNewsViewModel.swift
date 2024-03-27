@@ -36,11 +36,13 @@ final class WorldNewsViewModel: WorldNewsViewModeling {
     private var coordinator: WorldNewsCoordinating
     private(set) var mainNewsList: MainNewsModel?
     private(set) var mostPopularPostList: MostPopularNewsModel?
+    private var coreDataService: CoreDataHelperService
     weak var delegate: WorldNewsViewModelDelegate?
     
-    init(service: NewYorkTimesServicing, coordinator: WorldNewsCoordinating) {
+    init(service: NewYorkTimesServicing, coordinator: WorldNewsCoordinating, coreDataService: CoreDataHelperService) {
         self.service = service
         self.coordinator = coordinator
+        self.coreDataService = coreDataService
     }
     
     func loadMainNews() {
@@ -89,19 +91,19 @@ final class WorldNewsViewModel: WorldNewsViewModeling {
     }
             
     private func appendOrRemoveFavoritesNewsArray(newsData: Any) {
-//        if let news = newsData as? NewsData {
-//            if news.favorite {
-//                CoreDataHelper.shared.saveObjectToCoreData(object: newsData)
-//            } else {
-//                CoreDataHelper.shared.removeFavoritedNewsCoreData(id: news.id)
-//            }
-//        }
-//        if let news = newsData as? PopularNewsData {
-//            if news.favorite {
-//                CoreDataHelper.shared.saveObjectToCoreData(object: newsData)
-//            } else {
-//                CoreDataHelper.shared.removeFavoritedNewsCoreData(id: news.id)
-//            }
-//        }
+        if let news = newsData as? NewsData {
+            if news.favorite {
+                coreDataService.saveObjectToCoreData(object: newsData)
+            } else {
+                coreDataService.removeFavoritedNewsCoreData(id: news.id)
+            }
+        }
+        if let news = newsData as? PopularNewsData {
+            if news.favorite {
+                coreDataService.saveObjectToCoreData(object: newsData)
+            } else {
+                coreDataService.removeFavoritedNewsCoreData(id: news.id)
+            }
+        }
     }
 }

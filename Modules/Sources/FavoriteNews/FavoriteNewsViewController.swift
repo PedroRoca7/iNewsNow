@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import INewsNowCore
 
 final class FavoriteNewsViewController: UIViewController {
     
@@ -18,11 +19,13 @@ final class FavoriteNewsViewController: UIViewController {
     }()
     
     private var viewModel: FavoriteNewsViewModeling
+    private var coreDataService: CoreDataHelperService
     
     //MARK: - Inits
 
-    init(viewModel: FavoriteNewsViewModeling) {
+    init(viewModel: FavoriteNewsViewModeling, coreDataService: CoreDataHelperService) {
         self.viewModel = viewModel
+        self.coreDataService = coreDataService
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -55,7 +58,7 @@ final class FavoriteNewsViewController: UIViewController {
     }
     
     private func loadNewsCoreData() {
-        CoreDataHelper.shared.getFavoriteNewsDB()
+         coreDataService.getFavoriteNewsDB()
     }
     
     private func setDelegatesAndDataSource() {
@@ -66,7 +69,7 @@ final class FavoriteNewsViewController: UIViewController {
 
 extension FavoriteNewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CoreDataHelper.shared.dbCoreDataFavoriteNews.count
+        return coreDataService.dbCoreDataFavoriteNews.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,7 +77,7 @@ extension FavoriteNewsViewController: UITableViewDelegate, UITableViewDataSource
                                                        for: indexPath) as? CustomFavoriteNewsTableViewCell else { return UITableViewCell()}
 
        
-        let newsFavorited = CoreDataHelper.shared.dbCoreDataFavoriteNews[indexPath.row]
+        let newsFavorited = coreDataService.dbCoreDataFavoriteNews[indexPath.row]
         cell.prepareCell(newsFavorited: newsFavorited)
         
         return cell
@@ -85,7 +88,7 @@ extension FavoriteNewsViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let object = CoreDataHelper.shared.dbCoreDataFavoriteNews[indexPath.row]
+        let object = coreDataService.dbCoreDataFavoriteNews[indexPath.row]
         viewModel.showDetailsScreen(newsObject: object)
     }
     
@@ -96,14 +99,12 @@ extension FavoriteNewsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            if let id = CoreDataHelper.shared.dbCoreDataFavoriteNews[indexPath.row].value(forKey: "id") as? UUID {
-                CoreDataHelper.shared.removeFavoritedNewsCoreData(id: id)
+            if let id = coreDataService.dbCoreDataFavoriteNews[indexPath.row].value(forKey: "id") as? UUID {
+                coreDataService.removeFavoritedNewsCoreData(id: id)
             }
-            CoreDataHelper.shared.removeFavoritedNews(test: indexPath.row)
+            coreDataService.removeFavoritedNews(index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
-            
-            
         }
     }
 }

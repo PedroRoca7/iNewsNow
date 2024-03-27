@@ -7,12 +7,13 @@
 
 import Foundation
 import UIKit
+import INewsNowCore
 
 enum FavoriteNewsFactory {
-    static func makeModule(navigationController: UINavigationController) -> UIViewController {
+    static func makeModule(navigationController: UINavigationController, coreDataService: CoreDataHelperService) -> UIViewController {
         let coordinator = FavoriteNewsCoordinator(navigationController: navigationController)
         let viewModel = FavoriteNewsViewModel(coordinator: coordinator)
-        let viewController = FavoriteNewsViewController(viewModel: viewModel)
+        let viewController = FavoriteNewsViewController(viewModel: viewModel, coreDataService: coreDataService)
         return viewController
     }
 }
