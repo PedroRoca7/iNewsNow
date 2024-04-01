@@ -10,4 +10,6 @@ import UIKit
 extension UIColor {
     static var backgroundColor = UIColor(named: "backgroundColor")
     static var color1Red = UIColor(named: "red")
+    static var azulClaro = UIColor(named: "azulClaro")
+    static var azulEscuro = UIColor(named: "azulEscuro")
 }

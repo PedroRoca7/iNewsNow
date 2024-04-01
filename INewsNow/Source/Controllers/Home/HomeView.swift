@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import JJFloatingActionButton
 
 final class HomeView: UIView {
     
@@ -16,19 +15,6 @@ final class HomeView: UIView {
     private lazy var safeGuide = self.safeAreaLayoutGuide
     
     //MARK: - ElementsVisual
-    
-    lazy var menuFloatingButton: JJFloatingActionButton = {
-        let button = JJFloatingActionButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.buttonDiameter = 45
-        button.buttonColor = .color1Red ?? .red
-        button.itemAnimationConfiguration = .slideIn()
-        button.configureDefaultItem { item in
-            item.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
-            item.titleLabel.backgroundColor = .color1Red
-        }
-        return button
-    }()
     
     lazy var newsTableView: UITableView = {
         let tb = UITableView()
@@ -56,14 +42,10 @@ final class HomeView: UIView {
 extension HomeView: ViewProtocol {
     func buildHierarchy() {
         self.addSubview(newsTableView)
-        self.addSubview(menuFloatingButton)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            menuFloatingButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -45),
-            menuFloatingButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
-            
             newsTableView.topAnchor.constraint(equalTo: safeGuide.topAnchor),
             newsTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
             newsTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),

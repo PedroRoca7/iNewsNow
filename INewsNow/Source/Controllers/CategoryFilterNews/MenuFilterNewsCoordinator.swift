@@ -10,6 +10,7 @@ import UIKit
 
 protocol MenuFilterNewsCoordinating {
     func showScreenCategoryNews(titleCategory: String)
+    func showScreenNewYorkTimesNews()
 }
 
 final class MenuFilterNewsCoordinator: MenuFilterNewsCoordinating {
@@ -23,5 +24,10 @@ final class MenuFilterNewsCoordinator: MenuFilterNewsCoordinating {
     func showScreenCategoryNews(titleCategory: String) {
         let categoryNews = CategoryNewsFactory.makeModule(navigationController: navigationController, titleCategory: titleCategory)
         navigationController.pushViewController(categoryNews, animated: true)
+    }
+    
+    func showScreenNewYorkTimesNews() {
+        let newYorkTimesNews = WorldNewsFactory.makeModule(navigationController: navigationController)
+        navigationController.pushViewController(newYorkTimesNews, animated: true)
     }
 }

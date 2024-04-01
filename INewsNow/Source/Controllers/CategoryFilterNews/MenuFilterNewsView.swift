@@ -9,23 +9,33 @@ import Foundation
 import UIKit
 
 final class MenuFilterNewsView: UIView {
-    
-    //MARK: - Propertys
-    
-    lazy var safeGuide = self.safeAreaLayoutGuide
-    
+        
     //MARK: - ElementsVisual
     
-    lazy var menuCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        let collecionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collecionView.translatesAutoresizingMaskIntoConstraints = false
-        collecionView.backgroundColor = .clear
-        collecionView.register(MenuFilterNewsCollectionViewCell.self, forCellWithReuseIdentifier: MenuFilterNewsCollectionViewCell.identifier)
-        return collecionView
+    lazy var scrollView: SimpleScrollView = {
+        let element = SimpleScrollView(spacing: 10, margins: .init(top: 10, leading: 10, bottom: 10, trailing: 10))
+        element.showsVerticalScrollIndicator = false
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.bounces = false
+        return element
+    }()
+    
+    lazy var newYorkTimesButtonCategory: CategoryViewComponent = {
+        let element = CategoryViewComponent()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        return element
+    }()
+    
+    lazy var menuTableView: UITableView = {
+        let element = UITableView()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.backgroundColor = .clear
+        element.separatorColor = .clear
+        element.heightAnchor.constraint(greaterThanOrEqualToConstant: 1000).isActive = true
+        element.showsVerticalScrollIndicator = false
+        element.bounces = true
+        element.register(MenuFilterNewsTableViewCell.self, forCellReuseIdentifier: MenuFilterNewsTableViewCell.identifier)
+        return element
     }()
     
     
@@ -43,15 +53,17 @@ final class MenuFilterNewsView: UIView {
 
 extension MenuFilterNewsView: ViewProtocol {
     func buildHierarchy() {
-        self.addSubview(menuCollectionView)
+        self.addSubview(scrollView)
+        scrollView.addSubview(newYorkTimesButtonCategory)
+        scrollView.addSubview(menuTableView)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            menuCollectionView.topAnchor.constraint(equalTo: safeGuide.topAnchor),
-            menuCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            menuCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            menuCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
     }
 

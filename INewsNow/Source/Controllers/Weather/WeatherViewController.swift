@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Lottie
 
 final class WeatherViewController: UIViewController {
     
@@ -35,12 +36,35 @@ final class WeatherViewController: UIViewController {
         view = viewScreen
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.navigationController?.navigationBar.isHidden = true
+        checkDateAndSetBackgorundViewColor()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        tabBarController?.navigationController?.navigationBar.isHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegatesAndDataSource()
         viewScreen.loaderView.isHidden = false
         viewScreen.loader.startAnimating()
         viewModel.getForecast(forThis: "São Paulo")
+    }
+    
+    private func checkDateAndSetBackgorundViewColor() {
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH"
+        let hourNowString = dateFormatter.string(from: now)
+        if let hourNow = Int(hourNowString) {
+            if hourNow >= 6 && hourNow < 18 {
+                self.viewScreen.backgroundColor = UIColor(named: "azulClaro")
+            } else {
+                self.viewScreen.backgroundColor = UIColor(named: "azulEscuro")
+            }
+        }
     }
     
     private func setDelegatesAndDataSource() {
@@ -55,7 +79,8 @@ final class WeatherViewController: UIViewController {
         viewScreen.temperatureLabel.text = forecastCity.temp.toCelsius()
         viewScreen.humidityValueLabel.text = "\(forecastCity.humidity)mm"
         viewScreen.windValueLabel.text = forecastCity.windSpeed
-        viewScreen.weatherIcon.image = UIImage(named: forecastCity.conditionSlug)
+        viewScreen.changeAnimation(named: forecastCity.conditionSlug)
+        checkDateAndSetBackgorundViewColor()
     }
 }
 

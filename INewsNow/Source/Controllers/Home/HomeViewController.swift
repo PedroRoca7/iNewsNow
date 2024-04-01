@@ -16,7 +16,7 @@ final class HomeViewController: UIViewController {
         let view = HomeView()
         return view
     }()
-    
+                
     private var viewModel: HomeViewModeling
     
     //MARK: - Inits
@@ -33,12 +33,11 @@ final class HomeViewController: UIViewController {
     override func loadView() {
         view = viewScreen
     }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.loadNewsBrazil()
         setupDelegateAndDataSource()
-        setupMenuFloatingButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,15 +50,6 @@ final class HomeViewController: UIViewController {
         self.tabBarController?.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.black
         self.tabBarController?.navigationItem.title = "Notícias"
-    }
-    
-    private func setupMenuFloatingButton() {
-        viewScreen.menuFloatingButton.addItem(title: "Notícias do Mundo", image: UIImage(systemName: "newspaper.fill")?.withRenderingMode(.alwaysTemplate)) { item in
-            self.viewModel.showScreenNewsWorld()
-        }
-        viewScreen.menuFloatingButton.addItem(title: "Previsão do tempo", image: UIImage(systemName: "sun.max.fill")?.withRenderingMode(.alwaysTemplate)) { item in
-            self.viewModel.showScreenWeather()
-        }
     }
     
     private func setupDelegateAndDataSource() {

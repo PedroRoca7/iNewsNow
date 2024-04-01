@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Lottie
 
 final class WeatherView: UIView {
     
@@ -29,7 +30,7 @@ final class WeatherView: UIView {
         label.text = "São Paulo"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = .color1Red
+        label.textColor = .azulClaro
         return label
     }()
     
@@ -38,15 +39,18 @@ final class WeatherView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 70, weight: .bold)
         label.textAlignment = .left
-        label.textColor = .color1Red
+        label.textColor = .azulClaro
         return label
     }()
     
-    lazy var weatherIcon: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleAspectFit
-        return image
+    lazy var weatherIcon: LottieAnimationView = {
+        let element = LottieAnimationView(name: "fog")
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.contentMode = .scaleAspectFit
+        element.loopMode = .loop
+        element.animationSpeed = 1.0
+        element.play()
+        return element
     }()
     
     private lazy var humidityLabel: UILabel = {
@@ -155,6 +159,24 @@ final class WeatherView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func changeAnimation(named animationName: String) {
+        // Pare a animação atual
+        weatherIcon.stop()
+
+        // Remova a animação atual da super view
+        weatherIcon.removeFromSuperview()
+
+        // Crie uma nova AnimationView com a animação especificada
+        weatherIcon = LottieAnimationView(name: animationName)
+        weatherIcon.translatesAutoresizingMaskIntoConstraints = false
+        weatherIcon.frame = bounds
+        weatherIcon.contentMode = .scaleAspectFit
+        weatherIcon.loopMode = .loop
+        weatherIcon.animationSpeed = 1.0
+        // Reproduzir a nova animação
+        setupView()
+        weatherIcon.play()
+    }
 }
 
 extension WeatherView: ViewProtocol {
@@ -216,6 +238,6 @@ extension WeatherView: ViewProtocol {
     }
     
     func applyAdditionalChanges() {
-        self.backgroundColor = .color1Red
+        self.backgroundColor = .darkGray
     }
 }

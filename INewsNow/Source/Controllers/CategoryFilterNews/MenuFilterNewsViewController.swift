@@ -35,10 +35,19 @@ final class MenuFilterNewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegatesAndDataSource()
+        addTargetButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setupNavigationBar()
+    }
+    
+    private func addTargetButton() {
+        viewScreen.newYorkTimesButtonCategory.button.addTarget(self, action: #selector(showNewYorkTimes), for: .touchUpInside)
+    }
+    
+    @objc private func showNewYorkTimes() {
+        viewModel.showScreenNewYorkTimesNews()
     }
     
     private func setupNavigationBar() {
@@ -46,35 +55,46 @@ final class MenuFilterNewsViewController: UIViewController {
     }
     
     private func setDelegatesAndDataSource() {
-        viewScreen.menuCollectionView.dataSource = self
-        viewScreen.menuCollectionView.delegate = self
+        viewScreen.menuTableView.dataSource = self
+        viewScreen.menuTableView.delegate = self
+        viewScreen.scrollView.delegate = self
     }
 }
  
-extension MenuFilterNewsViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.categorys.count
+extension MenuFilterNewsViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.categorys.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuFilterNewsCollectionViewCell.identifier,
-                                                            for: indexPath) as? MenuFilterNewsCollectionViewCell else { return UICollectionViewCell()}
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuFilterNewsTableViewCell.identifier, for: indexPath) as? MenuFilterNewsTableViewCell else {
+            return UITableViewCell()
+        }
     
         let titleCategory = viewModel.categorys[indexPath.row]
         cell.prepareCollectionCell(titleCategory: titleCategory)
         
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.frame.width - 30) / 2
-        let height = collectionView.frame.height / 4
-        return CGSize(width: width, height: height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let titleCatergory = viewModel.categorys[indexPath.row]
         viewModel.showScreenCategoryNews(titleCategory: titleCatergory)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 160
+    }
+}
+
+extension MenuFilterNewsViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == self.viewScreen.scrollView {
+            viewScreen.menuTableView.isScrollEnabled = (self.viewScreen.scrollView.contentOffset.y >= 200)
+        }
+        if scrollView == self.viewScreen.menuTableView {
+            viewScreen.menuTableView.isScrollEnabled = (self.viewScreen.menuTableView.contentOffset.y > 0)
+        }
     }
 }
 

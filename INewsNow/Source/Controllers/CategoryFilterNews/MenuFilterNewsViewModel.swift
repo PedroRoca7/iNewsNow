@@ -9,6 +9,7 @@ import Foundation
 
 protocol MenuFilterNewsViewModeling {
     func showScreenCategoryNews(titleCategory: String)
+    func showScreenNewYorkTimesNews()
     var categorys: [String] { get }
 }
 
@@ -28,5 +29,9 @@ final class MenuFilterNewsViewModel: MenuFilterNewsViewModeling {
     
     func showScreenCategoryNews(titleCategory: String) {
         coordinator.showScreenCategoryNews(titleCategory: titleCategory)
+    }
+    
+    func showScreenNewYorkTimesNews() {
+        coordinator.showScreenNewYorkTimesNews()
     }
 }

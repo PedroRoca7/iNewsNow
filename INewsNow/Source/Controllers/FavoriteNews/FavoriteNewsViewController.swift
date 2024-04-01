@@ -16,7 +16,7 @@ final class FavoriteNewsViewController: UIViewController {
         let view = FavoriteNewsView()
         return view
     }()
-    
+
     private var viewModel: FavoriteNewsViewModeling
     
     //MARK: - Inits
@@ -49,7 +49,7 @@ final class FavoriteNewsViewController: UIViewController {
     }
     
     //MARK: - Methods
-    
+        
     private func setupNavigationBar() {
         self.tabBarController?.navigationItem.title = "Notícias Favoritas"
     }
