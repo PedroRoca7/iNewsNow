@@ -38,7 +38,7 @@ final class WeatherViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.navigationController?.navigationBar.isHidden = true
-        checkDateAndSetBackgorundViewColor()
+        viewModel.getForecast(forThis: "São Paulo")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -50,20 +50,18 @@ final class WeatherViewController: UIViewController {
         setDelegatesAndDataSource()
         viewScreen.loaderView.isHidden = false
         viewScreen.loader.startAnimating()
-        viewModel.getForecast(forThis: "São Paulo")
     }
     
-    private func checkDateAndSetBackgorundViewColor() {
-        let now = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH"
-        let hourNowString = dateFormatter.string(from: now)
-        if let hourNow = Int(hourNowString) {
-            if hourNow >= 6 && hourNow < 18 {
-                self.viewScreen.backgroundColor = UIColor(named: "azulClaro")
-            } else {
-                self.viewScreen.backgroundColor = UIColor(named: "azulEscuro")
-            }
+    private func checkDateAndSetBackgorundViewColor(withWeather weather: WeatherType) {
+        switch weather {
+        case .day:
+            viewScreen.backgroundImage.image = UIImage(named: "backgroundClearDay")
+        case .night:
+            viewScreen.backgroundImage.image = UIImage(named: "backgroundClearNight")
+        case .cloud:
+            viewScreen.backgroundImage.image = UIImage(named: "backgroundCloud")
+        case .rain:
+            viewScreen.backgroundImage.image = UIImage(named: "backgroundRain")
         }
     }
     
@@ -71,6 +69,7 @@ final class WeatherViewController: UIViewController {
         viewScreen.dailyForecastTableView.delegate = self
         viewScreen.dailyForecastTableView.dataSource = self
         viewModel.delegate = self
+        viewScreen.serachCity.delegate = self
     }
     
     private func loadData() {
@@ -80,7 +79,7 @@ final class WeatherViewController: UIViewController {
         viewScreen.humidityValueLabel.text = "\(forecastCity.humidity)mm"
         viewScreen.windValueLabel.text = forecastCity.windSpeed
         viewScreen.changeAnimation(named: forecastCity.conditionSlug)
-        checkDateAndSetBackgorundViewColor()
+        checkDateAndSetBackgorundViewColor(withWeather: WeatherType.fromString(forecastCity.conditionSlug))
     }
 }
 
@@ -118,5 +117,16 @@ extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+}
+
+extension WeatherViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let searchText = searchBar.text {
+            viewScreen.loaderView.isHidden = false
+            viewScreen.loader.startAnimating()
+            viewModel.getForecast(forThis: searchText)
+        }
     }
 }

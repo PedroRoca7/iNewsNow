@@ -14,6 +14,7 @@ struct ForecastResponseModel: Codable {
 struct Weather: Codable {
     let city: String
     let date: String
+    let time: String
     let temp: Int
     let humidity: Int
     let windSpeed: String
@@ -21,7 +22,7 @@ struct Weather: Codable {
     let forecast: [Forecast]
 
     enum CodingKeys: String, CodingKey {
-        case date, temp, humidity, city
+        case date, temp, humidity, city, time
         case windSpeed = "wind_speedy"
         case forecast
         case conditionSlug = "condition_slug"

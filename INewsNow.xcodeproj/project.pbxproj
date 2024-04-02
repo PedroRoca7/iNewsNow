@@ -35,6 +35,7 @@
 		CE4BC9B42B6A898900409725 /* INewsNowUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BC9B32B6A898900409725 /* INewsNowUITestsLaunchTests.swift */; };
 		CE4BC9C42B6A8B3800409725 /* WorldNewsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BC9C32B6A8B3800409725 /* WorldNewsFactory.swift */; };
 		CE4BC9C62B6A8D0100409725 /* WorldNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BC9C52B6A8D0100409725 /* WorldNewsView.swift */; };
+		CE4C43F52BBC680A0007CD8B /* EnumWeatherType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C43F42BBC680A0007CD8B /* EnumWeatherType.swift */; };
 		CE4E9FFE2B7FB8A600B57802 /* FavoriteNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4E9FFD2B7FB8A600B57802 /* FavoriteNewsViewController.swift */; };
 		CE4EA0002B7FB8B100B57802 /* FavoriteNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4E9FFF2B7FB8B100B57802 /* FavoriteNewsView.swift */; };
 		CE4EA0022B7FBE4300B57802 /* FavoriteNewsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4EA0012B7FBE4300B57802 /* FavoriteNewsFactory.swift */; };
@@ -149,6 +150,7 @@
 		CE4BC9B32B6A898900409725 /* INewsNowUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INewsNowUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CE4BC9C32B6A8B3800409725 /* WorldNewsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldNewsFactory.swift; sourceTree = "<group>"; };
 		CE4BC9C52B6A8D0100409725 /* WorldNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldNewsView.swift; sourceTree = "<group>"; };
+		CE4C43F42BBC680A0007CD8B /* EnumWeatherType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumWeatherType.swift; sourceTree = "<group>"; };
 		CE4E9FFD2B7FB8A600B57802 /* FavoriteNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNewsViewController.swift; sourceTree = "<group>"; };
 		CE4E9FFF2B7FB8B100B57802 /* FavoriteNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNewsView.swift; sourceTree = "<group>"; };
 		CE4EA0012B7FBE4300B57802 /* FavoriteNewsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNewsFactory.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 		CE4BC9C02B6A8AD800409725 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				CE4C43F32BBC67F70007CD8B /* Enum */,
 				CED75AB32BBB612D0011235C /* Animations */,
 				CED75AAB2BBAF7720011235C /* Components */,
 				CE425FF52B8648E400A0BDA6 /* Helpers */,
@@ -434,6 +437,14 @@
 				CED431052B7675CB005BE203 /* WorldNewsCoordinator.swift */,
 			);
 			path = WorldNews;
+			sourceTree = "<group>";
+		};
+		CE4C43F32BBC67F70007CD8B /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				CE4C43F42BBC680A0007CD8B /* EnumWeatherType.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		CE4E9FFC2B7FB88000B57802 /* FavoriteNews */ = {
@@ -901,6 +912,7 @@
 				CE7A2B6D2B988DFE004723D8 /* CategoryNewsView.swift in Sources */,
 				CE5A49312B878AC0006D0702 /* DetailsNewsFactory.swift in Sources */,
 				CE86C24D2B96B0E300921390 /* MenuFilterNewsFactory.swift in Sources */,
+				CE4C43F52BBC680A0007CD8B /* EnumWeatherType.swift in Sources */,
 				CE5751592B85591E00A34621 /* NewsBrazilDataIOService.swift in Sources */,
 				CED431042B7673B7005BE203 /* TabBarCoordinator.swift in Sources */,
 				CED431062B7675CB005BE203 /* WorldNewsCoordinator.swift in Sources */,

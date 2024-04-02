@@ -16,6 +16,21 @@ final class WeatherView: UIView {
     
     //MARK: ElementsVisual
     
+    lazy var backgroundImage: UIImageView = {
+        let element = UIImageView()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.contentMode = .scaleAspectFill
+        return element
+    }()
+    
+    lazy var serachCity: UISearchBar = {
+        let element = UISearchBar()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.placeholder = "Pesquise por cidade"
+        element.searchBarStyle = .minimal
+        return element
+    }()
+    
     private lazy var headerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -160,27 +175,39 @@ final class WeatherView: UIView {
     }
     
     func changeAnimation(named animationName: String) {
-        // Pare a animação atual
-        weatherIcon.stop()
-
-        // Remova a animação atual da super view
-        weatherIcon.removeFromSuperview()
-
-        // Crie uma nova AnimationView com a animação especificada
-        weatherIcon = LottieAnimationView(name: animationName)
-        weatherIcon.translatesAutoresizingMaskIntoConstraints = false
-        weatherIcon.frame = bounds
-        weatherIcon.contentMode = .scaleAspectFit
-        weatherIcon.loopMode = .loop
-        weatherIcon.animationSpeed = 1.0
-        // Reproduzir a nova animação
-        setupView()
-        weatherIcon.play()
+      
+        if animationName == "cloudly_day" {
+            weatherIcon.stop()
+            weatherIcon.removeFromSuperview()
+            weatherIcon = LottieAnimationView(name: "cloud")
+            weatherIcon.translatesAutoresizingMaskIntoConstraints = false
+            weatherIcon.frame = bounds
+            weatherIcon.contentMode = .scaleAspectFit
+            weatherIcon.loopMode = .loop
+            weatherIcon.animationSpeed = 1.0
+        
+            setupView()
+            weatherIcon.play()
+        } else {
+            weatherIcon.stop()
+            weatherIcon.removeFromSuperview()
+            weatherIcon = LottieAnimationView(name: animationName)
+            weatherIcon.translatesAutoresizingMaskIntoConstraints = false
+            weatherIcon.frame = bounds
+            weatherIcon.contentMode = .scaleAspectFit
+            weatherIcon.loopMode = .loop
+            weatherIcon.animationSpeed = 1.0
+        
+            setupView()
+            weatherIcon.play()
+        }
     }
 }
 
 extension WeatherView: ViewProtocol {
     func buildHierarchy() {
+        self.addSubview(backgroundImage)
+        self.addSubview(serachCity)
         self.addSubview(headerView)
         self.addSubview(statsStackView)
         self.addSubview(dailyForecastLabel)
@@ -198,7 +225,16 @@ extension WeatherView: ViewProtocol {
     func setupConstraints() {
         NSLayoutConstraint.activate([
         
-            headerView.topAnchor.constraint(equalTo: safeGuide.topAnchor),
+            backgroundImage.topAnchor.constraint(equalTo: self.topAnchor),
+            backgroundImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            backgroundImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            
+            serachCity.topAnchor.constraint(equalTo: self.topAnchor, constant: 40),
+            serachCity.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            serachCity.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            
+            headerView.topAnchor.constraint(equalTo: serachCity.bottomAnchor, constant: 5),
             headerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 35),
             headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -35),
             headerView.heightAnchor.constraint(equalToConstant: 150),
