@@ -20,6 +20,7 @@ final class WeatherView: UIView {
         let element = UIImageView()
         element.translatesAutoresizingMaskIntoConstraints = false
         element.contentMode = .scaleAspectFill
+        element.alpha = 0.5
         return element
     }()
     
@@ -27,7 +28,8 @@ final class WeatherView: UIView {
         let element = UISearchBar()
         element.translatesAutoresizingMaskIntoConstraints = false
         element.placeholder = "Pesquise por cidade"
-        element.searchBarStyle = .minimal
+        element.backgroundImage = UIImage()
+        element.searchTextField.backgroundColor = .white
         return element
     }()
     
@@ -52,7 +54,7 @@ final class WeatherView: UIView {
     lazy var temperatureLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 70, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 55, weight: .bold)
         label.textAlignment = .left
         label.textColor = .azulClaro
         return label
@@ -239,15 +241,15 @@ extension WeatherView: ViewProtocol {
             headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -35),
             headerView.heightAnchor.constraint(equalToConstant: 150),
             
-            cityLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 15),
+            cityLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 10),
             cityLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 15),
             cityLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -15),
             cityLabel.heightAnchor.constraint(equalToConstant: 20),
             temperatureLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 12),
             temperatureLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 18),
-            temperatureLabel.heightAnchor.constraint(equalToConstant: 71),
-            weatherIcon.heightAnchor.constraint(equalToConstant: 86),
-            weatherIcon.widthAnchor.constraint(equalToConstant: 86),
+            temperatureLabel.heightAnchor.constraint(equalToConstant: 60),
+            weatherIcon.heightAnchor.constraint(equalToConstant: 120),
+            weatherIcon.widthAnchor.constraint(equalToConstant: 120),
             weatherIcon.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -18),
             weatherIcon.centerYAnchor.constraint(equalTo: temperatureLabel.centerYAnchor),
             weatherIcon.leadingAnchor.constraint(equalTo: temperatureLabel.trailingAnchor, constant: 8),

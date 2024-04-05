@@ -270,6 +270,39 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CE0DD5762BBF72CA00B002DD /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				CE40229F2B6E781100FB727C /* Service */,
+				CE4022A32B6E80B700FB727C /* Models */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		CE0DD5772BBF72D100B002DD /* App */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		CE0DD5782BBF72D700B002DD /* Infra */ = {
+			isa = PBXGroup;
+			children = (
+				CE4BC9C12B6A8B0200409725 /* Controllers */,
+				CED431002B7670CE005BE203 /* TabBar */,
+			);
+			path = Infra;
+			sourceTree = "<group>";
+		};
+		CE0DD5792BBF73D400B002DD /* ExternalInterfaces */ = {
+			isa = PBXGroup;
+			children = (
+				CE57511E2B83710000A34621 /* INewsNowDB.xcdatamodeld */,
+			);
+			path = ExternalInterfaces;
+			sourceTree = "<group>";
+		};
 		CE1A3A902B6D392A000C0559 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,11 +401,14 @@
 		CE4BC98F2B6A898300409725 /* INewsNow */ = {
 			isa = PBXGroup;
 			children = (
+				CE0DD5792BBF73D400B002DD /* ExternalInterfaces */,
+				CE0DD5782BBF72D700B002DD /* Infra */,
+				CE0DD5772BBF72D100B002DD /* App */,
+				CE0DD5762BBF72CA00B002DD /* Domain */,
 				CE7A2B682B97C727004723D8 /* Root */,
 				CE4BC9C02B6A8AD800409725 /* Source */,
 				CE4BC9992B6A898800409725 /* Assets.xcassets */,
 				CE4BC99E2B6A898800409725 /* Info.plist */,
-				CE57511E2B83710000A34621 /* INewsNowDB.xcdatamodeld */,
 			);
 			path = INewsNow;
 			sourceTree = "<group>";
@@ -402,11 +438,7 @@
 				CED75AAB2BBAF7720011235C /* Components */,
 				CE425FF52B8648E400A0BDA6 /* Helpers */,
 				CE4EA00A2B7FC11300B57802 /* Extensions */,
-				CED431002B7670CE005BE203 /* TabBar */,
-				CE4022A32B6E80B700FB727C /* Models */,
-				CE40229F2B6E781100FB727C /* Service */,
 				CE1A3A902B6D392A000C0559 /* Protocols */,
-				CE4BC9C12B6A8B0200409725 /* Controllers */,
 			);
 			path = Source;
 			sourceTree = "<group>";

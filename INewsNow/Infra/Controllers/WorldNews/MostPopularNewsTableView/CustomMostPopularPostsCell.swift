@@ -57,7 +57,7 @@ final class CustomMostPopularPostsCell: UIView {
     lazy var imageNewsImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleToFill
+        image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
         return image
     }()
