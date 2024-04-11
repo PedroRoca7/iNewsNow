@@ -13,7 +13,7 @@ protocol WeatherServiceDelegate: NSObject {
 }
 
 protocol WeatherServicing {
-    var delegate:WeatherServiceDelegate? { get set }
+    var delegate: WeatherServiceDelegate? { get set }
     func fecthData(city: String)
 }
 

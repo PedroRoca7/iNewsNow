@@ -23,11 +23,9 @@ protocol WorldNewsViewModeling {
     var mostPopularPostList: MostPopularNewsModel? { get }
 }
 
-enum TypeNews {
-    case mainNews, mostPopularNews
-}
 
-final class WorldNewsViewModel: WorldNewsViewModeling {
+
+final class WorldNewsViewModel: NSObject, WorldNewsViewModeling {
     
     private var service: NewYorkTimesServicing
     private var coordinator: WorldNewsCoordinating
@@ -41,28 +39,11 @@ final class WorldNewsViewModel: WorldNewsViewModeling {
     }
     
     func loadMainNews() {
-        Task {
-            do {
-                mainNewsList = try await service.loadMainNews()
-            } catch {
-                print("Erro ao buscar dados \(error.localizedDescription)")
-                delegate?.failure()
-            }
-            delegate?.success()
-        }
+        service.loadMainNews()
     }
     
     func loadMostPopularPost() {
-        service.loadMostPopularNews { [weak self] data, error in
-            guard let self else { return }
-            if let error = error {
-                self.delegate?.failure()
-                print(error.localizedDescription)
-            } else if let data = data {
-                self.mostPopularPostList = data
-                self.delegate?.success()
-            }
-        }
+        service.loadMostPopularNews()
     }
     
     func setFavoriteNews(index: Int, typeNews: TypeNews) {
@@ -100,5 +81,25 @@ final class WorldNewsViewModel: WorldNewsViewModeling {
                 CoreDataHelper.shared.removeFavoritedNewsCoreData(id: news.id)
             }
         }
+    }
+}
+
+extension WorldNewsViewModel: NewYorkTimesServiceDelegate {
+    func didFailMainNewsFetching() {
+        self.delegate?.failure()
+    }
+    
+    func didSuccedMainNewsFetching(mainNews: MainNewsModel) {
+        self.mainNewsList = mainNews
+        self.delegate?.success()
+    }
+    
+    func didFailMostPopularFetching() {
+        self.delegate?.failure()
+    }
+    
+    func didSuccedMostPopularFetching(mostPopular: MostPopularNewsModel) {
+        self.mostPopularPostList = mostPopular
+        self.delegate?.success()
     }
 }

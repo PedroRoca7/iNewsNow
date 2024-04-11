@@ -68,6 +68,7 @@
 		CE7DFE752BC72137007396D8 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DFE742BC72137007396D8 /* HomeInteractor.swift */; };
 		CE7DFE782BC83C08007396D8 /* PrivateApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DFE772BC83C08007396D8 /* PrivateApiKeys.swift */; };
 		CE7DFE7A2BC8421D007396D8 /* EnumApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DFE792BC8421D007396D8 /* EnumApiError.swift */; };
+		CE7DFE7C2BC86520007396D8 /* EnumTypeNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DFE7B2BC86520007396D8 /* EnumTypeNews.swift */; };
 		CE7E9D022BC4249F00FF8537 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E9D012BC4249F00FF8537 /* LaunchScreenViewController.swift */; };
 		CE7E9D042BC4286200FF8537 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E9D032BC4286200FF8537 /* LaunchScreenView.swift */; };
 		CE86C22B2B920CD100921390 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C22A2B920CD100921390 /* WeatherViewController.swift */; };
@@ -189,6 +190,7 @@
 		CE7DFE742BC72137007396D8 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		CE7DFE772BC83C08007396D8 /* PrivateApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateApiKeys.swift; sourceTree = "<group>"; };
 		CE7DFE792BC8421D007396D8 /* EnumApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumApiError.swift; sourceTree = "<group>"; };
+		CE7DFE7B2BC86520007396D8 /* EnumTypeNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumTypeNews.swift; sourceTree = "<group>"; };
 		CE7E9D012BC4249F00FF8537 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		CE7E9D032BC4286200FF8537 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		CE86C22A2B920CD100921390 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 			children = (
 				CE4C43F42BBC680A0007CD8B /* EnumWeatherType.swift */,
 				CE7DFE792BC8421D007396D8 /* EnumApiError.swift */,
+				CE7DFE7B2BC86520007396D8 /* EnumTypeNews.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -943,6 +946,7 @@
 				CE86C22D2B920CDE00921390 /* WeatherFactory.swift in Sources */,
 				CE7E9D022BC4249F00FF8537 /* LaunchScreenViewController.swift in Sources */,
 				CE86C2492B96AF3A00921390 /* MenuFilterNewsView.swift in Sources */,
+				CE7DFE7C2BC86520007396D8 /* EnumTypeNews.swift in Sources */,
 				CE4EA00D2B7FC13D00B57802 /* Color+Extension.swift in Sources */,
 				CE86C22B2B920CD100921390 /* WeatherViewController.swift in Sources */,
 				CE57515F2B85734A00A34621 /* HomeFactory.swift in Sources */,

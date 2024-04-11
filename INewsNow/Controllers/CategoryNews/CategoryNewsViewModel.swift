@@ -21,31 +21,22 @@ protocol CategoryNewsViewModelDelegate: AnyObject {
     func failure()
 }
 
-final class CategoryNewsViewModel: CategoryNewsViewModeling {
+final class CategoryNewsViewModel: NSObject, CategoryNewsViewModeling {
     
-    private var service: NewsBrazilDataIOService
+    private var service: NewsBrazilDataIOServicing
     private var coordinator: CategoryNewsCoordinating
     private(set) var newsCategoryBrazilList: NewsBrazilModel?
     private(set) var titleCategory: String
     weak var delegate: CategoryNewsViewModelDelegate?
     
-    init(service: NewsBrazilDataIOService, coordinator: CategoryNewsCoordinating, titleCategory: String) {
+    init(service: NewsBrazilDataIOServicing, coordinator: CategoryNewsCoordinating, titleCategory: String) {
         self.service = service
         self.coordinator = coordinator
         self.titleCategory = titleCategory
     }
     
     func loadNewsCategory() {
-        service.loadCategoryNewsBrazil(category: titleCategory) { [weak self] data, error in
-            guard let self else { return }
-            if let error = error {
-                self.delegate?.failure()
-                print(error.localizedDescription)
-            } else if let data = data {
-                self.newsCategoryBrazilList = data
-                self.delegate?.success()
-            }
-        }
+        service.loadCategoryNewsBrazil(category: titleCategory)
     }
     
     func setFavoriteNews(index: Int) {
@@ -68,5 +59,16 @@ final class CategoryNewsViewModel: CategoryNewsViewModeling {
     
     func showScreenDetailsNews<T>(newsObject: T) {
         coordinator.showScreenDetailsNews(newsObject: newsObject)
+    }
+}
+
+extension CategoryNewsViewModel: NewsBrazilDataIOServiceDelegate {
+    func didFailNewsBrazilFetching() {
+        self.delegate?.failure()
+    }
+    
+    func didSuccedNewsBrazilFetching(newsBrazil: NewsBrazilModel) {
+        self.newsCategoryBrazilList = newsBrazil
+        self.delegate?.success()
     }
 }

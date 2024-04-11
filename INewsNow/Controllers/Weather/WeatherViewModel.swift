@@ -19,7 +19,7 @@ protocol WeatherViewModelDelegate: AnyObject {
     func failure()
 }
 
-final class WeatherViewModel: WeatherViewModeling {
+final class WeatherViewModel: NSObject, WeatherViewModeling {
     
     private let service: WeatherServicing
     private(set) var forescastCity: ForecastResponseModel?
@@ -31,15 +31,17 @@ final class WeatherViewModel: WeatherViewModeling {
     }
         
     func getForecast(forThis city: String) {
-        service.fecthData(city: city) { [weak self] forecastResult in
-            guard let self = self else { return }
-            self.forescastCity = forecastResult
-            if let forescastCity = self.forescastCity {
-                self.forecastDayList = forescastCity.results.forecast
-                self.delegate?.success(forecastCity: forescastCity)
-            } else {
-                self.delegate?.failure()
-            }
-        }
+        service.fecthData(city: city)
+    }
+}
+
+extension WeatherViewModel: WeatherServiceDelegate {
+    func didFailForecastFetching() {
+        self.delegate?.failure()
+    }
+    
+    func didSuccedForecastFetching(forecast: ForecastResponseModel) {
+        self.forecastDayList = forecast.results.forecast
+        self.delegate?.success(forecastCity: forecast)
     }
 }

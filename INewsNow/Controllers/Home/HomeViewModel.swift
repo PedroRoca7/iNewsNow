@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol HomeViewModelDelegate: AnyObject {
+protocol HomeViewModelDelegate: NSObject {
     func success()
     func failure()
 }
 
-protocol HomeViewModeling {
+protocol HomeViewModeling: AnyObject {
     func loadNewsBrazil()
     func showScreenNewsWorld()
     func setFavoriteNews(index: Int)
@@ -22,29 +22,20 @@ protocol HomeViewModeling {
     var newsBrazilList: NewsBrazilModel? { get }
 }
 
-final class HomeViewModel: HomeViewModeling {
+final class HomeViewModel: NSObject, HomeViewModeling {
     
-    private var service: NewsBrazilDataIOService
+    private var service: NewsBrazilDataIOServicing
     private var coordinator: HomeCoordinating
     private(set) var newsBrazilList: NewsBrazilModel?
     weak var delegate: HomeViewModelDelegate?
     
-    init(service: NewsBrazilDataIOService, coordinator: HomeCoordinating) {
+    init(service: NewsBrazilDataIOServicing, coordinator: HomeCoordinating) {
         self.service = service
         self.coordinator = coordinator
     }
     
     func loadNewsBrazil() {
-        service.loadNewsBrazil { [weak self] data, error in
-            guard let self else { return }
-            if let error = error {
-                self.delegate?.failure()
-                print(error.localizedDescription)
-            } else if let data = data {
-                self.newsBrazilList = data
-                self.delegate?.success()
-            }
-        }
+        service.loadNewsBrazil()
     }
     
     func setFavoriteNews(index: Int) {
@@ -75,5 +66,16 @@ final class HomeViewModel: HomeViewModeling {
     
     func showScreenWeather() {
         coordinator.showScreenWeather()
+    }
+}
+
+extension HomeViewModel: NewsBrazilDataIOServiceDelegate {
+    func didFailNewsBrazilFetching() {
+        self.delegate?.failure()
+    }
+    
+    func didSuccedNewsBrazilFetching(newsBrazil: NewsBrazilModel) {
+        self.newsBrazilList = newsBrazil
+        self.delegate?.success()
     }
 }
