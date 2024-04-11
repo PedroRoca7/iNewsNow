@@ -13,6 +13,8 @@ enum WeatherFactory {
         let service = WeatherService()
         let viewModel = WeatherViewModel(service: service)
         let viewController = WeatherViewController(viewModel: viewModel)
+        service.delegate = viewModel
+        viewModel.delegate = viewController
         return viewController
     }
 }

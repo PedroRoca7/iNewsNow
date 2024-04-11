@@ -66,9 +66,10 @@
 		CE7DFE712BC4713D007396D8 /* clear_day.json in Resources */ = {isa = PBXBuildFile; fileRef = CE7DFE702BC4713D007396D8 /* clear_day.json */; };
 		CE7DFE732BC7212C007396D8 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DFE722BC7212C007396D8 /* HomePresenter.swift */; };
 		CE7DFE752BC72137007396D8 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DFE742BC72137007396D8 /* HomeInteractor.swift */; };
-		CE7DFE782BC83C08007396D8 /* PrivateApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DFE772BC83C08007396D8 /* PrivateApiKeys.swift */; };
 		CE7DFE7A2BC8421D007396D8 /* EnumApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DFE792BC8421D007396D8 /* EnumApiError.swift */; };
 		CE7DFE7C2BC86520007396D8 /* EnumTypeNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DFE7B2BC86520007396D8 /* EnumTypeNews.swift */; };
+		CE7DFE7F2BC86F2C007396D8 /* PrivateApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DFE7E2BC86F2C007396D8 /* PrivateApiKeys.swift */; };
+		CE7DFE822BC884B5007396D8 /* cloud.json in Resources */ = {isa = PBXBuildFile; fileRef = CE7DFE812BC884B5007396D8 /* cloud.json */; };
 		CE7E9D022BC4249F00FF8537 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E9D012BC4249F00FF8537 /* LaunchScreenViewController.swift */; };
 		CE7E9D042BC4286200FF8537 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E9D032BC4286200FF8537 /* LaunchScreenView.swift */; };
 		CE86C22B2B920CD100921390 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C22A2B920CD100921390 /* WeatherViewController.swift */; };
@@ -188,9 +189,10 @@
 		CE7DFE702BC4713D007396D8 /* clear_day.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clear_day.json; sourceTree = "<group>"; };
 		CE7DFE722BC7212C007396D8 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		CE7DFE742BC72137007396D8 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
-		CE7DFE772BC83C08007396D8 /* PrivateApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateApiKeys.swift; sourceTree = "<group>"; };
 		CE7DFE792BC8421D007396D8 /* EnumApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumApiError.swift; sourceTree = "<group>"; };
 		CE7DFE7B2BC86520007396D8 /* EnumTypeNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumTypeNews.swift; sourceTree = "<group>"; };
+		CE7DFE7E2BC86F2C007396D8 /* PrivateApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateApiKeys.swift; sourceTree = "<group>"; };
+		CE7DFE812BC884B5007396D8 /* cloud.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cloud.json; sourceTree = "<group>"; };
 		CE7E9D012BC4249F00FF8537 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		CE7E9D032BC4286200FF8537 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		CE86C22A2B920CD100921390 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
@@ -411,7 +413,7 @@
 		CE4BC9C02B6A8AD800409725 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				CE7DFE762BC83BEB007396D8 /* PrivateApiKeys */,
+				CE7DFE7D2BC86EDB007396D8 /* PrivateApiKeys */,
 				CE4C43F32BBC67F70007CD8B /* Enum */,
 				CED75AB32BBB612D0011235C /* Animations */,
 				CED75AAB2BBAF7720011235C /* Components */,
@@ -577,10 +579,10 @@
 			path = CategoryTableView;
 			sourceTree = "<group>";
 		};
-		CE7DFE762BC83BEB007396D8 /* PrivateApiKeys */ = {
+		CE7DFE7D2BC86EDB007396D8 /* PrivateApiKeys */ = {
 			isa = PBXGroup;
 			children = (
-				CE7DFE772BC83C08007396D8 /* PrivateApiKeys.swift */,
+				CE7DFE7E2BC86F2C007396D8 /* PrivateApiKeys.swift */,
 			);
 			path = PrivateApiKeys;
 			sourceTree = "<group>";
@@ -662,6 +664,7 @@
 				CED75AB82BBB61490011235C /* clear_night.json */,
 				CE7DFE702BC4713D007396D8 /* clear_day.json */,
 				CE7DFE6E2BC47134007396D8 /* cloudly_day.json */,
+				CE7DFE812BC884B5007396D8 /* cloud.json */,
 				CED75ABB2BBB614A0011235C /* cloudly_night.json */,
 				CED75AB72BBB61490011235C /* rain.json */,
 				CED75ABA2BBB614A0011235C /* snow.json */,
@@ -787,6 +790,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CED75AC32BBB614A0011235C /* cloudly_night.json in Resources */,
+				CE7DFE822BC884B5007396D8 /* cloud.json in Resources */,
 				CE7DFE6D2BC46DA5007396D8 /* launchScreen.json in Resources */,
 				CED75AC22BBB614A0011235C /* snow.json in Resources */,
 				CED75ABF2BBB614A0011235C /* rain.json in Resources */,
@@ -939,6 +943,7 @@
 				CED431062B7675CB005BE203 /* WorldNewsCoordinator.swift in Sources */,
 				CE1A3A962B6D7816000C0559 /* CustomMostPopularPostsTableViewCell.swift in Sources */,
 				CECBC9752B9893A700C6035A /* CategoryNewsCell.swift in Sources */,
+				CE7DFE7F2BC86F2C007396D8 /* PrivateApiKeys.swift in Sources */,
 				CE4E9FFE2B7FB8A600B57802 /* FavoriteNewsViewController.swift in Sources */,
 				CE7A2B712B988E22004723D8 /* CategoryNewsFactory.swift in Sources */,
 				CE5751522B8529DF00A34621 /* HomeView.swift in Sources */,
@@ -974,7 +979,6 @@
 				CE425FF92B86A38300A0BDA6 /* HomeCoordinator.swift in Sources */,
 				CE5751202B83710000A34621 /* INewsNowDB.xcdatamodeld in Sources */,
 				CE425FF72B8648FD00A0BDA6 /* CoreDataHelper.swift in Sources */,
-				CE7DFE782BC83C08007396D8 /* PrivateApiKeys.swift in Sources */,
 				CE4EA0022B7FBE4300B57802 /* FavoriteNewsFactory.swift in Sources */,
 				CE7A2B6F2B988E02004723D8 /* CategoryNewsViewModel.swift in Sources */,
 				CE4BC9C62B6A8D0100409725 /* WorldNewsView.swift in Sources */,

@@ -68,7 +68,6 @@ final class WeatherViewController: UIViewController {
     private func setDelegatesAndDataSource() {
         viewScreen.dailyForecastTableView.delegate = self
         viewScreen.dailyForecastTableView.dataSource = self
-        viewModel.delegate = self
         viewScreen.serachCity.delegate = self
     }
     
@@ -79,6 +78,7 @@ final class WeatherViewController: UIViewController {
         viewScreen.humidityValueLabel.text = "\(forecastCity.humidity)mm"
         viewScreen.windValueLabel.text = forecastCity.windSpeed
         viewScreen.changeAnimation(named: forecastCity.conditionSlug)
+        print(forecastCity.conditionSlug)
         checkDateAndSetBackgorundViewColor(withWeather: WeatherType.fromString(forecastCity.conditionSlug))
     }
 }

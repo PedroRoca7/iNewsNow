@@ -97,17 +97,3 @@ extension MenuFilterNewsViewController: UIScrollViewDelegate {
         }
     }
 }
-
-#if DEBUG
-import SwiftUI
-
-struct MenuFilterNews_Previews: PreviewProvider {
-    static var previews: some View {
-        UINavigationController(
-            rootViewController: MenuFilterNewsFactory.makeModule(navigationController: UINavigationController())
-        )
-        .asSwiftUIView
-        .edgesIgnoringSafeArea(.all)
-    }
-}
-#endif

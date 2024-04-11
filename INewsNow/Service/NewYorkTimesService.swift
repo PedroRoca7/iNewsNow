@@ -38,7 +38,7 @@ final class NewYorkTimesService {
     }
     
     weak var delegate: NewYorkTimesServiceDelegate?
-    private let apiKey = PrivateApiKeys.newsNewYorkTimeApiKey
+    private let apiKey = PrivateApiKeys.newsNewYorkTimesApiKeys
     
 }
 

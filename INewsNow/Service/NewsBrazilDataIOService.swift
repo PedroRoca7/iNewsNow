@@ -21,7 +21,7 @@ protocol NewsBrazilDataIOServicing {
 final class NewsBrazilDataIOService {
     
     private let baseURL = "https://newsdata.io/api/1/news?country=br"
-    private let apiKey = PrivateApiKeys.newsBrazilApiKey
+    private let apiKey = PrivateApiKeys.newsBrazilApiKeys
     
     weak var delegate: NewsBrazilDataIOServiceDelegate?
     

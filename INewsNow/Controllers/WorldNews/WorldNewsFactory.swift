@@ -14,7 +14,7 @@ enum WorldNewsFactory {
         let service = NewYorkTimesService()
         let viewModel = WorldNewsViewModel(service: service, coordinator: coordinator)
         let viewController = WorldNewsViewController(viewModel: viewModel)
-        
+        service.delegate = viewModel
         viewModel.delegate = viewController
         
         return viewController

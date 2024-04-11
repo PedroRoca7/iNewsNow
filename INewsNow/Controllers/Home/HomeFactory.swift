@@ -14,7 +14,7 @@ enum HomeFactory {
         let coordinator = HomeCoordinator(navigationController: navigationController)
         let viewModel = HomeViewModel(service: service, coordinator: coordinator)
         let viewController = HomeViewController(viewModel: viewModel)
-        
+        service.delegate = viewModel
         viewModel.delegate = viewController
         
         return viewController

@@ -41,6 +41,7 @@ extension WeatherViewModel: WeatherServiceDelegate {
     }
     
     func didSuccedForecastFetching(forecast: ForecastResponseModel) {
+        self.forescastCity = forecast
         self.forecastDayList = forecast.results.forecast
         self.delegate?.success(forecastCity: forecast)
     }
