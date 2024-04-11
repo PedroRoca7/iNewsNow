@@ -8,6 +8,7 @@ target 'INewsNow' do
   # Pods for INewsNow
   
    pod 'JJFloatingActionButton'  
+   pod 'lottie-ios'	
 
   target 'INewsNowTests' do
     inherit! :search_paths

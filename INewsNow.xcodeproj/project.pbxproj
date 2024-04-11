@@ -61,6 +61,13 @@
 		CE7A2B6D2B988DFE004723D8 /* CategoryNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A2B6C2B988DFE004723D8 /* CategoryNewsView.swift */; };
 		CE7A2B6F2B988E02004723D8 /* CategoryNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A2B6E2B988E01004723D8 /* CategoryNewsViewModel.swift */; };
 		CE7A2B712B988E22004723D8 /* CategoryNewsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A2B702B988E22004723D8 /* CategoryNewsFactory.swift */; };
+		CE7DFE6D2BC46DA5007396D8 /* launchScreen.json in Resources */ = {isa = PBXBuildFile; fileRef = CE7DFE6C2BC46DA5007396D8 /* launchScreen.json */; };
+		CE7DFE6F2BC47134007396D8 /* cloudly_day.json in Resources */ = {isa = PBXBuildFile; fileRef = CE7DFE6E2BC47134007396D8 /* cloudly_day.json */; };
+		CE7DFE712BC4713D007396D8 /* clear_day.json in Resources */ = {isa = PBXBuildFile; fileRef = CE7DFE702BC4713D007396D8 /* clear_day.json */; };
+		CE7DFE732BC7212C007396D8 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DFE722BC7212C007396D8 /* HomePresenter.swift */; };
+		CE7DFE752BC72137007396D8 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DFE742BC72137007396D8 /* HomeInteractor.swift */; };
+		CE7E9D022BC4249F00FF8537 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E9D012BC4249F00FF8537 /* LaunchScreenViewController.swift */; };
+		CE7E9D042BC4286200FF8537 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E9D032BC4286200FF8537 /* LaunchScreenView.swift */; };
 		CE86C22B2B920CD100921390 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C22A2B920CD100921390 /* WeatherViewController.swift */; };
 		CE86C22D2B920CDE00921390 /* WeatherFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C22C2B920CDE00921390 /* WeatherFactory.swift */; };
 		CE86C22F2B920CF200921390 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86C22E2B920CF200921390 /* WeatherView.swift */; };
@@ -86,10 +93,7 @@
 		CED75AAA2BB855790011235C /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED75AA92BB855790011235C /* TabBarView.swift */; };
 		CED75AAD2BBAF7960011235C /* CategoryViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED75AAC2BBAF7960011235C /* CategoryViewComponent.swift */; };
 		CED75AAF2BBB14A70011235C /* SimpleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED75AAE2BBB14A70011235C /* SimpleScrollView.swift */; };
-		CED75AB22BBB60F50011235C /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CED75AB12BBB60F50011235C /* Lottie */; };
 		CED75ABC2BBB614A0011235C /* fog.json in Resources */ = {isa = PBXBuildFile; fileRef = CED75AB42BBB61480011235C /* fog.json */; };
-		CED75ABD2BBB614A0011235C /* cloud.json in Resources */ = {isa = PBXBuildFile; fileRef = CED75AB52BBB61480011235C /* cloud.json */; };
-		CED75ABE2BBB614A0011235C /* clear_day.json in Resources */ = {isa = PBXBuildFile; fileRef = CED75AB62BBB61490011235C /* clear_day.json */; };
 		CED75ABF2BBB614A0011235C /* rain.json in Resources */ = {isa = PBXBuildFile; fileRef = CED75AB72BBB61490011235C /* rain.json */; };
 		CED75AC02BBB614A0011235C /* clear_night.json in Resources */ = {isa = PBXBuildFile; fileRef = CED75AB82BBB61490011235C /* clear_night.json */; };
 		CED75AC12BBB614A0011235C /* storm.json in Resources */ = {isa = PBXBuildFile; fileRef = CED75AB92BBB61490011235C /* storm.json */; };
@@ -176,6 +180,13 @@
 		CE7A2B6C2B988DFE004723D8 /* CategoryNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryNewsView.swift; sourceTree = "<group>"; };
 		CE7A2B6E2B988E01004723D8 /* CategoryNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryNewsViewModel.swift; sourceTree = "<group>"; };
 		CE7A2B702B988E22004723D8 /* CategoryNewsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryNewsFactory.swift; sourceTree = "<group>"; };
+		CE7DFE6C2BC46DA5007396D8 /* launchScreen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = launchScreen.json; sourceTree = "<group>"; };
+		CE7DFE6E2BC47134007396D8 /* cloudly_day.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cloudly_day.json; sourceTree = "<group>"; };
+		CE7DFE702BC4713D007396D8 /* clear_day.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clear_day.json; sourceTree = "<group>"; };
+		CE7DFE722BC7212C007396D8 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		CE7DFE742BC72137007396D8 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		CE7E9D012BC4249F00FF8537 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		CE7E9D032BC4286200FF8537 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		CE86C22A2B920CD100921390 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		CE86C22C2B920CDE00921390 /* WeatherFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherFactory.swift; sourceTree = "<group>"; };
 		CE86C22E2B920CF200921390 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
@@ -202,17 +213,11 @@
 		CED75AAC2BBAF7960011235C /* CategoryViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewComponent.swift; sourceTree = "<group>"; };
 		CED75AAE2BBB14A70011235C /* SimpleScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleScrollView.swift; sourceTree = "<group>"; };
 		CED75AB42BBB61480011235C /* fog.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fog.json; sourceTree = "<group>"; };
-		CED75AB52BBB61480011235C /* cloud.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cloud.json; sourceTree = "<group>"; };
-		CED75AB62BBB61490011235C /* clear_day.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clear_day.json; sourceTree = "<group>"; };
 		CED75AB72BBB61490011235C /* rain.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rain.json; sourceTree = "<group>"; };
 		CED75AB82BBB61490011235C /* clear_night.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clear_night.json; sourceTree = "<group>"; };
 		CED75AB92BBB61490011235C /* storm.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = storm.json; sourceTree = "<group>"; };
 		CED75ABA2BBB614A0011235C /* snow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = snow.json; sourceTree = "<group>"; };
 		CED75ABB2BBB614A0011235C /* cloudly_night.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cloudly_night.json; sourceTree = "<group>"; };
-		CED75AC42BBB6C5E0011235C /* cloudly_day.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cloudly_day.json; sourceTree = "<group>"; };
-		CED75AC52BBB6C7E0011235C /* hail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = hail.json; sourceTree = "<group>"; };
-		CED75AC62BBB6C930011235C /* none_day.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = none_day.json; sourceTree = "<group>"; };
-		CED75AC72BBB6CA60011235C /* none_night.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = none_night.json; sourceTree = "<group>"; };
 		D29B249EE59E915496306429 /* Pods-INewsNow-INewsNowUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-INewsNow-INewsNowUITests.release.xcconfig"; path = "Target Support Files/Pods-INewsNow-INewsNowUITests/Pods-INewsNow-INewsNowUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D84635CC8FDFE4B3720C182E /* Pods_INewsNow_INewsNowUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_INewsNow_INewsNowUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -224,7 +229,6 @@
 			files = (
 				CE4022AC2B7183C100FB727C /* Kingfisher in Frameworks */,
 				A366369612B970BA428B9295 /* Pods_INewsNow.framework in Frameworks */,
-				CED75AB22BBB60F50011235C /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,39 +272,6 @@
 				564BF426FEF134C344685B10 /* Pods_INewsNowTests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		CE0DD5762BBF72CA00B002DD /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				CE40229F2B6E781100FB727C /* Service */,
-				CE4022A32B6E80B700FB727C /* Models */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		CE0DD5772BBF72D100B002DD /* App */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = App;
-			sourceTree = "<group>";
-		};
-		CE0DD5782BBF72D700B002DD /* Infra */ = {
-			isa = PBXGroup;
-			children = (
-				CE4BC9C12B6A8B0200409725 /* Controllers */,
-				CED431002B7670CE005BE203 /* TabBar */,
-			);
-			path = Infra;
-			sourceTree = "<group>";
-		};
-		CE0DD5792BBF73D400B002DD /* ExternalInterfaces */ = {
-			isa = PBXGroup;
-			children = (
-				CE57511E2B83710000A34621 /* INewsNowDB.xcdatamodeld */,
-			);
-			path = ExternalInterfaces;
 			sourceTree = "<group>";
 		};
 		CE1A3A902B6D392A000C0559 /* Protocols */ = {
@@ -401,14 +372,15 @@
 		CE4BC98F2B6A898300409725 /* INewsNow */ = {
 			isa = PBXGroup;
 			children = (
-				CE0DD5792BBF73D400B002DD /* ExternalInterfaces */,
-				CE0DD5782BBF72D700B002DD /* Infra */,
-				CE0DD5772BBF72D100B002DD /* App */,
-				CE0DD5762BBF72CA00B002DD /* Domain */,
+				CE4BC9C12B6A8B0200409725 /* Controllers */,
+				CED431002B7670CE005BE203 /* TabBar */,
+				CE40229F2B6E781100FB727C /* Service */,
+				CE4022A32B6E80B700FB727C /* Models */,
 				CE7A2B682B97C727004723D8 /* Root */,
 				CE4BC9C02B6A8AD800409725 /* Source */,
 				CE4BC9992B6A898800409725 /* Assets.xcassets */,
 				CE4BC99E2B6A898800409725 /* Info.plist */,
+				CE57511E2B83710000A34621 /* INewsNowDB.xcdatamodeld */,
 			);
 			path = INewsNow;
 			sourceTree = "<group>";
@@ -530,6 +502,8 @@
 				CE5751512B8529DF00A34621 /* HomeView.swift */,
 				CE57515C2B85728F00A34621 /* HomeViewModel.swift */,
 				CE57515E2B85734A00A34621 /* HomeFactory.swift */,
+				CE7DFE722BC7212C007396D8 /* HomePresenter.swift */,
+				CE7DFE742BC72137007396D8 /* HomeInteractor.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -566,6 +540,8 @@
 				CE4BC9902B6A898300409725 /* AppDelegate.swift */,
 				CE4BC9922B6A898300409725 /* SceneDelegate.swift */,
 				CE4BC99B2B6A898800409725 /* LaunchScreen.storyboard */,
+				CE7E9D012BC4249F00FF8537 /* LaunchScreenViewController.swift */,
+				CE7E9D032BC4286200FF8537 /* LaunchScreenView.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -665,16 +641,13 @@
 		CED75AB32BBB612D0011235C /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				CED75AB62BBB61490011235C /* clear_day.json */,
-				CED75AC62BBB6C930011235C /* none_day.json */,
+				CE7DFE6C2BC46DA5007396D8 /* launchScreen.json */,
 				CED75AB82BBB61490011235C /* clear_night.json */,
-				CED75AC72BBB6CA60011235C /* none_night.json */,
+				CE7DFE702BC4713D007396D8 /* clear_day.json */,
+				CE7DFE6E2BC47134007396D8 /* cloudly_day.json */,
 				CED75ABB2BBB614A0011235C /* cloudly_night.json */,
-				CED75AB52BBB61480011235C /* cloud.json */,
-				CED75AC42BBB6C5E0011235C /* cloudly_day.json */,
 				CED75AB72BBB61490011235C /* rain.json */,
 				CED75ABA2BBB614A0011235C /* snow.json */,
-				CED75AC52BBB6C7E0011235C /* hail.json */,
 				CED75AB92BBB61490011235C /* storm.json */,
 				CED75AB42BBB61480011235C /* fog.json */,
 			);
@@ -701,7 +674,6 @@
 			name = INewsNow;
 			packageProductDependencies = (
 				CE4022AB2B7183C100FB727C /* Kingfisher */,
-				CED75AB12BBB60F50011235C /* Lottie */,
 			);
 			productName = INewsNow;
 			productReference = CE4BC98D2B6A898300409725 /* INewsNow.app */;
@@ -780,7 +752,6 @@
 			mainGroup = CE4BC9842B6A898300409725;
 			packageReferences = (
 				CE4022AA2B7183C100FB727C /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				CED75AB02BBB60F50011235C /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = CE4BC98E2B6A898300409725 /* Products */;
 			projectDirPath = "";
@@ -799,13 +770,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CED75AC32BBB614A0011235C /* cloudly_night.json in Resources */,
-				CED75ABE2BBB614A0011235C /* clear_day.json in Resources */,
+				CE7DFE6D2BC46DA5007396D8 /* launchScreen.json in Resources */,
 				CED75AC22BBB614A0011235C /* snow.json in Resources */,
 				CED75ABF2BBB614A0011235C /* rain.json in Resources */,
 				CE4BC99D2B6A898800409725 /* LaunchScreen.storyboard in Resources */,
-				CED75ABD2BBB614A0011235C /* cloud.json in Resources */,
 				CED75AC02BBB614A0011235C /* clear_night.json in Resources */,
 				CED75ABC2BBB614A0011235C /* fog.json in Resources */,
+				CE7DFE712BC4713D007396D8 /* clear_day.json in Resources */,
+				CE7DFE6F2BC47134007396D8 /* cloudly_day.json in Resources */,
 				CE4BC99A2B6A898800409725 /* Assets.xcassets in Resources */,
 				CED75AC12BBB614A0011235C /* storm.json in Resources */,
 			);
@@ -955,10 +927,12 @@
 				CE5751522B8529DF00A34621 /* HomeView.swift in Sources */,
 				CE5A49352B87C145006D0702 /* FavoriteNewsViewModel.swift in Sources */,
 				CE86C22D2B920CDE00921390 /* WeatherFactory.swift in Sources */,
+				CE7E9D022BC4249F00FF8537 /* LaunchScreenViewController.swift in Sources */,
 				CE86C2492B96AF3A00921390 /* MenuFilterNewsView.swift in Sources */,
 				CE4EA00D2B7FC13D00B57802 /* Color+Extension.swift in Sources */,
 				CE86C22B2B920CD100921390 /* WeatherViewController.swift in Sources */,
 				CE57515F2B85734A00A34621 /* HomeFactory.swift in Sources */,
+				CE7DFE732BC7212C007396D8 /* HomePresenter.swift in Sources */,
 				CED431022B7670ED005BE203 /* TabBarController.swift in Sources */,
 				CECBC9772B98982000C6035A /* CategoryNewsCoordinator.swift in Sources */,
 				CE1A3A9C2B6D7E7E000C0559 /* CustomMainNewsCell.swift in Sources */,
@@ -994,6 +968,7 @@
 				CE1A3A922B6D394A000C0559 /* ViewProtocol.swift in Sources */,
 				CE5751572B852B6A00A34621 /* CustomNewsBrazilCell.swift in Sources */,
 				CED431082B76BBAA005BE203 /* TabBarFactory.swift in Sources */,
+				CE7DFE752BC72137007396D8 /* HomeInteractor.swift in Sources */,
 				CE7A2B622B97ABAC004723D8 /* MenuFilterNewsTableViewCell.swift in Sources */,
 				CED75AAA2BB855790011235C /* TabBarView.swift in Sources */,
 				CE4EA0072B7FC04800B57802 /* CustomFavoriteNewsTableViewCell.swift in Sources */,
@@ -1005,6 +980,7 @@
 				CE4EA0042B7FBE5300B57802 /* FavoriteNewsCoordinator.swift in Sources */,
 				CE57515D2B85728F00A34621 /* HomeViewModel.swift in Sources */,
 				CE4EA0092B7FC06C00B57802 /* CustomFavoriteNewsCell.swift in Sources */,
+				CE7E9D042BC4286200FF8537 /* LaunchScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1354,14 +1330,6 @@
 				kind = branch;
 			};
 		};
-		CED75AB02BBB60F50011235C /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1369,11 +1337,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE4022AA2B7183C100FB727C /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
-		};
-		CED75AB12BBB60F50011235C /* Lottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CED75AB02BBB60F50011235C /* XCRemoteSwiftPackageReference "lottie-spm" */;
-			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -1,16 +1,20 @@
 PODS:
   - JJFloatingActionButton (3.0.0)
+  - lottie-ios (4.4.2)
 
 DEPENDENCIES:
   - JJFloatingActionButton
+  - lottie-ios
 
 SPEC REPOS:
   trunk:
     - JJFloatingActionButton
+    - lottie-ios
 
 SPEC CHECKSUMS:
   JJFloatingActionButton: 42d4a142b856cd202976cc085d449b2ec55f4d3a
+  lottie-ios: 4445b0bdb583c7a5325529f62246d311ee85fcd0
 
-PODFILE CHECKSUM: 142e03c8e90e02cd85f06ee14da44126217272fa
+PODFILE CHECKSUM: e4f43e5b57d19a7276bcee4cad1c494bfa363e2b
 
 COCOAPODS: 1.12.0
