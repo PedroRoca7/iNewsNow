@@ -7,62 +7,85 @@
 
 import Foundation
 
+protocol NewYorkTimesServiceDelegate: NSObject {
+    func didFailMainNewsFetching()
+    func didSuccedMainNewsFetching(mainNews: MainNewsModel)
+    func didFailMostPopularFetching()
+    func didSuccedMostPopularFetching(mostPopular: MostPopularNewsModel)
+}
+
 protocol NewYorkTimesServicing {
-    func loadMainNews() async throws -> MainNewsModel
-    func loadMostPopularNews(onComplete: @escaping(MostPopularNewsModel?, Error?) -> Void)
+    var delegate: NewYorkTimesServiceDelegate? { get set }
+    func loadMainNews()
+    func loadMostPopularNews()
 }
 
-enum APIError: Error {
-    case requestFailed
-    case invalidData
-}
-
-final class NewYorkTimesService: NewYorkTimesServicing {
+final class NewYorkTimesService {
     
-    enum TypesApiNewYorkTimes: String {
-        case urlMainNews = "https://api.nytimes.com/svc/topstories/v2/home.json?api-key=N8U4kVw1Icdw3YiGFhThZqIGTAF9PJ7l"
-        case urlMostPopularNews = "https://api.nytimes.com/svc/mostpopular/v2/shared/1/facebook.json?api-key=N8U4kVw1Icdw3YiGFhThZqIGTAF9PJ7l"
-    }
+    enum TypesApiNewYorkTimes {
+        case urlMainNews(apiKey: String)
+        case urlMostPopularNews(apiKey: String)
         
-    func loadMainNews() async throws -> MainNewsModel {
-        guard let url = URL(string: TypesApiNewYorkTimes.urlMainNews.rawValue) else {
-            throw APIError.requestFailed }
-        
-        return try await withCheckedThrowingContinuation { continuation in
-            let dataTask1 = URLSession.shared.dataTask(with: url) { data, response, error in
-                guard let data1 = data, error == nil else {
-                    guard let error1 = error else {
-                        fatalError("Expected non-nil result 'error1' in the non-error case")
-                    }
-                    continuation.resume(throwing: error1)
-                    return
-                }
-                do {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = .iso8601
-                    let response = try decoder.decode(MainNewsModel.self, from: data1)
-                    continuation.resume(returning: response)
-                } catch {
-                    continuation.resume(throwing: error)
-                }
+        var stringValue: String {
+            switch self {
+                
+            case .urlMainNews(let apiKey):
+                return "https://api.nytimes.com/svc/topstories/v2/home.json?api-key=\(apiKey)"
+            case .urlMostPopularNews(let apiKey):
+                return "https://api.nytimes.com/svc/mostpopular/v2/shared/1/facebook.json?api-key=\(apiKey)"
             }
-            dataTask1.resume()
         }
     }
     
-    func loadMostPopularNews(onComplete: @escaping(MostPopularNewsModel?, Error?) -> Void) {
-        guard let url = URL(string: TypesApiNewYorkTimes.urlMostPopularNews.rawValue) else { return }
+    weak var delegate: NewYorkTimesServiceDelegate?
+    private let apiKey = PrivateApiKeys.newsNewYorkTimeApiKey
+    
+}
+
+extension NewYorkTimesService:  NewYorkTimesServicing {
+    
+    func loadMainNews() {
+        guard let url = URL(string: TypesApiNewYorkTimes.urlMainNews(apiKey: apiKey).stringValue) else {
+            self.delegate?.didFailMainNewsFetching()
+            return }
         
-        let dataTask = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                onComplete(nil, error)
+        let dataTask = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+            guard let self = self,
+                  let data = data,
+                  error == nil else {
+                self?.delegate?.didFailMainNewsFetching()
                 return
             }
             do {
-                let dataMainNews = try JSONDecoder().decode(MostPopularNewsModel.self, from: data)
-                onComplete(dataMainNews, nil)
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                let response = try decoder.decode(MainNewsModel.self, from: data)
+                self.delegate?.didSuccedMainNewsFetching(mainNews: response)
             } catch {
-                onComplete(nil, error)
+                self.delegate?.didFailMainNewsFetching()
+            }
+        }
+        dataTask.resume()
+    }
+    
+    
+    func loadMostPopularNews() {
+        guard let url = URL(string: TypesApiNewYorkTimes.urlMostPopularNews(apiKey: apiKey).stringValue) else {
+            self.delegate?.didFailMostPopularFetching()
+            return }
+        
+        let dataTask = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+            guard let self = self,
+                  let data = data,
+                      error == nil else {
+                self?.delegate?.didFailMostPopularFetching()
+                return
+            }
+            do {
+                let response = try JSONDecoder().decode(MostPopularNewsModel.self, from: data)
+                self.delegate?.didSuccedMostPopularFetching(mostPopular: response)
+            } catch {
+                self.delegate?.didFailMostPopularFetching()
 #if DEBUG
                 print(error.localizedDescription)
 #endif
@@ -70,4 +93,5 @@ final class NewYorkTimesService: NewYorkTimesServicing {
         }
         dataTask.resume()
     }
+    
 }

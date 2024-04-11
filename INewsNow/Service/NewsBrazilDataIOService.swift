@@ -7,52 +7,71 @@
 
 import Foundation
 
+protocol NewsBrazilDataIOServiceDelegate: NSObject {
+    func didFailNewsBrazilFetching()
+    func didSuccedNewsBrazilFetching(newsBrazil: NewsBrazilModel)
+}
 
+protocol NewsBrazilDataIOServicing {
+    var delegate: NewsBrazilDataIOServiceDelegate? { get set }
+    func loadNewsBrazil()
+    func loadCategoryNewsBrazil(category: String)
+}
 
 final class NewsBrazilDataIOService {
     
     private let baseURL = "https://newsdata.io/api/1/news?country=br"
-    private let apiKey = "pub_38681ecae91e7da84f59d75ee44ef2f63a0cb"
+    private let apiKey = PrivateApiKeys.newsBrazilApiKey
     
-    func loadNewsBrazil(onComplete: @escaping(NewsBrazilModel?, Error?)-> Void) {
+    weak var delegate: NewsBrazilDataIOServiceDelegate?
+    
+}
+
+extension NewsBrazilDataIOService: NewsBrazilDataIOServicing {
+    
+    func loadNewsBrazil() {
         let urlString = "\(baseURL)&apikey=\(apiKey)"
         guard let url = URL(string: urlString) else { return }
         
-        let dataTask = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                onComplete(nil, error)
+        let dataTask = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+            guard let self = self,
+                  let data = data,
+                  error == nil else {
+                self?.delegate?.didFailNewsBrazilFetching()
                 return
             }
             do {
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .iso8601
                 let response = try decoder.decode(NewsBrazilModel.self, from: data)
-                onComplete(response, nil)
+                self.delegate?.didSuccedNewsBrazilFetching(newsBrazil: response)
             } catch {
-                onComplete(nil, error)
+                self.delegate?.didFailNewsBrazilFetching()
             }
         }
         dataTask.resume()
     }
     
-    func loadCategoryNewsBrazil(category: String, onComplete: @escaping(NewsBrazilModel?, Error?)-> Void) {
+    func loadCategoryNewsBrazil(category: String) {
         let categoryName = category.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         let urlString = "\(baseURL)&category=\(categoryName)&apikey=\(apiKey)"
         
         guard let url = URL(string: urlString) else { return }
         
-        let dataTask = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                onComplete(nil, error)
+        let dataTask = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+            guard let self = self,
+                  let data = data,
+                  error == nil else {
+                self?.delegate?.didFailNewsBrazilFetching()
                 return
             }
             do {
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .iso8601
                 let response = try decoder.decode(NewsBrazilModel.self, from: data)
-                onComplete(response, nil)
+                self.delegate?.didSuccedNewsBrazilFetching(newsBrazil: response)
             } catch {
-                onComplete(nil, error)
+                self.delegate?.didFailNewsBrazilFetching()
             }
         }
         dataTask.resume()
