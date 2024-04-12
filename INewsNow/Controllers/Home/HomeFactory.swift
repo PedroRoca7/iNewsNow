@@ -12,10 +12,11 @@ enum HomeFactory {
     static func makeModule(navigationController: UINavigationController) -> UIViewController {
         let service = NewsBrazilDataIOService()
         let coordinator = HomeCoordinator(navigationController: navigationController)
-        let viewModel = HomeViewModel(service: service, coordinator: coordinator)
-        let viewController = HomeViewController(viewModel: viewModel)
-        service.delegate = viewModel
-        viewModel.delegate = viewController
+        let presenter = HomePresenter()
+        let interactor = HomeInteractor(service: service, presenter: presenter)
+        let viewController = HomeViewController(interactor: interactor, coordinator: coordinator)
+        service.delegate = interactor
+        presenter.controller = viewController
         
         return viewController
     }

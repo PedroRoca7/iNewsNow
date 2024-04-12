@@ -102,8 +102,6 @@ extension FavoriteNewsViewController: UITableViewDelegate, UITableViewDataSource
             CoreDataHelper.shared.removeFavoritedNews(test: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
-            
-            
         }
     }
 }

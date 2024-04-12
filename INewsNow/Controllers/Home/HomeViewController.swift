@@ -8,6 +8,12 @@
 import Foundation
 import UIKit
 
+protocol HomeViewControlling: NSObject {
+    func didFinishLoading()
+    func reloadData(newsBrazil: NewsBrazilModel)
+    func didFailNewsFetching()
+}
+
 final class HomeViewController: UIViewController {
     
     //MARK: - Propertys
@@ -17,12 +23,15 @@ final class HomeViewController: UIViewController {
         return view
     }()
                 
-    private var viewModel: HomeViewModeling
+    private let interactor: HomeInteracting
+    private let coordinator: HomeCoordinating
+    private let dataSource = HomeTableViewDataSource()
     
     //MARK: - Inits
     
-    init(viewModel: HomeViewModeling) {
-        self.viewModel = viewModel
+    init(interactor: HomeInteracting, coordinator: HomeCoordinating) {
+        self.interactor = interactor
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,14 +43,29 @@ final class HomeViewController: UIViewController {
         view = viewScreen
     }
         
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        viewModel.loadNewsBrazil()
-        setupDelegateAndDataSource()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         setupNavigationBar()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        interactor.getNewsFromBrazil()
+        setupDelegateAndDataSource()
+        startLoadingView()
+    }
+    
+  
+    private func startLoadingView() {
+        viewScreen.loaderView.isHidden = false
+        viewScreen.loader.startAnimating()
+    }
+    
+    private func stopLoadingView() {
+        DispatchQueue.main.async {
+            self.viewScreen.loaderView.isHidden = true
+            self.viewScreen.loader.stopAnimating()
+        }
+        
     }
     
     private func setupNavigationBar() {
@@ -53,49 +77,9 @@ final class HomeViewController: UIViewController {
     }
     
     private func setupDelegateAndDataSource() {
-        viewScreen.newsTableView.delegate = self
-        viewScreen.newsTableView.dataSource = self
-    }
-}
-
-extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.newsBrazilList?.results.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomNewsBrazilTableViewCell.identifier,
-                                                       for: indexPath) as? CustomNewsBrazilTableViewCell else { return UITableViewCell()}
-       
-        cell.delegate = self
-        
-        if let newsBrazil = viewModel.newsBrazilList?.results[indexPath.row] {
-            cell.viewScreen.favoriteNewsButton.tintColor = newsBrazil.favorite ? UIColor.red : UIColor.gray
-            cell.prepareCell(newsBrazil: newsBrazil)
-        }
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let object = viewModel.newsBrazilList?.results[indexPath.row] else { return }
-        viewModel.showScreenDetailsNews(newsObject: object)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 300
-    }
-}
-
-extension HomeViewController: HomeViewModelDelegate {
-    func success() {
-        DispatchQueue.main.async {
-            self.viewScreen.newsTableView.reloadData()
-        }
-    }
-    
-    func failure() {
-        print("Falhou")
+        viewScreen.newsTableView.delegate = dataSource
+        viewScreen.newsTableView.dataSource = dataSource
+        dataSource.delegate = self
     }
 }
 
@@ -103,9 +87,37 @@ extension HomeViewController: CustomNewsBrazilTableViewCellDelegate {
     func favoriteButtonTapped(cell: UITableViewCell) {
         guard let indexPathTapped = viewScreen.newsTableView.indexPath(for: cell) else { return }
       
-        viewModel.setFavoriteNews(index: indexPathTapped.row)
+        interactor.saveObjectInDB(myObjectAtIndex: indexPathTapped.row)
         DispatchQueue.main.async {
             self.viewScreen.newsTableView.reloadRows(at: [indexPathTapped], with: .none)
         }
+    }
+}
+
+extension HomeViewController: HomeViewControlling {
+    func didFinishLoading() {
+        stopLoadingView()
+    }
+    
+    func reloadData(newsBrazil: NewsBrazilModel) {
+        dataSource.reloadTableView(with: newsBrazil)
+        DispatchQueue.main.async {
+            self.viewScreen.newsTableView.reloadData()
+        }
+    }
+    
+    func didFailNewsFetching() {
+        //Show Alert
+        print("erro ao carregar as notícias.")
+    }
+}
+
+extension HomeViewController: HomeTableViewDataSourceDelegate {
+    func favoritedButtonClicked(index: Int) {
+        interactor.saveObjectInDB(myObjectAtIndex: index)
+    }
+    
+    func cellClicked(newsObject: Article) {
+        coordinator.showScreenDetailsNews(newsObject: newsObject)
     }
 }

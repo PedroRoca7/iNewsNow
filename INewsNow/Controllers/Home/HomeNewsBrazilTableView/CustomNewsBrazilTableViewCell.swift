@@ -23,6 +23,8 @@ final class CustomNewsBrazilTableViewCell: UITableViewCell {
     
     weak var delegate: CustomNewsBrazilTableViewCellDelegate?
     
+    var buttonClicked: ((UITableViewCell) -> Void)?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
@@ -34,7 +36,8 @@ final class CustomNewsBrazilTableViewCell: UITableViewCell {
     }
  
     @objc private func buttonTapped() {
-        delegate?.favoriteButtonTapped(cell: self)
+//        delegate?.favoriteButtonTapped(cell: self)
+        buttonClicked?(self)
     }
     
     func prepareCell(newsBrazil: Article) {

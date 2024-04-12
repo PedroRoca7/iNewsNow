@@ -26,6 +26,19 @@ final class HomeView: UIView {
         return tb
     }()
     
+    lazy var loaderView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        return view
+    }()
+    
+    lazy var loader: UIActivityIndicatorView = {
+        let loader = UIActivityIndicatorView(style: .large)
+        loader.translatesAutoresizingMaskIntoConstraints = false
+        return loader
+    }()
+    
     //MARK: - Inits
     
     override init(frame: CGRect) {
@@ -42,6 +55,8 @@ final class HomeView: UIView {
 extension HomeView: ViewProtocol {
     func buildHierarchy() {
         self.addSubview(newsTableView)
+        self.addSubview(loaderView)
+        loaderView.addSubview(loader)
     }
     
     func setupConstraints() {
@@ -50,6 +65,13 @@ extension HomeView: ViewProtocol {
             newsTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
             newsTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
             newsTableView.bottomAnchor.constraint(equalTo: safeGuide.bottomAnchor),
+            
+            loaderView.topAnchor.constraint(equalTo: self.topAnchor),
+            loaderView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            loaderView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            loaderView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            loader.centerXAnchor.constraint(equalTo: loaderView.centerXAnchor),
+            loader.centerYAnchor.constraint(equalTo: loaderView.centerYAnchor),
         ])
     }
     

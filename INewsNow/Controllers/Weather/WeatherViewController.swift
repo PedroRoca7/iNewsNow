@@ -78,7 +78,6 @@ final class WeatherViewController: UIViewController {
         viewScreen.humidityValueLabel.text = "\(forecastCity.humidity)mm"
         viewScreen.windValueLabel.text = forecastCity.windSpeed
         viewScreen.changeAnimation(named: forecastCity.conditionSlug)
-        print(forecastCity.conditionSlug)
         checkDateAndSetBackgorundViewColor(withWeather: WeatherType.fromString(forecastCity.conditionSlug))
     }
 }
